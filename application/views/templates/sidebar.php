@@ -9,8 +9,9 @@
             <ul>
                 <li><a href="<?= base_url(); ?>"><i class="ti-dashboard"></i> Dashboard</a></li>
                 <li><a href="<?= base_url(); ?>teachers"><i class="ti-user"></i> Teachers</a></li>
-                <li><a href="<?= base_url(); ?>"><i class="ti-book"></i> Subjects</a></li>
-                <li><a href="<?= base_url(); ?>"><i class="ti-announcement"></i> Announcements</a></li>
+                <li><a href="<?= base_url(); ?>students"><i class="ti-user"></i> Students</a></li>
+                <li><a href="<?= base_url(); ?>subjects"><i class="ti-book"></i> Subjects</a></li>
+                <li><a href="<?= base_url(); ?>announcements"><i class="ti-announcement"></i> Announcements</a></li>
             </ul>
         </div>
     </div>
