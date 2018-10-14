@@ -33,7 +33,8 @@
                                 <input type="text" class="form-control search-box-input" placeholder="Search">
                                 <div class="input-group-prepend input-group-left">
                                     <a href="<?=base_url();?>teachers/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
-                                    <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
+                                    <a href="<?=base_url();?>teachers/edit" class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></a>
+                                    <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
                                     <button class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
                                 </div>
                             </div>

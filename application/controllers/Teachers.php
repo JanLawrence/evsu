@@ -30,4 +30,10 @@ class Teachers extends CI_Controller {
 		$this->load->view('teachers/add-teacher');
 		$this->load->view('templates/footer');
 	}
+	public function edit()
+	{	
+		$this->load->view('templates/header');
+		$this->load->view('teachers/edit-teacher');
+		$this->load->view('templates/footer');
+	}
 }
