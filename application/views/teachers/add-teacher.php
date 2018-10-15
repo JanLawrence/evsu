@@ -29,31 +29,34 @@
                         <div class="card-title">
                             <span>Teacher Information</span>
                         </div>
-                        <form>
+                        <form action="add" method="post">
                             <div class="row mt-1">
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">First Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="firstName">
+                                            <?= form_error('firstName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Middle Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="middleName">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Last Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="lastName">
+                                            <?= form_error('lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Advisory:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="advisory">
+                                            <?= form_error('advisory', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -61,27 +64,29 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Address:</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" rows="20"></textarea>
+                                            <textarea class="form-control" rows="20" name="address"></textarea>
+                                            <?= form_error('address', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Phone:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="phone">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Email:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="email">
+                                            <?= form_error('email', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-right">
-                                        <a class="btn btn-danger" href="<?=base_url()?>teachers"><i class="ti-arrow-circle-left"></i> Back</a>
-                                        <button class="btn btn-default" type="submit"><i class="ti-save"></i> Submit</button>
+                                    <a class="btn btn-danger" href="<?=base_url()?>teachers"><i class="ti-arrow-circle-left"></i> Back</a>
+                                    <button class="btn btn-default" type="submit"><i class="ti-save"></i> Submit</button>
                                 </div>
                             </div>
                         </form>

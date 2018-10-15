@@ -29,13 +29,13 @@
                         <div class="card-title">
                             <span>Teacher Information</span>
                         </div>
-                        <form>
+                        <form action="teachers/add" method="post">
                             <div class="row mt-1">
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">First Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input class="form-control" name="firstName">
                                         </div>
                                     </div>
                                     <div class="form-group row">
