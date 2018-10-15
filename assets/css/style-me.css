@@ -161,6 +161,7 @@ tbody tr td {
 }
 
 /* form custom styles */
+form .form-group .form-control {
     height: 40px;
     font-family: Montserrat;
     font-size: 12px;
