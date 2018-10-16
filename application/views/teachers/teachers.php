@@ -34,7 +34,7 @@
                                     <input type="text" class="form-control search-box-input" placeholder="Search">
                                     <div class="input-group-prepend input-group-left">
                                         <a href="<?=base_url();?>teachers/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
-                                        <a href="<?=base_url();?>teachers/edit" class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></a>
+                                        <button type="button" class="btn btn-standard btn-sm btn-edit"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
                                         <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
                                         <button type="submit" class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
                                     </div>
@@ -53,37 +53,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach($teachers as $each): ?>
                                         <tr>
-                                            <td><input type="checkbox" name="teacherId[]" value="1"></td>
-                                            <td>Jan Lawrence D.C. Tolentino</td>
-                                            <td>Quezon City</td>
-                                            <td>09251232323</td>
-                                            <td>Math</td>
+                                            <td><input type="checkbox" class="table-check" name="teacherId[]" value="<?= $each->id?>"></td>
+                                            <td><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name ?></td>
+                                            <td><?= $each->address?></td>
+                                            <td><?= $each->phone?></td>
+                                            <td><?= $each->subject_name?></td>
                                             <td><span class="badge badge-pill badge-success">Registered</span></td>
                                         </tr>
-                                        <tr>
-                                            <td><input type="checkbox" name="teacherId[]" value="1"></td>
-                                            <td>Khariza Fe L. Gapuz</td>
-                                            <td>Mandaluyong City</td>
-                                            <td>09251232323</td>
-                                            <td>Science</td>
-                                            <td><span class="badge badge-pill badge-danger">Not Registered</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type="checkbox" name="teacherId[]" value="1"></td>
-                                            <td>Jan Lawrence D.C. Tolentino</td>
-                                            <td>Quezon City</td>
-                                            <td>09251232323</td>
-                                            <td>Math</td>
-                                            <td><span class="badge badge-pill badge-success">Registered</span></td>
-                                        </tr>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </form>
-            </div>
+            </div>1
         </div>
     </section>
 </div>
