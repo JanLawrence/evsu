@@ -14,6 +14,7 @@
         <link href="<?= base_url(); ?>assets/datatables/datatables.min.css" rel="stylesheet">
         <link href="<?= base_url(); ?>assets/css/lib/menubar/sidebar.css" rel="stylesheet">
         <link href="<?= base_url(); ?>assets/css/lib/bootstrap.min.css" rel="stylesheet">
+        <link href="<?= base_url(); ?>assets/css/lib/select2/select2.min.css">
 
         <link href="<?= base_url(); ?>assets/css/lib/helper.css" rel="stylesheet">
         <link href="<?= base_url(); ?>assets/css/style.css" rel="stylesheet">

@@ -36,4 +36,9 @@ class Students extends CI_Controller {
 		$this->load->view('students/edit-student');
 		$this->load->view('templates/footer');
 	}
+	public function studentlog(){
+		$this->load->view('templates/header');
+		$this->load->view('students/student-log');
+		$this->load->view('templates/footer');
+	}
 }

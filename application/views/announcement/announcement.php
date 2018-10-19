@@ -43,7 +43,9 @@
                             <table class="table table-hovered table-striped datatables">
                                 <thead>
                                     <tr>
+                                        <!-- IF user type is admin hide checkbox & show teacher -->
                                         <th><input type="checkbox" ></th>
+                                        <th>Teacher</th>
                                         <th>Subject</th>
                                         <th>Date</th>
                                         <th>Announcement Subject</th>
@@ -52,18 +54,25 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <!-- IF user type is admin hide checkbox & show teacher -->
                                         <td><input type="checkbox" ></td>
+                                        <td>Rose Ann Yumang</td>
                                         <td>Science</td>
                                         <td>October 15, 2018</td>
                                         <td>Assignment on Science</td>
-                                        <td>View More</td>
+                                        <td>
+                                            <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td><input type="checkbox" ></td>
+                                        <td>Shien Ann Dao</td>
                                         <td>Math</td>
                                         <td>October 15, 2018</td>
                                         <td>Assignment on Math</td>
-                                        <td>View More</td>
+                                        <td>
+                                            <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -74,4 +83,29 @@
         </div>
     </section>
 </div>
-<script src="<?= base_url()?>assets/modules/js/teachers.js"></script>
+<div class="modal fade" id="viewModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="ti-announcement"></i> Announcement</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p><span>Teacher: Rose Ann Yumang</span></p>
+                        <p><span>Subject: Science</span></p> 
+                        <p><span>Date: Science</span></p> 
+                    </div>
+                    <div class="col-sm-6">
+                        <p><span>Announcement:</span></p>
+                        <p><span>Exam Posponed. No classes for tomorrow.</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal"><i class="ti-close"></i>Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="<?= base_url()?>assets/modules/js/announcement.js"></script>

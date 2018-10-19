@@ -89,8 +89,8 @@
                     </div> 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger" data-dismiss="modal"><i class="ti-close"></i> Close</button>
-                    <button type="button" class="btn btn-default"><i class="ti-save"></i> Submit</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="ti-close"></i> Close</button>
+                    <button type="submit" class="btn btn-default"><i class="ti-save"></i> Submit</button>
                 </div>
             </div>
         </div>

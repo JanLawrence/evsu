@@ -19,4 +19,8 @@ $(function(){ //toggle ready jquery
             checkbox.prop('checked', false);
         }
     })
+
+    //selectpicker
+    $('.select2').select2();
+
 })

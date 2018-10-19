@@ -6,6 +6,8 @@
         <!-- nano scroller -->
         <script src="<?= base_url();?>assets/js/lib/menubar/sidebar.js"></script>
         <script src="<?= base_url();?>assets/js/lib/preloader/pace.min.js"></script>
+        <!-- selectpicker -->
+        <script src="<?= base_url();?>assets/js/lib/select2/select2.full.min.js"></script>
         <!-- sidebar -->
         <script src="<?= base_url();?>assets/js/lib/bootstrap.min.js"></script>
         <script src="<?= base_url();?>assets/datatables/datatables.min.js"></script>
@@ -28,7 +30,6 @@
 
         <!-- scripit init-->
         <script src="<?= base_url();?>assets/js/scripts.js"></script>
-        
         
     </body>
 
