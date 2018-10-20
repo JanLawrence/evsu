@@ -23,56 +23,53 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <div class="card card-table">
-                    <div class="card-body">
-                        <div class="search-box">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ti-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control search-box-input" placeholder="Search">
-                                <div class="input-group-prepend input-group-left">
-                                    <a href="<?=base_url();?>feedbacks/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
-                                    <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
-                                    <button class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
+                <form action="feedbacks/delete" method="post">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="search-box">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ti-search"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control search-box-input" placeholder="Search">
+                                    <div class="input-group-prepend input-group-left">
+                                        <a href="<?=base_url();?>feedbacks/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
+                                        <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
+                                        <button type="submit" class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-hovered table-striped datatables">
-                                <thead>
-                                    <tr>
-                                        <th>Teacher</th>
-                                        <th>Subject</th>
-                                        <th>Date</th>
-                                        <th>Feedback</th>
-                                        <th>Read</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Yumang, Rose Ann</td>
-                                        <td>Science</td>
-                                        <td>October 15, 2018</td>
-                                        <td>Always late</td>
-                                        <td>
-                                            <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bunyi, Marianne Angelica</td>
-                                        <td>Math</td>
-                                        <td>October 15, 2018</td>
-                                        <td>Everyday gives homework</td>
-                                        <td>
-                                            <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-hovered table-striped datatables">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox"></th>
+                                            <th>Teacher</th>
+                                            <th>Subject</th>
+                                            <th>Date</th>
+                                            <th>Feedback</th>
+                                            <th>Read</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach($feedbacks as $each): ?>
+                                        <tr>
+                                            <td><input type="checkbox" name="feedbackId[]" value="<?= $each->id?>"</td>
+                                            <td><?= $each->t_lname.', '.$each->t_fname.' '.$each->t_mname ?></td>
+                                            <td><?= $each->subject_name?></td>
+                                            <td><?= date('F d, Y', strtotime($each->date_created))?></td>
+                                            <td><?= $each->feedback?></td>
+                                            <td>
+                                                <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>

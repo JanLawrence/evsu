@@ -26,25 +26,19 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form action="add" method="post">
                             <div class="row mt-1">
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Teacher:</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control">
-                                                <option value="">Bunyi, Marianne Angelica</option>
-                                                <option value="">Yumang, Rose Ann</option>
+                                            <select class="form-control select2" name="teacher">
+                                                <option value="" selected disabled></option>
+                                                <?php foreach($teachers as $each): ?>
+                                                    <option value="<?= $each->id?>"><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name ?></option>
+                                                <?php endforeach;?>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Subject:</label>
-                                        <div class="col-sm-9">
-                                            <select class="form-control">
-                                                <option value="">Science</option>
-                                                <option value="">Math</option>
-                                            </select>
+                                            <?= form_error('teacher', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +46,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Feedback:</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" rows="20"></textarea>
+                                            <textarea class="form-control" rows="20" name="feedback"></textarea>
+                                            <?= form_error('feedback', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
