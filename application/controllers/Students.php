@@ -13,7 +13,7 @@ class Students extends CI_Controller {
 			// if method/function exist load function
 			if(method_exists($this, $sub)){
 				$this->{$sub}();
-				exit;
+				return;
 			} else { // else show 404 error
 				show_404();
 			}
