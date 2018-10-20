@@ -26,25 +26,33 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form action="" method="post">
                             <div class="row mt-1">
                                 <div class="col-md-6">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Date:</label>
                                         <div class="col-sm-9">
-                                            <input type="date" class="form-control">
+                                            <input type="date" class="form-control" name="date" value="<?= $announcement[0]->date?>">
+                                            <?= form_error('date', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Subject:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <select class="form-control select2" name="subject">
+                                                <option value="" selected disabled></option>
+                                                <?php foreach($subjects as $each): ?>
+                                                    <option value="<?= $each->id?>"  <?= $announcement[0]->subject_id == $each->id ? 'selected' : ''?>><?= $each->subject_name?></option>
+                                                <?php endforeach;?>
+                                            </select>
+                                            <?= form_error('subject', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Announcement Subject:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="subject_name" value="<?= $announcement[0]->subject?>">
+                                            <?= form_error('subject_name', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +60,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Announcement:</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" rows="20"></textarea>
+                                            <textarea class="form-control" rows="20" name="announcement"><?= $announcement[0]->announcement?></textarea>
+                                            <?= form_error('announcement', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
