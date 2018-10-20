@@ -20,14 +20,14 @@ class Students extends CI_Controller {
 		}
 
 		//set validation rules
-		$this->form_validation->set_rules('schoolId', 'School Id', 'required');
+		$this->form_validation->set_rules('schoolId', 'School Id', 'required'. ($sub == 'add' ? '|is_unique[tbl_students.school_id]' : ''));
 		$this->form_validation->set_rules('firstName', 'First Name', 'required');
 		$this->form_validation->set_rules('lastName', 'Last Name', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[tbl_students.email]');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email'. ($sub == 'add' ? '|is_unique[tbl_students.email]' : ''));
 		$this->form_validation->set_rules('g_firstName', 'First Name', 'required');
 		$this->form_validation->set_rules('g_lastName', 'Last Name', 'required');
-		$this->form_validation->set_rules('g_email', 'Email', 'required|valid_email|is_unique[tbl_guardian.email]');
+		$this->form_validation->set_rules('g_email', 'Email', 'required|valid_email'. ($sub == 'add' ? '|is_unique[tbl_students.email]' : ''));
 
 		//if validation is success
         if($this->form_validation->run() == TRUE){

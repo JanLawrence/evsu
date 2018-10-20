@@ -24,9 +24,10 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <form action="teachers/delete" method="post">
+                <div class="card card-table">
                     <div class="card-body">
-                        <form>
+                    <form action="" method="post">
                             <div class="card-title">
                                 <span>Student Information</span>
                             </div>
@@ -35,25 +36,28 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">School ID:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="schoolId" value="<?= $students[0]->school_id ?>">
+                                            <?= form_error('schoolId', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">First Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="firstName" value="<?= $students[0]->first_name ?>">
+                                            <?= form_error('firstName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Middle Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="middleName" value="<?= $students[0]->middle_name ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Last Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="lastName" value="<?= $students[0]->last_name ?>">
+                                            <?= form_error('lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -61,19 +65,21 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Address:</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" rows="20"></textarea>
+                                            <textarea class="form-control" rows="20" name="address"><?= $students[0]->address ?></textarea>
+                                            <?= form_error('address', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Phone:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="phone" value="<?= $students[0]->phone ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Email:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="email" value="<?= $students[0]->email ?>">
+                                            <?= form_error('email', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -86,19 +92,21 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">First Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="g_firstName" value="<?= $students[0]->g_fname ?>">
+                                            <?= form_error('g_firstName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Middle Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="g_middleName" value="<?= $students[0]->g_mname ?>">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Last Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="g_lastName" value="<?= $students[0]->g_lname ?>">
+                                            <?= form_error('g_lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +114,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Email:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="g_email" value="<?= $students[0]->g_email ?>">
+                                            <?= form_error('g_email', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -124,4 +133,4 @@
         </div>
     </section>
 </div>
-<script src="<?= base_url()?>assets/modules/js/teachers.js"></script>
+<script src="<?= base_url()?>assets/modules/js/students.js"></script>
