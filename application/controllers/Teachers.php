@@ -24,7 +24,7 @@ class Teachers extends CI_Controller {
 		$this->form_validation->set_rules('lastName', 'Last Name', 'required');
 		$this->form_validation->set_rules('advisory', 'Advisory', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[tbl_teacher.email]');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email'. ($sub == 'add' ? '|is_unique[tbl_teacher.email]' : ''));
 		$this->form_validation->set_rules('subject', 'Subject', 'required');
 		
 		//if validation is success

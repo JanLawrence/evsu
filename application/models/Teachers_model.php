@@ -38,6 +38,19 @@ class Teachers_model extends CI_Model{
         
         $this->db->insert('tbl_teacher', $data); // insert into tbl_teacher
         $teacherId = $this->db->insert_id(); // getting the id of the inserted data
+
+        // data that will be inserted to tbl_credentials
+        $data = array(
+            'username' => 'teacher_'.$teacherId,
+            'password' => $this->encryptpass->pass_crypt('pass-123'),
+            'user_type' => 'teacher',
+            'confirm' => 'no',
+            'user_id' => $teacherId,
+            'created_by' => 1,
+            'date_created' => date('Y-m-d H:i:s')
+        );
+        
+        $this->db->insert('tbl_credentials', $data); // insert into tbl_credentials
         
         // data that will be inserted to tbl_teacher_subjects
         $dataSubject = array(
