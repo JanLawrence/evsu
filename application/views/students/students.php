@@ -52,22 +52,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" ></td>
-                                        <td>Jan Lawrence D.C. Tolentino</td>
-                                        <td>09251232323</td>
-                                        <td>2017-0035</td>
-                                        <td>Jan D. Tolentino</td>
-                                        <td><span class="badge badge-pill badge-success">Registered</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" ></td>
-                                        <td>Khariza Fe L. Gapuz</td>
-                                        <td>09251232323</td>
-                                        <td>2014-0017</td>
-                                        <td>YzahFe L. Gapuz</td>
-                                        <td><span class="badge badge-pill badge-danger">Not Registered</span></td>
-                                    </tr>
+                                    <?php foreach($students as $each): ?>
+                                        <tr>
+                                            <td><input type="checkbox" class="table-check" name="studentId[]" value="<?= $each->id?>"></td>
+                                            <td><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name ?></td>
+                                            <td><?= $each->phone?></td>
+                                            <td><?= $each->school_id?></td>
+                                            <td><?= $each->g_lname.', '.$each->g_fname.' '.$each->g_mname ?></td>
+                                            <td>    
+                                                <span class="badge badge-pill badge-<?=$each->g_registered == 'yes' ? 'success' : 'danger'?>">
+                                                    <?= $each->g_registered == 'yes' ? 'Registered' : 'Not Registered'?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach;?>
                                 </tbody>
                             </table>
                         </div>

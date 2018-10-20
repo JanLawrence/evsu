@@ -26,7 +26,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form action="add" method="post">
                             <div class="card-title">
                                 <span>Student Information</span>
                             </div>
@@ -35,25 +35,28 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">School ID:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="schoolId">
+                                            <?= form_error('schoolId', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">First Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="firstName">
+                                            <?= form_error('firstName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Middle Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="middleName">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Last Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="lastName">
+                                            <?= form_error('lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -61,19 +64,21 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Address:</label>
                                         <div class="col-sm-9">
-                                            <textarea class="form-control" rows="20"></textarea>
+                                            <textarea class="form-control" rows="20" name="address"></textarea>
+                                            <?= form_error('address', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Phone:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="phone">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Email:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="email">
+                                            <?= form_error('email', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -86,19 +91,21 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">First Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="g_firstName">
+                                            <?= form_error('g_firstName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Middle Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="g_middleName">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Last Name:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="g_lastName">
+                                            <?= form_error('g_lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +113,8 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Email:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control">
+                                            <input type="text" class="form-control" name="g_email">
+                                            <?= form_error('g_email', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>
