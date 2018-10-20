@@ -60,7 +60,11 @@
                                             <td><?= $each->address?></td>
                                             <td><?= $each->phone?></td>
                                             <td><?= $each->subject_name?></td>
-                                            <td><span class="badge badge-pill badge-success">Registered</span></td>
+                                            <td>    
+                                                <span class="badge badge-pill badge-<?=$each->registered == 'yes' ? 'success' : 'danger'?>">
+                                                    <?= $each->registered == 'yes' ? 'Registered' : 'Not Registered'?>
+                                                </span>
+                                            </td>
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>

@@ -31,6 +31,7 @@ class Teachers_model extends CI_Model{
             'email' => $_POST['email'],
             'school_id_no' => 1,
             'license_no' => 1,
+            'registered' => 'no',
             'created_by' => 1,
             'date_created' => date('Y-m-d H:i:s')
         );
