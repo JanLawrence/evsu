@@ -26,24 +26,23 @@ class Subjects extends CI_Controller {
         if($this->form_validation->run() == TRUE){
 			if($sub == 'add'){ //if add page, load model addSubject()
 				//load teachers_model -> addSubject() function
-				$this->teachers_model->addSubject();
+				$this->subjects_model->addSubject();
 			} else if($sub == 'edit') { //if edit page, load model editSubject()
-				//load teachers_model -> editSubject() function
-				$this->teachers_model->editSubject($id);
+				//load subjects_model -> editSubject() function
+				$this->subjects_model->editSubject($id);
 			}
 		} else { //if validation failed, page will load again
 			// get data
-			$data['teachers'] = $this->teachers_model->getAllDataTeachers($id);
-			$data['subjects'] = $this->teachers_model->getAllDataSubjects();
+			$data['subjects'] = $this->subjects_model->getAllDataSubjects($id);
 			// load page
 			$this->load->view('templates/header');
-			$this->load->view('teachers/'.$sub.$prefix, $data);
+			$this->load->view('subjects/'.$sub.$prefix, $data);
 			$this->load->view('templates/footer');
 		}
 		
 	}
 	public function delete(){
-		//load teachers_model -> delete() function
-		$this->teachers_model->delete();
+		//load subjects_model -> delete() function
+		$this->subjects_model->delete();
 	}
 }

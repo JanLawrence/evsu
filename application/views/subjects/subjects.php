@@ -23,7 +23,7 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <form action="teachers/delete" method="post">
+                <form action="subjects/delete" method="post">
                     <div class="card card-table">
                         <div class="card-body">
                             <div class="search-box">
@@ -33,10 +33,10 @@
                                     </div>
                                     <input type="text" class="form-control search-box-input" placeholder="Search">
                                     <div class="input-group-prepend input-group-left">
-                                        <!-- <a href="<?=base_url();?>subjects/add" class="btn btn-standard btn-sm" data-toggle="modal" data-target="#addModal"><i class="ti-plus"></i> <span>New</span></a> -->
-                                        <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#addModal"><i class="ti-plus"></i> <span>New</span></button>
-                                        <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#editModal"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
-                                        <button class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
+                                        <a href="<?=base_url();?>subjects/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
+                                        <!-- <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#addModal"><i class="ti-plus"></i> <span>New</span></button> -->
+                                        <button type="button" class="btn btn-standard btn-sm btn-edit"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
+                                        <button type="submit" class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -46,15 +46,15 @@
                                         <tr>
                                             <th><input type="checkbox" ></th>
                                             <th>Subject</th>
-                                            <th>Teacher</th>
-                                            <th>Teacher Status</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach($subjects as $each): ?>
                                         <tr>
-                                            <td><input type="checkbox" name="subjectId" value="<?= $each->id?>"></td>
+                                            <td><input type="checkbox" class="table-check" name="subjectId[]" value="<?= $each->id?>"></td>
                                             <td><?= $each->subject_name ?></td>
+                                            <td></td>
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>
@@ -66,7 +66,7 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="addModal">
+    <!-- <div class="modal fade" id="addModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -110,11 +110,11 @@
                     </div> 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger" data-dismiss="modal"><i class="ti-close"></i> Close</button>
-                    <button type="button" class="btn btn-default"><i class="ti-save"></i> Submit</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="ti-close"></i> Close</button>
+                    <button type="submit" class="btn btn-default"><i class="ti-save"></i> Submit</button>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 <script src="<?= base_url()?>assets/modules/js/subjects.js"></script>
