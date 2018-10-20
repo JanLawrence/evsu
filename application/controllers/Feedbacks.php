@@ -30,10 +30,10 @@ class Feedbacks extends CI_Controller {
 		$this->load->view('feedbacks/add-feedback');
 		$this->load->view('templates/footer');
 	}
-	// public function edit()
-	// {	
-	// 	$this->load->view('templates/header');
-	// 	$this->load->view('teachers/edit-teacher');
-	// 	$this->load->view('templates/footer');
-	// }
+	public function feedback()
+	{	
+		$this->load->view('templates/header');
+		$this->load->view('feedbacks/admin-feedback');
+		$this->load->view('templates/footer');
+	}
 }

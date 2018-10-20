@@ -59,6 +59,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-right">
+                                    <a class="btn btn-danger" href="<?=base_url()?>feedbacks"><i class="ti-arrow-circle-left"></i> Back</a>
                                     <button class="btn btn-default" type="submit"><i class="ti-save"></i> Submit</button>
                                 </div>
                             </div>

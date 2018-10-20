@@ -25,12 +25,40 @@
             <div class="col-md-12">
                 <div class="card card-table">
                     <div class="card-body">
-                        <div class="search-box">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ti-search"></i></span>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="search-box">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ti-search"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control search-box-input" placeholder="Search">
+                                    </div>
                                 </div>
-                                <input type="text" class="form-control search-box-input" placeholder="Search">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">From:</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">To:</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-default" type=""><i class="ti-reload"></i> Generate</button>
+                                        <button class="btn btn-default" type=""><i class="ti-export"></i> Export</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="table-responsive">

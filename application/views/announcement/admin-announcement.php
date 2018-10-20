@@ -25,17 +25,39 @@
             <div class="col-md-12">
                 <div class="card card-table">
                     <div class="card-body">
-                        <div class="search-box">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ti-search"></i></span>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="search-box">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="ti-search"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control search-box-input" placeholder="Search">
+                                    </div>
                                 </div>
-                                <input type="text" class="form-control search-box-input" placeholder="Search">
-                                <div class="input-group-prepend input-group-left">
-                                    <a href="<?=base_url();?>announcements/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
-                                    <a href="<?=base_url();?>announcements/edit" class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></a>
-                                    <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
-                                    <button class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">From:</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">To:</label>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-default" type=""><i class="ti-reload"></i> Generate</button>
+                                        <button class="btn btn-default" type=""><i class="ti-export"></i> Export</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +66,7 @@
                                 <thead>
                                     <tr>
                                         <!-- IF user type is admin hide checkbox & show teacher -->
-                                        <th><input type="checkbox" ></th>
+                                        <th>Teacher</th>
                                         <th>Subject</th>
                                         <th>Date</th>
                                         <th>Announcement Subject</th>
@@ -54,7 +76,7 @@
                                 <tbody>
                                     <tr>
                                         <!-- IF user type is admin hide checkbox & show teacher -->
-                                        <td><input type="checkbox" ></td>
+                                        <td>Rose Ann Yumang</td>
                                         <td>Science</td>
                                         <td>October 15, 2018</td>
                                         <td>Assignment on Science</td>
@@ -63,7 +85,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox" ></td>
+                                        <td>Shien Ann Dao</td>
                                         <td>Math</td>
                                         <td>October 15, 2018</td>
                                         <td>Assignment on Math</td>
