@@ -23,50 +23,46 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <div class="card card-table">
-                    <div class="card-body">
-                        <div class="search-box">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ti-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control search-box-input" placeholder="Search">
-                                <div class="input-group-prepend input-group-left">
-                                    <!-- <a href="<?=base_url();?>subjects/add" class="btn btn-standard btn-sm" data-toggle="modal" data-target="#addModal"><i class="ti-plus"></i> <span>New</span></a> -->
-                                    <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#addModal"><i class="ti-plus"></i> <span>New</span></button>
-                                    <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#editModal"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
-                                    <button class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
+                <form action="teachers/delete" method="post">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="search-box">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ti-search"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control search-box-input" placeholder="Search">
+                                    <div class="input-group-prepend input-group-left">
+                                        <!-- <a href="<?=base_url();?>subjects/add" class="btn btn-standard btn-sm" data-toggle="modal" data-target="#addModal"><i class="ti-plus"></i> <span>New</span></a> -->
+                                        <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#addModal"><i class="ti-plus"></i> <span>New</span></button>
+                                        <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#editModal"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
+                                        <button class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-hovered table-striped datatables">
-                                <thead>
-                                    <tr>
-                                        <th><input type="checkbox" ></th>
-                                        <th>Subject</th>
-                                        <th>Teacher</th>
-                                        <th>Teacher Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" ></td>
-                                        <td>Science</td>
-                                        <td>Rose Ann Yumang</td>
-                                        <td><span class="badge badge-pill badge-success">Registered</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" ></td>
-                                        <td>English</td>
-                                        <td>Shie Ann Dao</td>
-                                        <td><span class="badge badge-pill badge-danger">Not Registered</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-hovered table-striped datatables">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox" ></th>
+                                            <th>Subject</th>
+                                            <th>Teacher</th>
+                                            <th>Teacher Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach($subjects as $each): ?>
+                                        <tr>
+                                            <td><input type="checkbox" name="subjectId" value="<?= $each->id?>"></td>
+                                            <td><?= $each->subject_name ?></td>
+                                        </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>

@@ -1,4 +1,4 @@
-
+<?php return;?>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-8 p-r-0 title-margin-right">
