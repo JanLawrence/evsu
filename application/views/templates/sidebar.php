@@ -16,7 +16,7 @@
                 <li><a href="<?= base_url(); ?>subjects"><i class="ti-book"></i> Subjects</a></li>
                 <li><a href="<?= base_url(); ?>grades"><i class="ti-clipboard"></i> Grades</a></li>
                 <li><a href="<?= base_url(); ?>announcements"><i class="ti-announcement"></i> Announcements</a></li>
-                <li><a href="<?= base_url(); ?>announcements/announcement"><i class="ti-announcement"></i> Admin Announcements</a></li>
+                <li><a href="<?= base_url(); ?>announcements/announcementList"><i class="ti-announcement"></i> Admin Announcements</a></li>
                 <li><a href="<?= base_url(); ?>feedbacks"><i class="ti-comments"></i> Feadbacks</a></li>
                 <li><a href="<?= base_url(); ?>feedbacks/feedback"><i class="ti-comments"></i> Admin Feadbacks</a></li>
             </ul>
