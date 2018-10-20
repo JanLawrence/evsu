@@ -20,6 +20,13 @@ $(function(){ //toggle ready jquery
             checkbox.prop('checked', false);
         }
     })
+<<<<<<< HEAD
+
+    //selectpicker
+    $('.select2').select2();
+
+})
+=======
 })
 
 //global functions
@@ -38,3 +45,4 @@ function checkboxEditTable(link){ // link variable is passed (link of the edit p
         }
     })
 }
+>>>>>>> e29fda78c6b28f5b60b5e5d4adc35b3fe47c36e7

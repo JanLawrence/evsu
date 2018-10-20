@@ -3,7 +3,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Announcements</h1>
+                    <h1>Feedbacks</h1>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Announcements</li>
+                        <li class="breadcrumb-item active">Feedbacks</li>
                     </ol>
                 </div>
             </div>
@@ -31,45 +31,34 @@
                                     <span class="input-group-text"><i class="ti-search"></i></span>
                                 </div>
                                 <input type="text" class="form-control search-box-input" placeholder="Search">
-                                <div class="input-group-prepend input-group-left">
-                                    <a href="<?=base_url();?>announcements/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
-                                    <a href="<?=base_url();?>announcements/edit" class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></a>
-                                    <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
-                                    <button class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
-                                </div>
                             </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hovered table-striped datatables">
                                 <thead>
                                     <tr>
-                                        <!-- IF user type is admin hide checkbox & show teacher -->
-                                        <th><input type="checkbox" ></th>
                                         <th>Teacher</th>
                                         <th>Subject</th>
                                         <th>Date</th>
-                                        <th>Announcement Subject</th>
+                                        <th>Feedback</th>
                                         <th>Read</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <!-- IF user type is admin hide checkbox & show teacher -->
-                                        <td><input type="checkbox" ></td>
-                                        <td>Rose Ann Yumang</td>
+                                        <td>Yumang, Rose Ann</td>
                                         <td>Science</td>
                                         <td>October 15, 2018</td>
-                                        <td>Assignment on Science</td>
+                                        <td>Always late</td>
                                         <td>
                                             <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox" ></td>
-                                        <td>Shien Ann Dao</td>
+                                        <td>Bunyi, Marianne Angelica</td>
                                         <td>Math</td>
                                         <td>October 15, 2018</td>
-                                        <td>Assignment on Math</td>
+                                        <td>Everyday gives homework</td>
                                         <td>
                                             <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
                                         </td>
@@ -87,7 +76,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"><i class="ti-announcement"></i> Announcement</h5>
+                <h5 class="modal-title"><i class="ti-comments"></i> Feedback</h5>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -97,8 +86,8 @@
                         <p><span>Date: Science</span></p> 
                     </div>
                     <div class="col-sm-6">
-                        <p><span>Announcement:</span></p>
-                        <p><span>Exam Posponed. No classes for tomorrow.</span></p>
+                        <p><span>Feedback:</span></p>
+                        <p><span>1231231qeqeqweqweqwewqe23213</span></p>
                     </div>
                 </div>
             </div>
@@ -108,4 +97,4 @@
         </div>
     </div>
 </div>
-<script src="<?= base_url()?>assets/modules/js/announcement.js"></script>
+<script src="<?= base_url()?>assets/modules/js/teachers.js"></script>

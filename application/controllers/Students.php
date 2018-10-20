@@ -52,4 +52,9 @@ class Students extends CI_Controller {
 		//load students_model -> delete() function
 		$this->students_model->delete();
 	}
+	public function studentlog(){
+		$this->load->view('templates/header');
+		$this->load->view('students/student-log');
+		$this->load->view('templates/footer');
+	}
 }
