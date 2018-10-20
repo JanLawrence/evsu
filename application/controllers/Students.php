@@ -57,4 +57,14 @@ class Students extends CI_Controller {
 		$this->load->view('students/student-log');
 		$this->load->view('templates/footer');
 	}
+	public function studentgrade(){
+		$this->load->view('templates/header');
+		$this->load->view('students/student-grade');
+		$this->load->view('templates/footer');
+	}
+	public function studentattendance(){
+		$this->load->view('templates/header');
+		$this->load->view('students/student-attendance');
+		$this->load->view('templates/footer');
+	}
 }

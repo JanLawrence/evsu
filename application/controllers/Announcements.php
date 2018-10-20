@@ -36,4 +36,10 @@ class Announcements extends CI_Controller {
 		$this->load->view('announcement/edit-announcement');
 		$this->load->view('templates/footer');
 	}
+	public function announcement()
+	{	
+		$this->load->view('templates/header');
+		$this->load->view('announcement/admin-announcement');
+		$this->load->view('templates/footer');
+	}
 }
