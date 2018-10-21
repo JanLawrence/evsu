@@ -202,3 +202,10 @@ form .form-group .form-control {
     right: 5px;
     width: 20px;
 }
+
+/* modal custom styles */
+.modal-dialog {
+    margin: 30px auto;
+    position: relative;
+    top: 25%;
+}

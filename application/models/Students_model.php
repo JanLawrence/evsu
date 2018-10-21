@@ -36,6 +36,19 @@ class Students_model extends CI_Model{
         
         $this->db->insert('tbl_students', $data); // insert into tbl_students
         $studentId = $this->db->insert_id(); // getting the id of the inserted data
+
+        // data that will be inserted to tbl_credentials
+        $data = array(
+            'username' => 'student_'.$studentId,
+            'password' => $this->encryptpass->pass_crypt('pass-123'),
+            'user_type' => 'student',
+            'confirm' => 'no',
+            'user_id' => $studentId,
+            'created_by' => 1,
+            'date_created' => date('Y-m-d H:i:s')
+        );
+        
+        $this->db->insert('tbl_credentials', $data); // insert into tbl_credentials
         
         // data that will be inserted to tbl_guardian
         $dataGuardian= array(
@@ -51,6 +64,21 @@ class Students_model extends CI_Model{
         $this->db->insert('tbl_guardian', $dataGuardian); // insert into tbl_guardian
         $guardianId = $this->db->insert_id(); // getting the id of the inserted data
         
+        
+        // data that will be inserted to tbl_credentials
+        $data = array(
+            'username' => 'guardian_'.$guardianId,
+            'password' => $this->encryptpass->pass_crypt('pass-123'),
+            'user_type' => 'parent',
+            'confirm' => 'no',
+            'user_id' => $guardianId,
+            'created_by' => 1,
+            'date_created' => date('Y-m-d H:i:s')
+        );
+        
+        $this->db->insert('tbl_credentials', $data); // insert into tbl_credentials
+        
+
         // data that will be inserted to tbl_student_guardian
         $dataStudentGuardian = array(
             'student_id' => $studentId,

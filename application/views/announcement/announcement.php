@@ -23,56 +23,51 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <div class="card card-table">
-                    <div class="card-body">
-                        <div class="search-box">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="ti-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control search-box-input" placeholder="Search">
-                                <div class="input-group-prepend input-group-left">
-                                    <a href="<?=base_url();?>announcements/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
-                                    <a href="<?=base_url();?>announcements/edit" class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></a>
-                                    <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
-                                    <button class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
+                <form action="announcements/delete" method="post">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="search-box">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ti-search"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control search-box-input" placeholder="Search">
+                                    <div class="input-group-prepend input-group-left">
+                                        <a href="<?=base_url();?>announcements/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
+                                        <button type="button" class="btn btn-standard btn-sm btn-edit"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
+                                        <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
+                                        <button type="submit" class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-hovered table-striped datatables">
-                                <thead>
-                                    <tr>
-                                        <!-- IF user type is admin hide checkbox & show teacher -->
-                                        <th><input type="checkbox" ></th>
-                                        <th>Subject</th>
-                                        <th>Date</th>
-                                        <th>Announcement Subject</th>
-                                        <th>Read</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <!-- IF user type is admin hide checkbox & show teacher -->
-                                        <td><input type="checkbox" ></td>
-                                        <td>Science</td>
-                                        <td>October 15, 2018</td>
-                                        <td>Assignment on Science</td>
-                                        <td>
-                                            <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" ></td>
-                                        <td>Math</td>
-                                        <td>October 15, 2018</td>
-                                        <td>Assignment on Math</td>
-                                        <td>
-                                            <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-hovered table-striped datatables">
+                                    <thead>
+                                        <tr>
+                                            <!-- IF user type is admin hide checkbox & show teacher -->
+                                            <th><input type="checkbox" ></th>
+                                            <th>Subject</th>
+                                            <th>Date</th>
+                                            <th>Announcement Subject</th>
+                                            <th>Read</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($announcement as $each): ?>
+                                            <tr>
+                                                <!-- IF user type is admin hide checkbox & show teacher -->
+                                                <td><input type="checkbox" class="table-check" name="announcementId[]" value="<?= $each->id?>"></td>
+                                                <td><?= $each->subject_name?></td>
+                                                <td><?= date('F d, Y', strtotime($each->date))?></td>
+                                                <td><?= $each->subject?></td>
+                                                <td>
+                                                    <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
