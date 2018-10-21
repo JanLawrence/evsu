@@ -26,34 +26,43 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form>
+                        <form action="add" method="post">
                             <div class="row mt-1">
                                 <div class="col-md-12">
                                     <div class="form-group row">
                                         <div class="col-md-4">
                                             <label class="col-sm-4 col-form-label">Grading</label>
                                             <div class="sol-sm-8">
-                                                <select name="" id="" class="form-control">
+                                                <select name="grading" id="" class="form-control">
                                                     <option value="" selected disabled>Select Grading</option>
-                                                    <option value="">1st Grading</option>
-                                                    <option value="">2nd Grading</option>
-                                                    <option value="">3rd Grading</option>
-                                                    <option value="">4th Grading</option>
+                                                    <option value="1st">1st Grading</option>
+                                                    <option value="2nd">2nd Grading</option>
+                                                    <option value="3rd">3rd Grading</option>
+                                                    <option value="4th">4th Grading</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="col-sm-3 col-form-label">Year</label>
                                             <div class="sol-sm-9">
-                                                <select name="" id="" class="form-control">
+                                                <select name="school_year" id="" class="form-control">
                                                     <option value="" selected disabled>Select Year</option>
+                                                    <option value="2018-2019">2018-2019</option>
+                                                    <option value="2019-2020">2019-2020</option>
+                                                    <option value="2020-2021">2020-2021</option>
+                                                    <option value="2021-2022">2021-2022</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="col-sm-3 col-form-label">Subject</label>
                                             <div class="col-sm-9">
-                                                <input class="form-control">
+                                                <select name="subject" id="" class="form-control">
+                                                    <option value="" selected disabled>Select Subject</option>
+                                                    <?php foreach ($subjects as $each) {?>
+                                                        <option value="<?= $each->id?>"><?= $each->subject_name?></option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -68,14 +77,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td style="width:70%">Jan Lawrence D.C. Tolentino</td>
-                                            <td style="width:30%"><input type="text"></td>
-                                        </tr>
-                                        <tr>
-                                            <td style="width:70%">Khariza Fe L. Gapuz</td>
-                                            <td style="width:30%"><input type="text"></td>
-                                        </tr>
+                                        <?php foreach($students as $each){?>
+                                            <tr>
+                                                <td style="width:70%"><?= $each->student?></td>
+                                                <input name="stud_id[]" type="hidden" value="<?= $each->id?>">
+                                                <td style="width:30%"><input name="grade[]" type="text"></td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

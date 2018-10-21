@@ -15,6 +15,11 @@ class Students_model extends CI_Model{
         $query = $this->db->get(); // get results of query
         return $query->result();
     }
+    public function studentsList(){
+        $this->db->select('s.id, CONCAT(s.last_name, ", ", s.first_name, " ", s.middle_name) student');
+        $query = $this->db->get('tbl_students s');
+        return $query->result();
+    }
 	public function addStudent(){
         // data that will be inserted to tbl_students
         $data = array(

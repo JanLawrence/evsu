@@ -48,20 +48,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Jan Lawrence D.C. Tolentino</td>
-                                        <td>90</td>
-                                        <td>91</td>
-                                        <td>92</td>
-                                        <td>89</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Khariza Fe L. Gapuz</td>
-                                        <td>75</td>
-                                        <td>75</td>
-                                        <td>75</td>
-                                        <td>75</td>
-                                    </tr>
+                                    <?php foreach($grades as $each){ print_r($each); ?>
+                                        <tr>
+                                            <td><?= $each->student?></td>
+                                            <td><?= $each->first_grade?></td>
+                                            <td><?= $each->second_grade?></td>
+                                            <td><?= $each->third_grade?></td>
+                                            <td><?= $each->fourth_grade?></td>
+                                        </tr>
+                                    <?php }?>
                                 </tbody>
                             </table>
                         </div>

@@ -24,4 +24,6 @@ class Subjects extends CI_Controller {
 		$this->load->view('subjects/subjects');
 		$this->load->view('templates/footer');
 	}
+
+	
 }
