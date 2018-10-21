@@ -1,5 +1,5 @@
 <?php  
-    $user = $this->session->userdata['user']
+    $user = $this->session->userdata['user'];
 
 ?>
 <div class="header">
