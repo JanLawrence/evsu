@@ -22,17 +22,25 @@ class Students_model extends CI_Model{
     }
     public function gengrades(){
         $user = $this->session->userdata['user'];
-        $this->db->select('s.*');
-        $this->db->from('tbl_students s');
-        $this->db->where('s.id', $user->user_id);
-        $query = $this->db->get(); // get results of query
-        $userData = $query->result();
-        
-        $this->db->select('sg.*');
-        $this->db->from('tbl_student_guardian sg');
-        $this->db->where('student_id', $userData[0]->id);
-        $query = $this->db->get(); // get results of query
-        $guardianData = $query->result();
+        if($user->user_type == 'student'){
+            $this->db->select('s.*');
+            $this->db->from('tbl_students s');
+            $this->db->where('s.id', $user->user_id);
+            $query = $this->db->get(); // get results of query
+            $userData = $query->result();
+        } else if ($user->user_type == 'parent'){
+            $this->db->select('g.*');
+            $this->db->from('tbl_guardian g');
+            $this->db->where('g.id', $user->user_id);
+            $query = $this->db->get(); // get results of query
+            $userData = $query->result();
+
+            $this->db->select('sg.*');
+            $this->db->from('tbl_student_guardian sg');
+            $this->db->where('sg.guardian_id', $userData[0]->id);
+            $query = $this->db->get(); // get results of query
+            $studentData = $query->result();
+        }
 
         $year = isset($_POST['school_year']) ? $_POST['school_year'] : date('Y').' - '.date('Y', strtotime(date('Y'). '+ 1 year'));
         $this->db->select("t_stud.student_id,
@@ -54,8 +62,12 @@ class Students_model extends CI_Model{
         ->join("tbl_students_grade fourth_grade","ON fourth_grade.teacher_student_id = t_stud.id
             AND fourth_grade.period = '4th' AND fourth_grade.YEAR = '".$year."'","left")
         ->join("tbl_student_guardian guardian","ON guardian.student_id = stud.id","left");
-        $this->db->where("stud.id",$userData[0]->id);
-        $this->db->where("guardian.guardian_id",$guardianData[0]->guardian_id);
+        if($user->user_type == 'student'){
+            $this->db->where("stud.id",$userData[0]->id);
+        } else if($user->user_type == 'parent') {
+            $this->db->where("stud.id",$studentData[0]->student_id);
+            $this->db->where("guardian.guardian_id",$userData[0]->id);
+        }
         $this->db->order_by("sub.subject_name");
         
         $query = $this->db->get();
