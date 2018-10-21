@@ -4,7 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Grades_model extends CI_Model{
     
     public function studentGradeList(){
-        // query that joins student and grading periods
+        $user = $this->session->userdata['user'];
+        $this->db->select('t.*');
+        $this->db->from('tbl_teacher t');
+        $this->db->where('t.id', $user->user_id);
+        $query = $this->db->get(); // get results of query
+        $userData = $query->result();
+        // questudent_idry that joins student and grading periods
         $this->db->select("t_stud.student_id,
             CONCAT(student.last_name, ', ', student.first_name, ' ', student.last_name) student,
             IF(1st.grade IS NULL, '',1st.grade) first_grade,
@@ -21,19 +27,42 @@ class Grades_model extends CI_Model{
             AND 3rd.period = '3rd'","left")
         ->join("tbl_students_grade 4th", "ON 4th.teacher_student_id = t_stud.id
             AND 4th.period = '4th'","left");
-        $this->db->where('t_stud.teacher_id',1);
+        $this->db->where('t_stud.teacher_id',$userData[0]->id);
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function studentPerTeacher(){
+        $user = $this->session->userdata['user'];
+        $this->db->select('t.*');
+        $this->db->from('tbl_teacher t');
+        $this->db->where('t.id', $user->user_id);
+        $query = $this->db->get(); // get results of query
+        $userData = $query->result();
+        // questudent_idry that joins student and grading periods
+        $this->db->select("t_stud.student_id,
+            CONCAT(student.last_name, ', ', student.first_name, ' ', student.last_name) student")
+        ->from("tbl_students student")
+        ->join("tbl_teacher_student t_stud", "ON t_stud.student_id = student.id","left");
+        $this->db->where('t_stud.teacher_id',$userData[0]->id);
 
         $query = $this->db->get();
         return $query->result();
     }
 
 	public function addGrade(){
+        $user = $this->session->userdata['user'];
+        $this->db->select('t.*');
+        $this->db->from('tbl_teacher t');
+        $this->db->where('t.id', $user->user_id);
+        $query = $this->db->get(); // get results of query
+        $userData = $query->result();
         // data that will be inserted to tbl_students_grade
         foreach ($_POST['grade'] as $key => $each) {
             $this->db->select('id')
             ->from('tbl_teacher_student');
             $this->db->where('student_id',$_POST['stud_id'][$key]);
-            $this->db->where('teacher_id',1);
+            $this->db->where('teacher_id',$userData[0]->id);
 
             $teacherstud_id = $this->db->get();
             $teacherstud_id = $teacherstud_id->result();

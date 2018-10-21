@@ -41,7 +41,6 @@ class Students extends CI_Controller {
 		} else { //if validation failed, page will load again
 			// get data
 			$data['students'] = $this->students_model->getAllDataStudents($id);
-			$data['grades'] = $this->students_model->gengrades();
 			// load page
 			$this->load->view('templates/header');
 			$this->load->view('students/'.$sub.$prefix, $data);

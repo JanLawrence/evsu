@@ -61,7 +61,7 @@
                                                 <td><?= date('F d, Y', strtotime($each->date))?></td>
                                                 <td><?= $each->subject?></td>
                                                 <td>
-                                                    <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
+                                                    <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal" value="<?= $each->id?>">View More</button>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

@@ -80,7 +80,7 @@
                                         <?php foreach($students as $each){?>
                                             <tr>
                                                 <td style="width:70%"><?= $each->student?></td>
-                                                <input name="stud_id[]" type="hidden" value="<?= $each->id?>">
+                                                <input name="stud_id[]" type="hidden" value="<?= $each->student_id?>">
                                                 <td style="width:30%"><input name="grade[]" type="text"></td>
                                             </tr>
                                         <?php } ?>

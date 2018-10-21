@@ -21,6 +21,19 @@ class Students_model extends CI_Model{
         return $query->result();
     }
     public function gengrades(){
+        $user = $this->session->userdata['user'];
+        $this->db->select('s.*');
+        $this->db->from('tbl_students s');
+        $this->db->where('s.id', $user->user_id);
+        $query = $this->db->get(); // get results of query
+        $userData = $query->result();
+        
+        $this->db->select('sg.*');
+        $this->db->from('tbl_student_guardian sg');
+        $this->db->where('student_id', $userData[0]->id);
+        $query = $this->db->get(); // get results of query
+        $guardianData = $query->result();
+
         $year = isset($_POST['school_year']) ? $_POST['school_year'] : date('Y').' - '.date('Y', strtotime(date('Y'). '+ 1 year'));
         $this->db->select("t_stud.student_id,
             sub.subject_name,
@@ -41,14 +54,20 @@ class Students_model extends CI_Model{
         ->join("tbl_students_grade fourth_grade","ON fourth_grade.teacher_student_id = t_stud.id
             AND fourth_grade.period = '4th' AND fourth_grade.YEAR = '".$year."'","left")
         ->join("tbl_student_guardian guardian","ON guardian.student_id = stud.id","left");
-        $this->db->where("stud.id",1);
-        $this->db->where("guardian.guardian_id",1);
+        $this->db->where("stud.id",$userData[0]->id);
+        $this->db->where("guardian.guardian_id",$guardianData[0]->guardian_id);
         $this->db->order_by("sub.subject_name");
         
         $query = $this->db->get();
         return $query->result();
     }
 	public function addStudent(){
+        $user = $this->session->userdata['user'];
+        $this->db->select('t.*');
+        $this->db->from('tbl_teacher t');
+        $this->db->where('t.id', $user->user_id);
+        $query = $this->db->get(); // get results of query
+        $userData = $query->result();
         // data that will be inserted to tbl_students
         $data = array(
             'school_id' => $_POST['schoolId'],
@@ -116,6 +135,16 @@ class Students_model extends CI_Model{
         );
         
         $this->db->insert('tbl_student_guardian', $dataStudentGuardian); // insert into tbl_student_guardian
+
+        // data that will be inserted to tbl_teacher_student
+        $dataStudentGuardian = array(
+            'teacher_id' => $userData[0]->id,
+            'student_id' => $studentId,
+            'created_by' => 1,
+            'date_created' => date('Y-m-d H:i:s')
+        );
+        
+        $this->db->insert('tbl_teacher_student', $dataStudentGuardian); // insert into tbl_teacher_student
         
         redirect(base_url().'students'); //redirect back to student page
 	}
