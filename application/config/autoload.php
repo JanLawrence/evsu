@@ -58,6 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
+$autoload['libraries'] = array('database', 'form_validation', 'encryptpass');
 
 /*
 | -------------------------------------------------------------------
@@ -131,4 +132,8 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
+<<<<<<< HEAD
 $autoload['model'] = array('teachers_model', 'students_model', 'grades_model');
+=======
+$autoload['model'] = array('teachers_model', 'students_model', 'announcements_model', 'feedbacks_model', 'subjects_model');
+>>>>>>> f8f3f230090e57e34a8bc0c20b1d90e0722523fd
