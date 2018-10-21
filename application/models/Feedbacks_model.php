@@ -21,9 +21,10 @@ class Feedbacks_model extends CI_Model{
         return $query->result();
     }
 	public function addFeedback(){
+        $user = $this->session->userdata['user'];
         // data that will be inserted to tbl_feedback
         $data = array(
-            'student_id' => 1,
+            'student_id' => $user->id,
             'teacher_id' => $_POST['teacher'],
             'feedback' => $_POST['feedback'],
             'created_by' => 1,

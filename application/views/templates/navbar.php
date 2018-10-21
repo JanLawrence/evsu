@@ -1,3 +1,7 @@
+<?php  
+    $user = $this->session->userdata['user'];
+
+?>
 <div class="header">
     <div class="container-fluid">
         <div class="row">
@@ -120,7 +124,7 @@
                                 </div>
                             </div>
                         </li> -->
-                        <li class="header-icon dib"><span class="user-avatar">Welcome! Jan Jan <i class="ti-angle-down f-s-10"></i></span>
+                        <li class="header-icon dib"><span class="user-avatar">Welcome! <?= $user->username ?> <i class="ti-angle-down f-s-10"></i></span>
                             <div class="drop-down dropdown-profile">
                                 <div class="dropdown-content-body">
                                     <ul>

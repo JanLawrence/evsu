@@ -47,7 +47,7 @@
                                 </div>
                                 <?php if(validation_errors() != false): ?>
                                     <div class="text-center">
-                                        <span class="alert alert-danger"><i class="ti-alert"></i> <?=validation_errors() ?> Invalid username or password</span>
+                                        <span class="alert alert-danger"><i class="ti-alert"></i>Invalid username or password</span>
                                     </div>
                                 <?php endif;?>
                                 <button type="submit" class="btn btn-danger btn-flat m-b-30 m-t-30" style=" background: linear-gradient(120deg, #a73737, #7a2828);">Sign in</button>
