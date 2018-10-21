@@ -132,8 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-<<<<<<< HEAD
-$autoload['model'] = array('teachers_model', 'students_model', 'announcements_model', 'feedbacks_model', 'subjects_model' , 'grades_model'));
-=======
-$autoload['model'] = array('teachers_model', 'students_model', 'announcements_model', 'feedbacks_model', 'subjects_model','grades_model');
->>>>>>> master
+$autoload['model'] = array('teachers_model', 'students_model', 'announcements_model', 'feedbacks_model', 'subjects_model' , 'grades_model');
