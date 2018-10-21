@@ -20,6 +20,34 @@ class Students_model extends CI_Model{
         $query = $this->db->get('tbl_students s');
         return $query->result();
     }
+    public function gengrades(){
+        $year = isset($_POST['school_year']) ? $_POST['school_year'] : date('Y').' - '.date('Y', strtotime(date('Y'). '+ 1 year'));
+        $this->db->select("t_stud.student_id,
+            sub.subject_name,
+            IF(first_grade.grade IS NULL,'',first_grade.grade)first_grade,
+            IF(second_grade.grade IS NULL,'',second_grade.grade)second_grade,
+            IF(third_grade.grade IS NULL,'',third_grade.grade)third_grade,
+            IF(fourth_grade.grade IS NULL,'',fourth_grade.grade)fourth_grade")
+        ->from("tbl_students stud")
+        ->join("tbl_teacher_student t_stud","ON t_stud.student_id = stud.id","left")
+        ->join("tbl_teacher_subjects t_sub","ON t_sub.teacher_id = t_stud.teacher_id","left")
+        ->join("tbl_subject sub","ON sub.id = t_sub.subject_id","left")
+        ->join("tbl_students_grade first_grade","ON first_grade.teacher_student_id = t_stud.id
+            AND first_grade.period = '1st' AND first_grade.YEAR = '".$year."'","left")
+        ->join("tbl_students_grade second_grade","ON second_grade.teacher_student_id = t_stud.id
+            AND second_grade.period = '2nd' AND second_grade.YEAR = '".$year."'","left")
+        ->join("tbl_students_grade third_grade","ON third_grade.teacher_student_id = t_stud.id
+            AND third_grade.period = '3rd' AND third_grade.YEAR = '".$year."'","left")
+        ->join("tbl_students_grade fourth_grade","ON fourth_grade.teacher_student_id = t_stud.id
+            AND fourth_grade.period = '4th' AND fourth_grade.YEAR = '".$year."'","left")
+        ->join("tbl_student_guardian guardian","ON guardian.student_id = stud.id","left");
+        $this->db->where("stud.id",1);
+        $this->db->where("guardian.guardian_id",1);
+        $this->db->order_by("sub.subject_name");
+        
+        $query = $this->db->get();
+        return $query->result();
+    }
 	public function addStudent(){
         // data that will be inserted to tbl_students
         $data = array(
