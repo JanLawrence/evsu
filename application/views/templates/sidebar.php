@@ -36,6 +36,7 @@
                     <li><a href="<?= base_url(); ?>feedbacks"><i class="ti-comments"></i> Feadbacks</a></li>
                 <?php endif;?>
                 <?php if($user->user_type == 'parent'):?>
+                    <li><a href="<?= base_url(); ?>students/studentgrade"><i class="ti-clipboard"></i> Student Grade</a></li>
                 <?php endif;?>
             </ul>
         </div>

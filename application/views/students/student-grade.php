@@ -26,7 +26,7 @@
                 <div class="card card-table">
                     <div class="card-body">
                         <form action="studentgrade" method="post">
-                            <div class="row mt-2">
+                            <!-- <div class="row mt-2">
                                 <div class="col-md-4">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Student:</label>
@@ -35,15 +35,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-4">
+                                 <div class="col-md-4">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Section:</label>
                                         <div class="col-sm-9">
                                             <input class="form-control">
                                         </div>
                                     </div>
-                                </div> -->
-                            </div>
+                                </div> 
+                            </div> -->
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group row">
