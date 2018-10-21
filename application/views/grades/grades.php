@@ -48,7 +48,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($grades as $each){ print_r($each); ?>
+                                    <?php foreach($grades as $each){ ?>
                                         <tr>
                                             <td><?= $each->student?></td>
                                             <td><?= $each->first_grade?></td>

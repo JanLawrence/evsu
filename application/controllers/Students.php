@@ -41,6 +41,7 @@ class Students extends CI_Controller {
 		} else { //if validation failed, page will load again
 			// get data
 			$data['students'] = $this->students_model->getAllDataStudents($id);
+			$data['grades'] = $this->students_model->gengrades();
 			// load page
 			$this->load->view('templates/header');
 			$this->load->view('students/'.$sub.$prefix, $data);
@@ -58,8 +59,9 @@ class Students extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	public function studentgrade(){
+		$data['grades'] = $this->students_model->gengrades();
 		$this->load->view('templates/header');
-		$this->load->view('students/student-grade');
+		$this->load->view('students/student-grade', $data);
 		$this->load->view('templates/footer');
 	}
 	public function studentattendance(){
@@ -67,4 +69,7 @@ class Students extends CI_Controller {
 		$this->load->view('students/student-attendance');
 		$this->load->view('templates/footer');
 	}
+	// public function gengrades(){
+	// 	$data['grades'] = $this->students_model->gengrades();
+	// }
 }

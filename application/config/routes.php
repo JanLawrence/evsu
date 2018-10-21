@@ -54,15 +54,12 @@ $route['teachers/(:any)'] = 'teachers/index/$1/';
 $route['teachers/(:any)/(:any)'] = 'teachers/index/$1/$2';
 $route['students/(:any)'] = 'students/index/$1/';
 $route['students/(:any)/(:any)'] = 'students/index/$1/$2';
-<<<<<<< HEAD
 $route['grades/(:any)'] = 'grades/index/$1/';
-=======
 $route['announcements/(:any)'] = 'announcements/index/$1/';
 $route['announcements/(:any)/(:any)'] = 'announcements/index/$1/$2';
 $route['feedbacks/(:any)'] = 'feedbacks/index/$1/';
 $route['feedbacks/(:any)/(:any)'] = 'feedbacks/index/$1/$2';
 $route['subjects/(:any)'] = 'subjects/index/$1/';
 $route['subjects/(:any)/(:any)'] = 'subjects/index/$1/$2';
->>>>>>> f8f3f230090e57e34a8bc0c20b1d90e0722523fd
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

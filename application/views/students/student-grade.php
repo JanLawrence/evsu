@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card card-table">
                     <div class="card-body">
-                        <form>
+                        <form action="studentgrade" method="post">
                             <div class="row mt-2">
                                 <div class="col-md-4">
                                     <div class="form-group row">
@@ -35,34 +35,34 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Section:</label>
                                         <div class="col-sm-9">
                                             <input class="form-control">
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Year:</label>
                                         <div class="col-sm-9">
-                                            <select name="" id="" class="form-control">
+                                            <select name="school_year" id="" class="form-control">
                                                 <option value="" selected disabled>List of Year</option>
-                                                <option value="">2018-2019</option>
-                                                <option value="">2019-2020</option>
-                                                <option value="">2020-2021</option>
-                                                <option value="">2021-2022</option>
+                                                <option value="2018-2019">2018-2019</option>
+                                                <option value="2019-2020">2019-2020</option>
+                                                <option value="2020-2021">2020-2021</option>
+                                                <option value="2021-2022">2021-2022</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group row">
+                                    <div class="form-group row text-right">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-default" type=""><i class="ti-reload"></i> Generate</button>
+                                            <button class="btn btn-default" type="submit"><i class="ti-reload"></i> Generate</button>
                                             <button class="btn btn-default" type=""><i class="ti-export"></i> Export</button>
                                         </div>
                                     </div>
@@ -81,20 +81,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Science</td>
-                                        <td>90</td>
-                                        <td>90</td>
-                                        <td>90</td>
-                                        <td>90</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Math</td>
-                                        <td>75</td>
-                                        <td>75</td>
-                                        <td>75</td>
-                                        <td>75</td>
-                                    </tr>
+                                    <?php foreach($grades as $each){?>
+                                        <tr>
+                                            <td><?= $each->subject_name?></td>
+                                            <td><?= $each->first_grade?></td>
+                                            <td><?= $each->second_grade?></td>
+                                            <td><?= $each->third_grade?></td>
+                                            <td><?= $each->fourth_grade?></td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
