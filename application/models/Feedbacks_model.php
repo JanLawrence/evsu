@@ -37,6 +37,17 @@ class Feedbacks_model extends CI_Model{
         return $query->result();
     }
     public function getAllDataTeachers(){
+        //get teachers data
+        $this->db->select('t.*')
+        ->from('tbl_teacher_student ts')
+        ->join('tbl_teacher t','t.id = ts.teacher_id','inner');
+        //user type conditions 
+        if($this->user->user_type = 'student'){
+            $this->db->where('ts.student_id',$this->user->user_id);
+        }
+        $this->db->group_by('t.id');
+        $this->db->order_by('t.last_name');
+        
         $query = $this->db->get('tbl_teacher'); // get all data for tbl_teacher
         return $query->result();
     }

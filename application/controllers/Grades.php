@@ -54,7 +54,7 @@ class Grades extends CI_Controller {
 			}
 		} else { //if validation failed, page will load again
 			// get data
-			$data['subjects'] = $this->teachers_model->getAllDataSubjects();
+			$data['subjects'] = $this->announcements_model->getAllDataSubjects();
 			$data['students'] = $this->grades_model->studentPerTeacher();
 			$data['grades'] = $this->grades_model->studentGradeList();
 			// load page

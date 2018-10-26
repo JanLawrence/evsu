@@ -39,10 +39,11 @@ class Announcements_model extends CI_Model{
         return $query->result();
     }
     public function getAllDataSubjects(){
+        //get subjects data
         $this->db->select('s.*')
         ->from('tbl_teacher_subjects ts')
         ->join('tbl_subject s','s.id = ts.subject_id','inner');
-        
+
         //user type conditions 
         if($this->user->user_type){
             $this->db->where('ts.teacher_id',$this->user->user_id);
