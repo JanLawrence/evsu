@@ -62,19 +62,23 @@ class Home extends CI_Controller {
             $query = $this->db->get_where('tbl_credentials', array('username' => $user, 'user_type' => $type));
             $data = $query->result();
             if(empty($data)){
+                $this->form_validation->set_message('validate', 'Invalid Username');
                 return FALSE;
             } else {
                 if($pass != ''){
                     if($pass == $this->encryptpass->pass_crypt($data[0]->password, 'd')){
                         return TRUE;
                     } else {
+                        $this->form_validation->set_message('validate', 'Invalid Password');
                         return FALSE;
                     }
                 } else {
+                    $this->form_validation->set_message('validate', 'Invalid Password');
                     return FALSE;
                 }
             }
         } else {
+            $this->form_validation->set_message('validate', 'Invalid Username');
             return FALSE;
         }
     }

@@ -45,11 +45,9 @@
                                     <label>Password</label>
                                     <input type="password" class="form-control" name="password" placeholder="Password">
                                 </div>
-                                <?php if(validation_errors() != false): ?>
-                                    <div class="text-center">
-                                        <span class="alert alert-danger"><i class="ti-alert"></i> Invalid username or password </span>
-                                    </div>
-                                <?php endif;?>
+                                <div class="text-center">
+                                    <?= validation_errors('<span class="alert alert-danger"><i class="ti-alert"></i> ', '</span>')?> 
+                                </div>
                                 <button type="submit" class="btn btn-danger btn-flat m-b-30 m-t-30" style=" background: linear-gradient(120deg, #a73737, #7a2828);">Sign in</button>
                             </form>
                         </div>
