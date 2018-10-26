@@ -158,6 +158,15 @@ class Students_model extends CI_Model{
         
         $this->db->insert('tbl_teacher_student', $dataStudentGuardian); // insert into tbl_teacher_student
         
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'teacher',
+            'transaction' => 'Add Student and Guardian',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'students'); //redirect back to student page
 	}
     public function editStudent($id){
@@ -186,6 +195,15 @@ class Students_model extends CI_Model{
         $this->db->where('id', $studentInfo[0]->guardian_id);
         $this->db->update('tbl_guardian'); //update tbl_guardian
 
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'teacher',
+            'transaction' => 'Edit Student and Guardian',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'students'); //redirect back to student page
     }
     public function delete(){
@@ -194,6 +212,16 @@ class Students_model extends CI_Model{
             $studentInfo = $this->getAllDataStudents($id);
             $this->db->delete('tbl_guardian', array('id' => $studentInfo[0]->guardian_id)); // delete from tbl_guardian
         }
+
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'teacher',
+            'transaction' => 'Delete Student and Guardian',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'students'); //redirect back to student page
     }
 }

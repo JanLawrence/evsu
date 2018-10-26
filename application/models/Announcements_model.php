@@ -32,6 +32,15 @@ class Announcements_model extends CI_Model{
         $this->db->insert('tbl_announcement', $data); // insert into tbl_announcement
         $studentId = $this->db->insert_id(); // getting the id of the inserted data
 
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'teacher',
+            'transaction' => 'Add Announcement',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'announcements'); //redirect back to announcements page
 	}
     public function editAnnouncement($id){
@@ -45,12 +54,31 @@ class Announcements_model extends CI_Model{
         $this->db->where('id', $id);
         $this->db->update('tbl_announcement'); //update tbl_announcement
         
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'teacher',
+            'transaction' => 'Edit Announcement',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'announcements'); //redirect back to student page
     }
     public function delete(){
         foreach($_POST['announcementId'] as $each){ // looping the ids for tbl_teacher
             $this->db->delete('tbl_announcement', array('id' => $each)); // delete from tbl_teacher
         }
+
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'teacher',
+            'transaction' => 'Delete Announcement',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'announcements'); //redirect back to student page
     }
 }

@@ -62,6 +62,15 @@ class Teachers_model extends CI_Model{
         
         $this->db->insert('tbl_teacher_subjects', $dataSubject); // insert into tbl_teacher_subjects
         
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'admin',
+            'transaction' => 'Add Teacher',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'teachers'); //redirect back to teacher page
 	}
     public function editTeacher($id){
@@ -88,12 +97,31 @@ class Teachers_model extends CI_Model{
         $this->db->where('teacher_id', $id);
         $this->db->update('tbl_teacher_subjects'); // update tbl_teacher_subjects
 
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'admin',
+            'transaction' => 'Edit Teacher',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'teachers'); //redirect back to teacher page
     }
     public function delete(){
         foreach($_POST['teacherId'] as $each){ // looping the ids for tbl_teacher
             $this->db->delete('tbl_teacher', array('id' => $each)); // delete from tbl_teacher
         }
+
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'admin',
+            'transaction' => 'Delete Teacher',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'teachers'); //redirect back to teacher page
 	}
 }

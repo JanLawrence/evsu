@@ -40,12 +40,32 @@ class Feedbacks_model extends CI_Model{
         $this->db->insert('tbl_feedback', $data); // insert into tbl_feedback
         $studentId = $this->db->insert_id(); // getting the id of the inserted data
 
+         
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'student',
+            'transaction' => 'Add Feedback',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
         redirect(base_url().'feedbacks'); //redirect back to feedbacks page
 	}
     public function delete(){
         foreach($_POST['feedbackId'] as $each){ // looping the ids for tbl_feedback
             $this->db->delete('tbl_feedback', array('id' => $each)); // delete from tbl_feedback
         }
+
+        $userData = $this->session->userdata['user'];
+        $dataLog = array(
+            'user_id' => $userData->user_id,
+            'user_type' => 'student',
+            'transaction' => 'Delete Feedback',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+        
         redirect(base_url().'feedbacks'); //redirect back to feedbacks page
     }
 }

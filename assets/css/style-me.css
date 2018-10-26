@@ -9,17 +9,17 @@ body{
 }
 /* loader custom styles */
 .pace .pace-progress{
-    background: linear-gradient(120deg, #a73737, #7a2828);
+    background: linear-gradient(120deg, #00B4DB, #0083B0);
 }
 .pace .pace-activity{
-    border-top-color: #a73737;
-    border-left-color: #a73737;
+    border-top-color: #0083B0;
+    border-left-color: #0083B0;
 }
 /* dataables custom styles */
 
 .page-item.active .page-link {
-    background: #a73737;
-    border-color: #a73737;
+    background: #0083B0;
+    border-color: #0083B0;
 }
 .dataTables_filter{
     display: none;
@@ -36,10 +36,10 @@ body{
     font-size: 12px;
 }
 .header-icon{
-    color: #7a2828;
+    color: #00B4DB;
 }
 .hamburger .line {
-    background-color: #7a2828;
+    background-color: #00B4DB;
 }
 
 /* sidebar custom styles */
@@ -53,32 +53,32 @@ body{
     background: #fff;
 }
 .sidebar > .nano > .nano-content > .logo{
-        background: linear-gradient(120deg, #a73737, #7a2828);
+        background: linear-gradient(120deg, #0083B0, #00B4DB);
         color: #fff;
 }
 .sidebar > .nano > .nano-content > .logo a span{
     color: #fff;
 }
 .sidebar .nano-content > ul li > a {
-    color: #7a2828;
+    color: #00B4DB;
 }
 .sidebar .nano-content>ul li>a:hover {
-    background: linear-gradient(120deg, #a73737, #7a2828);
+    background: linear-gradient(120deg, #0083B0, #00B4DB);
 }
 .sidebar .nano-content>ul li>a:focus {
     border-color: transparent;
 }
 .sidebar.sidebar-light .nano-content>ul>li.active>a, .sidebar.sidebar-light .nano-content>ul>li.open>a, .sidebar.sidebar-light .nano-content>ul>li>ul {
-    background: #7a2828;
+    background: #00B4DB;
 }
 .sidebar.sidebar-light .nano-content>ul>li>ul>li.active>a, .sidebar.sidebar-light .nano-content>ul>li>ul>li.open>a, .sidebar.sidebar-light .nano-content>ul>li>ul>li>ul {
-    background: #7a2828;
+    background: #00B4DB;
 }
 .sidebar.sidebar-light .nano-content>ul>li>ul>li>ul>li.active>a, .sidebar.sidebar-light .nano-content>ul>li>ul>li>ul>li.open>a, .sidebar.sidebar-light .nano-content>ul>li>ul>li>ul>li>ul {
-    background: #7a2828;
+    background: #00B4DB;
 }
 .sidebar .nano-content>ul li.active>a::before {
-    background: #7a2828;
+    background: #00B4DB;
 }
 
 
