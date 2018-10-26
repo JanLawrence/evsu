@@ -12,7 +12,7 @@
             </div>
             <ul>
                 <??>
-                <li><a href="<?= base_url(); ?>"><i class="ti-dashboard"></i> Dashboard</a></li>
+                <li><a href="<?= base_url(); ?>dashboard"><i class="ti-dashboard"></i> Dashboard</a></li>
                 <?php if($user->user_type == 'admin'):?>
                     <li><a href="<?= base_url(); ?>teachers"><i class="ti-user"></i> Teachers</a></li>
                     <li><a href="<?= base_url(); ?>subjects"><i class="ti-book"></i> Subjects</a></li>
