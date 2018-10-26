@@ -2,7 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Students_model extends CI_Model{
-    
+    public function __construct(){
+        $this->user = isset($this->session->userdata['user']) ? $this->session->userdata['user'] : ''; //get session
+    }
     public function getAllDataStudents($id){
         //query that joins teacher and subject
         $this->db->select('s.*, g.id guardian_id , g.first_name g_fname, g.last_name g_lname, g.middle_name g_mname, g.registered g_registered, g.email g_email')
@@ -12,6 +14,16 @@ class Students_model extends CI_Model{
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
             $this->db->where('s.id', $id);
         }
+        $query = $this->db->get(); // get results of query
+        return $query->result();
+    }
+    public function genStudentList(){
+        //query that joins teacher and subject
+        $this->db->select('s.*, g.id guardian_id , g.first_name g_fname, g.last_name g_lname, g.middle_name g_mname, g.registered g_registered, g.email g_email')
+            ->from('tbl_students s')
+            ->join('tbl_student_guardian sg', 'sg.student_id = s.id', 'inner')
+            ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'inner');
+            $this->db->where('s.created_by', $this->user->id);
         $query = $this->db->get(); // get results of query
         return $query->result();
     }
@@ -89,7 +101,7 @@ class Students_model extends CI_Model{
             'phone' => $_POST['phone'],
             'address' => $_POST['address'],
             'email' => $_POST['email'],
-            'created_by' => 1,
+            'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
@@ -103,7 +115,7 @@ class Students_model extends CI_Model{
             'user_type' => 'student',
             'confirm' => 'no',
             'user_id' => $studentId,
-            'created_by' => 1,
+            'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
@@ -116,7 +128,7 @@ class Students_model extends CI_Model{
             'last_name' => $_POST['g_lastName'],
             'email' => $_POST['email'],
             'registered' => 'no',
-            'created_by' => 1,
+            'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
@@ -131,7 +143,7 @@ class Students_model extends CI_Model{
             'user_type' => 'parent',
             'confirm' => 'no',
             'user_id' => $guardianId,
-            'created_by' => 1,
+            'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
@@ -142,7 +154,7 @@ class Students_model extends CI_Model{
         $dataStudentGuardian = array(
             'student_id' => $studentId,
             'guardian_id' => $guardianId,
-            'created_by' => 1,
+            'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
@@ -152,7 +164,7 @@ class Students_model extends CI_Model{
         $dataStudentGuardian = array(
             'teacher_id' => $userData[0]->id,
             'student_id' => $studentId,
-            'created_by' => 1,
+            'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
@@ -169,7 +181,7 @@ class Students_model extends CI_Model{
         $this->db->set('phone', $_POST['phone']);
         $this->db->set('address', $_POST['address']);
         $this->db->set('email', $_POST['email']);
-        $this->db->set('modified_by', 1);
+        $this->db->set('modified_by', $this->user->id);
         $this->db->set('date_modified', date('Y-m-d H:i:s'));
         $this->db->where('id', $id);
         $this->db->update('tbl_students'); //update tbl_students
@@ -181,7 +193,7 @@ class Students_model extends CI_Model{
         $this->db->set('middle_name', $_POST['g_middleName']);
         $this->db->set('last_name', $_POST['g_lastName']);
         $this->db->set('email', $_POST['g_email']);
-        $this->db->set('modified_by', 1);
+        $this->db->set('modified_by', $this->user->id);
         $this->db->set('date_modified', date('Y-m-d H:i:s'));
         $this->db->where('id', $studentInfo[0]->guardian_id);
         $this->db->update('tbl_guardian'); //update tbl_guardian

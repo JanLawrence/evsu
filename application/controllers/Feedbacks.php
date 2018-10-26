@@ -32,6 +32,7 @@ class Feedbacks extends CI_Controller {
 		} else { //if validation failed, page will load again
 			// get data
 			$data['feedbacks'] = $this->feedbacks_model->getAllDataFeedbacks($id);
+			$data['feedbacksList'] = $this->feedbacks_model->genFeedback('','');
 			$data['teachers'] = $this->feedbacks_model->getAllDataTeachers();
 			// load page
 			$this->load->view('templates/header');
@@ -46,8 +47,11 @@ class Feedbacks extends CI_Controller {
 	}
 	public function feedbackList()
 	{	
+		$from = isset($_GET['from']) ? $_GET['from'] : date('Y-m-d');
+		$to = isset($_GET['to']) ? $_GET['to'] : date('Y-m-d');
+		$data['feedbacksList'] = $this->feedbacks_model->genFeedback($from,$to);
 		$this->load->view('templates/header');
-		$this->load->view('feedbacks/admin-feedback');
+		$this->load->view('feedbacks/admin-feedback',$data);
 		$this->load->view('templates/footer');
 	}
 }
