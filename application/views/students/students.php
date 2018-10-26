@@ -53,7 +53,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($students as $each): ?>
+                                        <?php foreach($genStudentList as $each): ?>
                                             <tr>
                                                 <td><input type="checkbox" class="table-check" name="studentId[]" value="<?= $each->id?>"></td>
                                                 <td><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name ?></td>

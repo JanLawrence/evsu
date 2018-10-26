@@ -2,9 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Feedbacks_model extends CI_Model{
-    
+    public function __construct(){
+        $this->user = isset($this->session->userdata['user']) ? $this->session->userdata['user'] : ''; //get session
+    }
     public function getAllDataFeedbacks($id){
-        //query that joins teacher and subject
         $this->db->select('f.*, t.first_name t_fname , t.last_name t_lname, t.middle_name t_mname,  s.id subject_id , s.subject_name')
          ->from('tbl_feedback f')
          ->join('tbl_teacher t', 't.id = f.teacher_id', 'inner')
@@ -13,6 +14,25 @@ class Feedbacks_model extends CI_Model{
         if($id != 0){ // if id not equal to 0 the query will filter per feedback id 
             $this->db->where('f.id', $id);
         }
+        $query = $this->db->get(); // get results of query
+        return $query->result();
+    }
+    public function genFeedback($from,$to){
+        $this->db->select('f.*, t.first_name t_fname , t.last_name t_lname, t.middle_name t_mname,  s.id subject_id , s.subject_name')
+        ->from('tbl_feedback f')
+        ->join('tbl_teacher t', 't.id = f.teacher_id', 'inner')
+        ->join('tbl_teacher_subjects ts', 't.id = ts.teacher_id', 'inner')
+        ->join('tbl_subject s', 's.id = ts.subject_id', 'inner')
+        ->join('tbl_credentials cred', 'cred.id = f.created_by', 'inner');
+
+        if($this->user->user_type == 'student'){
+            $this->db->where('f.created_by', $this->user->id);
+        }if($this->user->user_type == 'admin'){
+            $this->db->where('DATE(f.date_created) >= "'.$from.'" && DATE(f.date_created) <= "'.$to.'"');
+        }
+
+        $this->db->order_by('DATE(f.date_created)','DESC');
+
         $query = $this->db->get(); // get results of query
         return $query->result();
     }
@@ -33,7 +53,7 @@ class Feedbacks_model extends CI_Model{
             'student_id' => $userData[0]->id,
             'teacher_id' => $_POST['teacher'],
             'feedback' => $_POST['feedback'],
-            'created_by' => 1,
+            'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
         );
         

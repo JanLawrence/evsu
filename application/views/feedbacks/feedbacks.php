@@ -52,7 +52,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($feedbacks as $each): ?>
+                                        <?php foreach($feedbacksList as $each): ?>
                                         <tr>
                                             <td><input type="checkbox" name="feedbackId[]" value="<?= $each->id?>"</td>
                                             <td><?= $each->t_lname.', '.$each->t_fname.' '.$each->t_mname ?></td>

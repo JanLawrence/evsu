@@ -25,42 +25,44 @@
             <div class="col-md-12">
                 <div class="card card-table">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="search-box">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="ti-search"></i></span>
+                        <form action="feedbackList" method="get">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="search-box">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ti-search"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control search-box-input" placeholder="Search">
                                         </div>
-                                        <input type="text" class="form-control search-box-input" placeholder="Search">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">From:</label>
+                                        <div class="col-sm-9">
+                                        <input type="date" class="form-control" name="from" value="<?= isset($_GET['from']) ? $_GET['from'] : date('Y-m-d')?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">To:</label>
+                                        <div class="col-sm-9">
+                                        <input type="date" class="form-control" name="to" value="<?= isset($_GET['to']) ? $_GET['to'] : date('Y-m-d')?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-default" type="submit"><i class="ti-reload"></i> Generate</button>
+                                            <button class="btn btn-default" type=""><i class="ti-export"></i> Export</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">From:</label>
-                                    <div class="col-sm-9">
-                                        <input type="date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label">To:</label>
-                                    <div class="col-sm-9">
-                                        <input type="date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 text-right">
-                                <div class="form-group row">
-                                    <div class="col-sm-12">
-                                        <button class="btn btn-default" type=""><i class="ti-reload"></i> Generate</button>
-                                        <button class="btn btn-default" type=""><i class="ti-export"></i> Export</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                         <div class="table-responsive">
                             <table class="table table-hovered table-striped datatables">
                                 <thead>
@@ -73,24 +75,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Yumang, Rose Ann</td>
-                                        <td>Science</td>
-                                        <td>October 15, 2018</td>
-                                        <td>Always late</td>
-                                        <td>
-                                            <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bunyi, Marianne Angelica</td>
-                                        <td>Math</td>
-                                        <td>October 15, 2018</td>
-                                        <td>Everyday gives homework</td>
-                                        <td>
-                                            <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
-                                        </td>
-                                    </tr>
+                                    <?php foreach($feedbacksList as $each){?>
+                                        <tr>
+                                            <td><?= $each->t_lname.', '.$each->t_fname.' '.$each->t_mname ?></td>
+                                            <td><?= $each->subject_name?></td>
+                                            <td><?= date('F d, Y', strtotime($each->date_created))?></td>
+                                            <td><?= $each->feedback?></td>
+                                            <td>
+                                                <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal">View More</button>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

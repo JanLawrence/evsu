@@ -26,9 +26,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">
-                            <span>Teacher Information</span>
-                        </div>
                         <form action="" method="post">
                             <div class="row mt-1">
                                 <div class="col-md-12">
