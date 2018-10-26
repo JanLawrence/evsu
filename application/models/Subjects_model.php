@@ -2,7 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Subjects_model extends CI_Model{
-    
+    public function __construct(){
+        $this->user = isset($this->session->userdata['user']) ? $this->session->userdata['user'] : ''; //get session
+    }
     public function getAllDataSubjects($id){
         $this->db->select('s.*')
          ->from('tbl_subject s');
@@ -16,7 +18,7 @@ class Subjects_model extends CI_Model{
         // data that will be inserted to tbl_subject
         $data = array(
             'subject_name' => $_POST['subject'],
-            'created_by' => 1,
+            'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
@@ -39,7 +41,7 @@ class Subjects_model extends CI_Model{
 
         // data that will be updated to tbl_subject
         $this->db->set('subject_name', $_POST['subject']);
-        $this->db->set('modified_by', 1);
+        $this->db->set('modified_by', $this->user->id);
         $this->db->set('date_modified', date('Y-m-d H:i:s'));
         $this->db->where('id', $id);
         $this->db->update('tbl_subject'); //update tbl_subject
