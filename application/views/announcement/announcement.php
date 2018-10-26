@@ -61,7 +61,7 @@
                                                 <td><?= date('F d, Y', strtotime($each->date))?></td>
                                                 <td><?= $each->subject?></td>
                                                 <td>
-                                                    <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#viewModal" value="<?= $each->id?>">View More</button>
+                                                    <button type="button" class="btn btn-info btn-sm view-more" tname="<?= $each->name?>" sname="<?= $each->subject_name?>" adate="<?= date('F d, Y', strtotime($each->date))?>" announce="<?=$each->announcement?>">View More</button>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -82,20 +82,20 @@
                 <h5 class="modal-title"><i class="ti-announcement"></i> Announcement</h5>
             </div>
             <div class="modal-body">
-                <div class="row">
+                 <div class="row">
                     <div class="col-sm-6">
-                        <p><span>Teacher: Rose Ann Yumang</span></p>
-                        <p><span>Subject: Science</span></p> 
-                        <p><span>Date: Science</span></p> 
+                        <p>Teacher: <span class="teacher"></span></p>
+                        <p>Subject: <span class="subject"></span></p> 
+                        <p>Date: <span class="date"></span></p> 
                     </div>
                     <div class="col-sm-6">
                         <p><span>Announcement:</span></p>
-                        <p><span>Exam Posponed. No classes for tomorrow.</span></p>
+                        <p><span class="announcement"></span></p>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal"><i class="ti-close"></i>Close</button>
+                <button class="btn btn-info" data-dismiss="modal"><i class="ti-close"></i> Close</button>
             </div>
         </div>
     </div>
