@@ -126,7 +126,7 @@ class Students_model extends CI_Model{
             'first_name' => $_POST['g_firstName'],
             'middle_name' => $_POST['g_middleName'],
             'last_name' => $_POST['g_lastName'],
-            'email' => $_POST['email'],
+            'email' => $_POST['g_email'],
             'registered' => 'no',
             'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
