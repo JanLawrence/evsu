@@ -12,8 +12,7 @@
             <div class="page-header">
                 <div class="page-title">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item">Students</li>
+                        <li class="breadcrumb-item"><a href="<?=base_url('students')?>">Students</a></li>
                         <li class="breadcrumb-item active">Edit Student</li>
                     </ol>
                 </div>
@@ -24,10 +23,9 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <form action="teachers/delete" method="post" id="editForm">
-                <div class="card card-table">
+                <div class="card">
                     <div class="card-body">
-                    <form action="" method="post">
+                        <form action="" method="post">
                             <div class="card-title">
                                 <span>Student Information</span>
                             </div>

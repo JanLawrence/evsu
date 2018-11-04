@@ -20,7 +20,7 @@ class Teachers_model extends CI_Model{
         return $query->result();
     }
 	public function addTeacher(){
-
+        $userData = $this->session->userdata['user'];
         // data that will be inserted to tbl_teacher
         $data = array(
             'first_name' => $_POST['firstName'],
@@ -33,7 +33,7 @@ class Teachers_model extends CI_Model{
             'school_id_no' => 1,
             'license_no' => 1,
             'registered' => 'no',
-            'created_by' => 1,
+            'created_by' => $userData->user_id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
@@ -47,7 +47,7 @@ class Teachers_model extends CI_Model{
             'user_type' => 'teacher',
             'confirm' => 'no',
             'user_id' => $teacherId,
-            'created_by' => 1,
+            'created_by' => $userData->user_id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
@@ -57,13 +57,12 @@ class Teachers_model extends CI_Model{
         $dataSubject = array(
             'teacher_id' => $teacherId,
             'subject_id' => $_POST['subject'],
-            'created_by' => 1,
+            'created_by' => $userData->user_id,
             'date_created' => date('Y-m-d H:i:s')
         );
         
         $this->db->insert('tbl_teacher_subjects', $dataSubject); // insert into tbl_teacher_subjects
         
-        $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
             'user_type' => 'admin',
@@ -76,7 +75,8 @@ class Teachers_model extends CI_Model{
         redirect(base_url().'teachers'); //redirect back to teacher page
 	}
     public function editTeacher($id){
-
+        $userData = $this->session->userdata['user'];
+        
         // data that will be updated to tbl_teacher
         $this->db->set('first_name', $_POST['firstName']);
         $this->db->set('middle_name', $_POST['middleName']);
@@ -87,19 +87,18 @@ class Teachers_model extends CI_Model{
         $this->db->set('email', $_POST['email']);
         $this->db->set('school_id_no', 1);
         $this->db->set('license_no', 1);
-        $this->db->set('modified_by', 1);
+        $this->db->set('modified_by', $userData->user_id);
         $this->db->set('date_modified', date('Y-m-d H:i:s'));
         $this->db->where('id', $id);
         $this->db->update('tbl_teacher'); //update tbl_teacher
         
         // data that will be updated to tbl_teacher_subjects
         $this->db->set('subject_id', $_POST['subject']);
-        $this->db->set('modified_by', 1);
+        $this->db->set('modified_by', $userData->user_id);
         $this->db->set('date_modified', date('Y-m-d H:i:s'));
         $this->db->where('teacher_id', $id);
         $this->db->update('tbl_teacher_subjects'); // update tbl_teacher_subjects
 
-        $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
             'user_type' => 'admin',
