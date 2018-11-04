@@ -183,21 +183,26 @@
             $('#changePassModal').modal('toggle');
         })
         $('#changePassForm').submit(function(){
-            var form = $(this).serialize(); // get form declare to variable form
-            var pass = $('#changePassForm').find('input[name=pass]').val(); // get value of pass input to changepassform
-            var confirmpass = $('#changePassForm').find('input[name=confirmpass]').val(); // get value of confirmpass input to changepassform
-            if(pass == confirmpass){ //if equal return to post
-                $.post(URL+'register/changepass', form) // post to register/changepass
-                .done(function(returnData){
-                    if(returnData == 1){
-                        alert('Invalid Old Password'); // alert error if old password is invalid
-                    } else {
-                        alert('Password successfully changed');
-                        location.reload();
-                    }
-                })
+            var r = confirm('Are you sure you want to logout?');
+            if(r==true){
+                var form = $(this).serialize(); // get form declare to variable form
+                var pass = $('#changePassForm').find('input[name=pass]').val(); // get value of pass input to changepassform
+                var confirmpass = $('#changePassForm').find('input[name=confirmpass]').val(); // get value of confirmpass input to changepassform
+                if(pass == confirmpass){ //if equal return to post
+                    $.post(URL+'register/changepass', form) // post to register/changepass
+                    .done(function(returnData){
+                        if(returnData == 1){
+                            alert('Invalid Old Password'); // alert error if old password is invalid
+                        } else {
+                            alert('Password successfully changed');
+                            location.reload();
+                        }
+                    })
+                } else {
+                    alert('Password do not match'); // alert error
+                }
             } else {
-                alert('Password do not match'); // alert error
+                return false;
             }
             return false;
         })
