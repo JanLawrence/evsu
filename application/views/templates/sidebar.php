@@ -19,6 +19,7 @@
                     <li><a href="<?= base_url(); ?>students/studentlog"><i class="ti-agenda"></i> Student Log</a></li>
                     <li><a href="<?= base_url(); ?>announcements/announcementList"><i class="ti-announcement"></i> Announcements</a></li>
                     <li><a href="<?= base_url(); ?>feedbacks/feedbackList"><i class="ti-comments"></i> Feedbacks</a></li>
+                    <li><a href="<?= base_url(); ?>users"><i class="ti-user"></i> User</a></li>
                     <li><a href="<?= base_url(); ?>logs/userlogs"><i class="ti-agenda"></i> User Logs</a></li>
                 <?php endif;?>
 
