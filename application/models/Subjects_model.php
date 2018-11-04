@@ -33,6 +33,7 @@ class Subjects_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
+        $this->session->set_flashdata('msg', 'Subject was successfully saved.');
         redirect(base_url().'subjects'); //redirect back to subjects page
 
 
@@ -56,6 +57,7 @@ class Subjects_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
+        $this->session->set_flashdata('msg', 'Subject was successfully updated.');
         redirect(base_url().'subjects'); //redirect back to subjects page
     }
     public function delete(){
@@ -72,6 +74,7 @@ class Subjects_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
+        $this->session->set_flashdata('msg', 'Subject/s was successfully deleted.');
         redirect(base_url().'subjects'); //redirect back to subjects page
 	}
 }

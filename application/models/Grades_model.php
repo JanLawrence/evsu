@@ -78,7 +78,7 @@ class Grades_model extends CI_Model{
 
             $this->db->insert('tbl_students_grade', $data); // insert into tbl_students_grade
         } 
-
+        
         $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
@@ -87,7 +87,8 @@ class Grades_model extends CI_Model{
             'transaction_date' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
-
+        
+        $this->session->set_flashdata('msg', 'Grades was successfully saved.');
         redirect(base_url().'grades'); //redirect back to grade page
 	}
    /*  public function delete(){

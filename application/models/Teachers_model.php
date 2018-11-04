@@ -20,6 +20,7 @@ class Teachers_model extends CI_Model{
         return $query->result();
     }
 	public function addTeacher(){
+
         // data that will be inserted to tbl_teacher
         $data = array(
             'first_name' => $_POST['firstName'],
@@ -71,6 +72,7 @@ class Teachers_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
+        $this->session->set_flashdata('msg', 'Parent was successfully saved.');
         redirect(base_url().'teachers'); //redirect back to teacher page
 	}
     public function editTeacher($id){
@@ -106,13 +108,14 @@ class Teachers_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
+        $this->session->set_flashdata('msg', 'Parent was successfully updated.');
         redirect(base_url().'teachers'); //redirect back to teacher page
     }
     public function delete(){
         foreach($_POST['teacherId'] as $each){ // looping the ids for tbl_teacher
             $this->db->delete('tbl_teacher', array('id' => $each)); // delete from tbl_teacher
         }
-
+        
         $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
@@ -121,7 +124,8 @@ class Teachers_model extends CI_Model{
             'transaction_date' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
-
+        
+        $this->session->set_flashdata('msg', 'Parent/s was successfully deleted.');
         redirect(base_url().'teachers'); //redirect back to teacher page
 	}
 }

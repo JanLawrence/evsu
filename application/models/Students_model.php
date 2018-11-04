@@ -179,6 +179,7 @@ class Students_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
+        $this->session->set_flashdata('msg', 'Student was successfully saved.');
         redirect(base_url().'students'); //redirect back to student page
 	}
     public function editStudent($id){
@@ -216,6 +217,7 @@ class Students_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
+        $this->session->set_flashdata('msg', 'Student was successfully updated.');
         redirect(base_url().'students'); //redirect back to student page
     }
     public function delete(){
@@ -234,6 +236,7 @@ class Students_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
+        $this->session->set_flashdata('msg', 'Student/s was successfully deleted.');
         redirect(base_url().'students'); //redirect back to student page
     }
 }

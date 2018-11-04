@@ -66,4 +66,7 @@
         </div>
     </section>
 </div>
+<?php if(isset($_SESSION['msg'])):?>
+    <script>alert("<?= $_SESSION['msg']?>");</script>
+<?php endif;?>
 <script src="<?= base_url()?>assets/modules/js/grades.js"></script>

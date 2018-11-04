@@ -27,7 +27,7 @@ class Home extends CI_Controller {
             } else if($sub == 'student'){
                 redirect(base_url().'announcements/announcementList');
             } else if($sub == 'parent'){
-                redirect(base_url().'dashboard');
+                redirect(base_url().'students/studentgrade');
             }
         } else {
             //set validation rules
@@ -51,7 +51,7 @@ class Home extends CI_Controller {
                     redirect(base_url().'dashboard');
                 }
             } else {
-                $this->load->view('login/'.$sub.'-login');
+                redirect(base_url().'students/studentgrade');
             }
         }
 

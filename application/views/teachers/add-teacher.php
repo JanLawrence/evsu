@@ -29,7 +29,7 @@
                         <div class="card-title">
                             <span>Teacher Information</span>
                         </div>
-                        <form action="add" method="post">
+                        <form action="add" method="post" id="addForm">
                             <div class="row mt-1">
                                 <div class="col-md-6">
                                     <div class="form-group row">

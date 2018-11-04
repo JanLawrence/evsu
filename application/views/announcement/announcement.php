@@ -23,7 +23,7 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <form action="announcements/delete" method="post">
+                <form action="announcements/delete" method="post" id="deleteForm">
                     <div class="card card-table">
                         <div class="card-body">
                             <div class="search-box">
@@ -100,4 +100,7 @@
         </div>
     </div>
 </div>
+<?php if(isset($_SESSION['msg'])):?>
+    <script>alert("<?= $_SESSION['msg']?>");</script>
+<?php endif;?>
 <script src="<?= base_url()?>assets/modules/js/announcement.js"></script>

@@ -24,7 +24,7 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <form action="teachers/delete" method="post">
+                <form action="teachers/delete" method="post" id="editForm">
                 <div class="card card-table">
                     <div class="card-body">
                     <form action="" method="post">

@@ -15,4 +15,22 @@ $(function(){
 
         $('#viewModal').modal('toggle'); //toggle modal
     })
+    $('#addForm').submit(function(){
+        var r = confirm('Are you sure?');
+        if(r ==  true){
+            return;
+        }
+    })
+    $('#editForm').submit(function(){
+        var r = confirm('Are you sure?');
+        if(r ==  true){
+            return;
+        }
+    })
+    $('#deleteForm').submit(function(){
+        var r = confirm('Are you sure?');
+        if(r ==  true){
+            return;
+        }
+    })
 })

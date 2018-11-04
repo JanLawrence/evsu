@@ -20,8 +20,19 @@ class Dashboard extends CI_Controller {
 	 */
 	public function index()
 	{	
+		$students = $this->db->get('tbl_students');
+		$students= $students->result();
+		$guardian = $this->db->get('tbl_guardian');
+		$guardian= $guardian->result();
+		$teacher = $this->db->get('tbl_teacher');
+		$teacher= $teacher->result();
+
+		$data['students'] = $students;
+		$data['teachers'] = $teacher;
+		$data['parents'] = $guardian;
+
 		$this->load->view('templates/header');
-		$this->load->view('dashboard/dashboard');
+		$this->load->view('dashboard/dashboard', $data);
 		$this->load->view('templates/footer');
 	}
 }

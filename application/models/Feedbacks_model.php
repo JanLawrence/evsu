@@ -81,6 +81,7 @@ class Feedbacks_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
+        $this->session->set_flashdata('msg', 'Feedbacks was successfully saved.');
         redirect(base_url().'feedbacks'); //redirect back to feedbacks page
 	}
     public function delete(){
@@ -97,6 +98,7 @@ class Feedbacks_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
         
+        $this->session->set_flashdata('msg', 'Feedbacks was successfully deleted.');
         redirect(base_url().'feedbacks'); //redirect back to feedbacks page
     }
 }

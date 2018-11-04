@@ -26,7 +26,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="" method="post" id="editForm">
                             <div class="row mt-1">
                                 <div class="col-md-6">
                                     <div class="form-group row">
