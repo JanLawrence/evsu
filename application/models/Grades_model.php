@@ -7,6 +7,7 @@ class Grades_model extends CI_Model{
         $user = $this->session->userdata['user'];
         $this->db->select('t.*');
         $this->db->from('tbl_teacher t');
+        $this->db->where('t.status', 'saved');
         $this->db->where('t.id', $user->user_id);
         $query = $this->db->get(); // get results of query
         $userData = $query->result();
@@ -27,6 +28,7 @@ class Grades_model extends CI_Model{
             AND 3rd.period = '3rd'","left")
         ->join("tbl_students_grade 4th", "ON 4th.teacher_student_id = t_stud.id
             AND 4th.period = '4th'","left");
+        $this->db->where('student.status', 'saved');
         $this->db->where('t_stud.teacher_id',$userData[0]->id);
 
         $query = $this->db->get();
@@ -44,6 +46,7 @@ class Grades_model extends CI_Model{
             CONCAT(student.last_name, ', ', student.first_name, ' ', student.last_name) student")
         ->from("tbl_students student")
         ->join("tbl_teacher_student t_stud", "ON t_stud.student_id = student.id","left");
+        $this->db->where('student.status', 'saved');
         $this->db->where('t_stud.teacher_id',$userData[0]->id);
 
         $query = $this->db->get();
