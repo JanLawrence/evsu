@@ -24,7 +24,7 @@ class Register extends CI_Controller {
             $this->form_validation->set_rules('lastName', 'Last Name', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('username', 'Username', 'required|callback_usernamecheck['.$sub.'_'.$id.']');
             $this->form_validation->set_rules('password', 'Password', 'required');
             $this->form_validation->set_rules('password_confirm', 'Confirm Password', 'callback_validate['.$pass.']');
             //if validation is success
@@ -45,7 +45,7 @@ class Register extends CI_Controller {
             $this->form_validation->set_rules('address', 'Address', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
             $this->form_validation->set_rules('subject', 'Subject', 'required');
-            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('username', 'Username', 'required|callback_usernamecheck['.$sub.'_'.$id.']');
             $this->form_validation->set_rules('password', 'Password', 'required');
             $this->form_validation->set_rules('password_confirm', 'Confirm Password', 'callback_validate['.$pass.']');
             
@@ -68,7 +68,7 @@ class Register extends CI_Controller {
             $this->form_validation->set_rules('lastName', 'Last Name', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required');
-            $this->form_validation->set_rules('username', 'Username', 'required');
+            $this->form_validation->set_rules('username', 'Username', 'required|callback_usernamecheck['.$sub.'_'.$id.']');
             $this->form_validation->set_rules('password', 'Password', 'required');
             $this->form_validation->set_rules('password_confirm', 'Confirm Password', 'callback_validate['.$pass.']');
             
@@ -119,4 +119,23 @@ class Register extends CI_Controller {
             echo 1;
         }
     }
+    public function usernamecheck($username,$subid){
+        $sub = explode('_', $subid)[0];
+        $user_id = explode('_', $subid)[1];
+        $query = $this->db->get_where('tbl_credentials', array('user_id' => $user_id, 'user_type' => $sub));
+        
+		$data = $query->result();
+		if(!empty($data)){
+			return TRUE;
+		} else {
+			$query2 = $this->db->get_where('tbl_credentials', array('username' => $username));
+			$data2 = $query2->result();
+			if(!empty($data2)){
+				$this->form_validation->set_message('usernamecheck', 'Username existing');
+				return FALSE;
+			} else {
+				return TRUE;
+			}
+		}
+	}	
 }
