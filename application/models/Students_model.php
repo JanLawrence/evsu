@@ -232,7 +232,7 @@ class Students_model extends CI_Model{
     public function delete(){
         foreach($_POST['studentId'] as $each){ // looping the ids for tbl_students
             $studentInfo = $this->getAllDataStudents($each);
-            
+
             //$this->db->delete('tbl_students', array('id' => $each)); // delete from tbl_students
             $this->db->set('status', 'deleted'); // delete from tbl_students
             $this->db->where('id', $each);
@@ -243,13 +243,13 @@ class Students_model extends CI_Model{
             $this->db->where('id', $studentInfo[0]->guardian_id);
             $this->db->update('tbl_guardian'); //delete tbl_guardian
 
-            $query = $this->db->get_where('tbl_credentials', array('user_id' => $each, 'user_type' => 'teacher'));
+            $query = $this->db->get_where('tbl_credentials', array('user_id' => $each, 'user_type' => 'student'));
             $data = $query->result();
             $this->db->set('status', 'deleted'); // delete from tbl_credentials
             $this->db->where('id', $data[0]->id);
             $this->db->update('tbl_credentials'); //delete tbl_credentials
 
-            $query2 = $this->db->get_where('tbl_credentials', array('user_id' => $studentInfo[0]->guardian_id, 'user_type' => 'teacher'));
+            $query2 = $this->db->get_where('tbl_credentials', array('user_id' => $studentInfo[0]->guardian_id, 'user_type' => 'student'));
             $data2 = $query2->result();
             $this->db->set('status', 'deleted'); // delete from tbl_credentials
             $this->db->where('id', $data2[0]->id);
