@@ -72,7 +72,7 @@ class Teachers_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
-        $this->session->set_flashdata('msg', 'Parent was successfully saved.');
+        $this->session->set_flashdata('msg', 'Teacher was successfully saved.');
         redirect(base_url().'teachers'); //redirect back to teacher page
 	}
     public function editTeacher($id){
@@ -108,7 +108,7 @@ class Teachers_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
-        $this->session->set_flashdata('msg', 'Parent was successfully updated.');
+        $this->session->set_flashdata('msg', 'Teacher was successfully updated.');
         redirect(base_url().'teachers'); //redirect back to teacher page
     }
     public function delete(){
@@ -125,7 +125,7 @@ class Teachers_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
         
-        $this->session->set_flashdata('msg', 'Parent/s was successfully deleted.');
+        $this->session->set_flashdata('msg', 'Teacher/s was successfully deleted.');
         redirect(base_url().'teachers'); //redirect back to teacher page
 	}
 }

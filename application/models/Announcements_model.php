@@ -80,7 +80,7 @@ class Announcements_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
-        $this->session->set_flashdata('msg', 'Announcements was successfully saved.');
+        $this->session->set_flashdata('msg', 'Announcement was successfully saved.');
         redirect(base_url().'announcements'); //redirect back to announcements page
 	}
     public function editAnnouncement($id){
@@ -103,7 +103,7 @@ class Announcements_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
-        $this->session->set_flashdata('msg', 'Announcements was successfully updated.');
+        $this->session->set_flashdata('msg', 'Announcement was successfully updated.');
         redirect(base_url().'announcements'); //redirect back to student page
     }
     public function delete(){
@@ -120,7 +120,7 @@ class Announcements_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
-        $this->session->set_flashdata('msg', 'Announcements was successfully deleted.');
+        $this->session->set_flashdata('msg', 'Announcement/s was successfully deleted.');
         redirect(base_url().'announcements'); //redirect back to student page
     }
 }

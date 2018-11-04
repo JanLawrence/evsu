@@ -132,4 +132,4 @@
         </div>
     </section>
 </div>
-<script src="<?= base_url()?>assets/modules/js/teachers.js"></script>
+<script src="<?= base_url()?>assets/modules/js/students.js"></script>

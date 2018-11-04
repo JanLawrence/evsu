@@ -23,7 +23,7 @@ $(function(){
         }
     })
     $('#deleteForm').submit(function(){
-        var r = confirm('Are you sure you want to delete this feedback?');
+        var r = confirm('Are you sure you want to delete this feedback/s?');
         if(r ==  true){
             return;
         }else{
