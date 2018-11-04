@@ -98,5 +98,25 @@ class Register extends CI_Controller {
             return FALSE;
         }
     }
-    
+    function changepass(){
+        $oldpass = $_POST['oldpass'];
+        $pass = $_POST['pass'];
+        $confirmpass = $_POST['confirmpass'];
+        $userData = $this->session->userdata['user'];
+        $realpass = $this->encryptpass->pass_crypt($userData->password, 'd');
+        if($realpass == $oldpass){
+
+            $this->db->set('password', $this->encryptpass->pass_crypt($_POST['pass']));
+            $this->db->where('username', $userData->username);
+            $this->db->update('tbl_credentials'); //update status to logged in from tbl_credentials
+   
+            $query = $this->db->get_where('tbl_credentials', array('username' => $userData->username));
+            $data = $query->result();
+            $this->session->set_userdata('user', $data[0]);
+
+
+        } else {
+            echo 1;
+        }
+    }
 }

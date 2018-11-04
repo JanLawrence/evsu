@@ -1,6 +1,5 @@
 <?php  
     $user = $this->session->userdata['user'];
-
 ?>
 <div class="header">
     <div class="container-fluid">
@@ -128,8 +127,8 @@
                             <div class="drop-down dropdown-profile">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li><a href="#"><i class="ti-settings"></i> <span>Manage Account</span></a></li>
-                                        <li><a href="#"><i class="ti-key"></i> <span>Change Password</span></a></li>
+                                        <li><a href="<?= base_url('account/'.$user->user_type.'/'.$user->user_id)?>"><i class="ti-settings"></i> <span>Manage Account</span></a></li>
+                                        <li><a id="openPass"><i class="ti-key"></i> <span>Change Password</span></a></li>
                                         <li><a href="<?= base_url()?>home/logout" id="logout"><i class="ti-power-off"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
@@ -141,6 +140,35 @@
         </div>
     </div>
 </div>
+<form id="changePassForm" method="post">
+    <div class="modal fade mt-5" id="changePassModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content mt-5">
+                <div class="modal-header mt-5">
+                    <h5 class="modal-title"><i class="ti-key"></i> Change Password</h5>
+                </div>
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label>Old Password</label>
+                            <input type="password" class="form-control" name="oldpass">
+                        </div>
+                        <div class="form-group">
+                            <label>New Password</label>
+                            <input type="password" class="form-control" name="pass">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" class="form-control" name="confirmpass">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal"><i class="ti-close"></i> Close</button>
+                    <button type="submit" class="btn btn-default"><i class="ti-save"></i> Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <script>
     $(function(){
         $('#logout').click(function(){
@@ -150,6 +178,28 @@
             } else {
                 return false;
             }
+        })
+        $('#openPass').click(function(){
+            $('#changePassModal').modal('toggle');
+        })
+        $('#changePassForm').submit(function(){
+            var form = $(this).serialize(); // get form declare to variable form
+            var pass = $('#changePassForm').find('input[name=pass]').val(); // get value of pass input to changepassform
+            var confirmpass = $('#changePassForm').find('input[name=confirmpass]').val(); // get value of confirmpass input to changepassform
+            if(pass == confirmpass){ //if equal return to post
+                $.post(URL+'register/changepass', form) // post to register/changepass
+                .done(function(returnData){
+                    if(returnData == 1){
+                        alert('Invalid Old Password'); // alert error if old password is invalid
+                    } else {
+                        alert('Password successfully changed');
+                        location.reload();
+                    }
+                })
+            } else {
+                alert('Password do not match'); // alert error
+            }
+            return false;
         })
     })
 </script>
