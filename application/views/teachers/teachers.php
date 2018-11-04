@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </form>
-            </div>1
+            </div>
         </div>
     </section>
 </div>

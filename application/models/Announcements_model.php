@@ -23,9 +23,11 @@ class Announcements_model extends CI_Model{
          ->from('tbl_announcement a')
          ->join('tbl_subject s', 's.id = a.subject_id', 'inner')
          ->join('tbl_credentials cred', 'cred.id = a.created_by', 'inner')
-         ->join('tbl_teacher t','t.id = cred.user_id','inner')
-         ->join('tbl_teacher_student ts', 'ts.teacher_id = t.id','inner')
-         ->where('a.status', 'saved')
+         ->join('tbl_teacher t','t.id = cred.user_id','inner');
+        if ($this->user->user_type == 'student'){
+        $this->db->join('tbl_teacher_student ts', 'ts.teacher_id = t.id','inner');
+        }
+        $this->db->where('a.status', 'saved')
          ->where('s.status', 'saved')
          ->where('cred.status', 'saved')
          ->where('t.status', 'saved');
