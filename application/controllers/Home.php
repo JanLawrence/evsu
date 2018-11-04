@@ -64,7 +64,7 @@ class Home extends CI_Controller {
     public function validate($pass, $type){ // validate username and password, will be used in callback for form validation
         $user = $this->input->post('username');
         if($user != ''){
-            $query = $this->db->get_where('tbl_credentials', array('username' => $user, 'user_type' => $type, 'confirm' => 'yes', 'status' => 'saved', 'login_stat' => 'out'));
+            $query = $this->db->get_where('tbl_credentials', array('username' => $user, 'user_type' => $type, 'confirm' => 'yes', 'status' => 'saved'));
             $data = $query->result();
             if(empty($data)){
                 $this->form_validation->set_message('validate', 'Invalid Username');
