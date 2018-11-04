@@ -183,7 +183,7 @@
             $('#changePassModal').modal('toggle');
         })
         $('#changePassForm').submit(function(){
-            var r = confirm('Are you sure you want to logout?');
+            var r = confirm('Are you sure you want to change your password?');
             if(r==true){
                 var form = $(this).serialize(); // get form declare to variable form
                 var pass = $('#changePassForm').find('input[name=pass]').val(); // get value of pass input to changepassform
