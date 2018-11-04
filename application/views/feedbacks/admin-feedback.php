@@ -57,7 +57,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <button class="btn btn-default" type="submit"><i class="ti-reload"></i> Generate</button>
-                                            <button class="btn btn-default" type=""><i class="ti-export"></i> Export</button>
+                                            <button class="btn btn-default hidden" type=""><i class="ti-export"></i> Export</button>
                                         </div>
                                     </div>
                                 </div>

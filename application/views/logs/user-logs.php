@@ -57,7 +57,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <button class="btn btn-default" type="submit"><i class="ti-reload"></i> Generate</button>
-                                            <button class="btn btn-default" type=""><i class="ti-export"></i> Export</button>
+                                            <button class="btn btn-default hidden" type=""><i class="ti-export"></i> Export</button>
                                         </div>
                                     </div>
                                 </div>
@@ -69,8 +69,9 @@
                                     <tr>
                                         <th>Date</th>
                                         <th>Time</th>
+                                        <th>Name</th>
+                                        <th>User Type</th>
                                         <th>Transaction</th>
-                                        <th>Username</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -79,8 +80,9 @@
                                         <tr>
                                             <td><?= date('Y-m-d', strtotime($each->transaction_date)) ?></td>
                                             <td><?= date('h:i:s A', strtotime($each->transaction_date)) ?></td>
+                                            <td><?= $each->whole_name?></td>
+                                            <td><?= ucfirst($each->user_type)?></td>
                                             <td><?= $each->transaction?></td>
-                                            <td><?= $each->username?></td>
                                             <td></td>
                                         </tr>
                                     <?php } ?>

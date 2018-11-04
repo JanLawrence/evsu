@@ -31,7 +31,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Student:</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" placeholder="Khariza Fe L. Gapuz">
+                                            <input class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <button class="btn btn-default" type=""><i class="ti-reload"></i> Generate</button>
-                                            <button class="btn btn-default" type=""><i class="ti-export"></i> Export</button>
+                                            <button class="btn btn-default hidden" type=""><i class="ti-export"></i> Export</button>
                                         </div>
                                     </div>
                                 </div>
