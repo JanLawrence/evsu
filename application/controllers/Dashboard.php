@@ -20,11 +20,11 @@ class Dashboard extends CI_Controller {
 	 */
 	public function index()
 	{	
-		$students = $this->db->get('tbl_students');
+		$students = $this->db->get_where('tbl_students', array('status' => 'saved'));
 		$students= $students->result();
-		$guardian = $this->db->get('tbl_guardian');
+		$guardian = $this->db->get_where('tbl_guardian', array('status' => 'saved'));
 		$guardian= $guardian->result();
-		$teacher = $this->db->get('tbl_teacher');
+		$teacher = $this->db->get_where('tbl_teacher', array('status' => 'saved'));
 		$teacher= $teacher->result();
 
 		$data['students'] = $students;
