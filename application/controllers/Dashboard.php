@@ -22,9 +22,9 @@ class Dashboard extends CI_Controller {
 	{	
 		$students = $this->db->get_where('tbl_students', array('status' => 'saved'));
 		$students= $students->result();
-		$guardian = $this->db->get_where('tbl_guardian', array('status' => 'saved'));
+		$guardian = $this->db->get_where('tbl_guardian', array('status' => 'saved', 'registered' => 'yes'));
 		$guardian= $guardian->result();
-		$teacher = $this->db->get_where('tbl_teacher', array('status' => 'saved'));
+		$teacher = $this->db->get_where('tbl_teacher', array('status' => 'saved', 'registered' => 'yes'));
 		$teacher= $teacher->result();
 
 		$data['students'] = $students;
