@@ -231,12 +231,13 @@ class Students_model extends CI_Model{
     }
     public function delete(){
         foreach($_POST['studentId'] as $each){ // looping the ids for tbl_students
+            $studentInfo = $this->getAllDataStudents($each);
+            
             //$this->db->delete('tbl_students', array('id' => $each)); // delete from tbl_students
             $this->db->set('status', 'deleted'); // delete from tbl_students
             $this->db->where('id', $each);
             $this->db->update('tbl_students'); //delete tbl_students
 
-            $studentInfo = $this->getAllDataStudents($each);
             //$this->db->delete('tbl_guardian', array('id' => $studentInfo[0]->guardian_id)); // delete from tbl_guardian
             $this->db->set('status', 'deleted'); // delete from tbl_guardian
             $this->db->where('id', $studentInfo[0]->guardian_id);
