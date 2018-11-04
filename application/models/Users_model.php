@@ -4,14 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Users_model extends CI_Model{
     
     public function getAllDataUsers($id){
-        //query that joins teacher and subject
+        //query that joins admin and creds
         $this->db->select('a.*, c.username, c.password')
          ->from('tbl_admin a')
          ->join('tbl_credentials c', 'a.id = c.user_id', 'inner')
          ->where('a.status', 'saved')
          ->where('c.status', 'saved');
          $this->db->where('c.user_type', 'admin');
-        if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
+        if($id != 0){ // if id not equal to 0 the query will filter per admin id 
             $this->db->where('a.id', $id);
         }
         $query = $this->db->get(); // get results of query
@@ -57,7 +57,7 @@ class Users_model extends CI_Model{
 
 
         $this->session->set_flashdata('msg', 'User was successfully saved.');
-        redirect(base_url().'users'); //redirect back to teacher page
+        redirect(base_url().'users'); //redirect back to users page
 	}
     public function editUser($id){
         $userData = $this->session->userdata['user'];
@@ -91,7 +91,7 @@ class Users_model extends CI_Model{
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
         $this->session->set_flashdata('msg', 'User was successfully updated.');
-        redirect(base_url().'users'); //redirect back to teacher page
+        redirect(base_url().'users'); //redirect back to users page
     }
     public function delete(){
         foreach($_POST['usersId'] as $each){ // looping the ids for tbl_admin
@@ -111,6 +111,6 @@ class Users_model extends CI_Model{
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
         
         $this->session->set_flashdata('msg', 'User/s was successfully deleted.');
-        redirect(base_url().'users'); //redirect back to teacher page
+        redirect(base_url().'users'); //redirect back to users page
 	}
 }
