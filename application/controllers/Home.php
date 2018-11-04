@@ -51,7 +51,7 @@ class Home extends CI_Controller {
                     redirect(base_url().'dashboard');
                 }
             } else {
-                redirect(base_url().'students/studentgrade');
+                $this->load->view('login/'.$sub.$prefix);
             }
         }
 
