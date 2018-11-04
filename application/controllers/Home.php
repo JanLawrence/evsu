@@ -41,6 +41,15 @@ class Home extends CI_Controller {
                 $data = $query->result();
                 $this->session->set_userdata('user', $data[0]);
 
+                //user login logs
+                $dataLog = array(
+                    'user_id' => $data[0]->user_id,
+                    'user_type' => $data[0]->user_type,
+                    'transaction' => 'Login',
+                    'transaction_date' => date('Y-m-d H:i:s')
+                );
+                $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
+
                 $this->db->set('login_stat', 'in'); // update status to logged in from tbl_credentials
                 $this->db->where('id', $data[0]->id);
                 $this->db->update('tbl_credentials'); //update status to logged in from tbl_credentials
@@ -89,6 +98,15 @@ class Home extends CI_Controller {
     }
     public function logout(){
         $session = $this->session->userdata['user'];
+        
+        //user logout logs
+        $dataLog = array(
+            'user_id' => $session->user_id,
+            'user_type' => $session->user_type,
+            'transaction' => 'Logout',
+            'transaction_date' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
         $this->db->set('login_stat', 'out'); // update status to logged in from tbl_credentials
         $this->db->where('id', $session->id);
