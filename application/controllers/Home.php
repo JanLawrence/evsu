@@ -40,6 +40,11 @@ class Home extends CI_Controller {
                 $query = $this->db->get_where('tbl_credentials', array('username' => $user));
                 $data = $query->result();
                 $this->session->set_userdata('user', $data[0]);
+
+                $this->db->set('login_stat', 'in'); // update status to logged in from tbl_credentials
+                $this->db->where('id', $data[0]->id);
+                $this->db->update('tbl_credentials'); //update status to logged in from tbl_credentials
+
                 // redirect based on user_type
                 if($sub == 'admin'){
                     redirect(base_url().'teachers');
@@ -59,7 +64,7 @@ class Home extends CI_Controller {
     public function validate($pass, $type){ // validate username and password, will be used in callback for form validation
         $user = $this->input->post('username');
         if($user != ''){
-            $query = $this->db->get_where('tbl_credentials', array('username' => $user, 'user_type' => $type, 'confirm' => 'yes'));
+            $query = $this->db->get_where('tbl_credentials', array('username' => $user, 'user_type' => $type, 'confirm' => 'yes', 'status' => 'saved', 'login_stat' => 'out'));
             $data = $query->result();
             if(empty($data)){
                 $this->form_validation->set_message('validate', 'Invalid Username');
@@ -84,6 +89,10 @@ class Home extends CI_Controller {
     }
     public function logout(){
         $session = $this->session->userdata['user'];
+
+        $this->db->set('login_stat', 'out'); // update status to logged in from tbl_credentials
+        $this->db->where('id', $session->id);
+        $this->db->update('tbl_credentials'); //update status to logged in from tbl_credentials
         //destroy session
         $this->session->sess_destroy();
         //redirect to homepage

@@ -8,7 +8,9 @@ class Announcements_model extends CI_Model{
         //query that joins tbl_announcement and subject
         $this->db->select('a.*, s.id subject_id , s.subject_name')
          ->from('tbl_announcement a')
-         ->join('tbl_subject s', 's.id = a.subject_id', 'inner');
+         ->join('tbl_subject s', 's.id = a.subject_id', 'inner')
+         ->where('a.status', 'saved')
+         ->where('s.status', 'saved');
         if($id != 0){ // if id not equal to 0 the query will filter per announement id 
             $this->db->where('a.id', $id);
         }
@@ -22,7 +24,11 @@ class Announcements_model extends CI_Model{
          ->join('tbl_subject s', 's.id = a.subject_id', 'inner')
          ->join('tbl_credentials cred', 'cred.id = a.created_by', 'inner')
          ->join('tbl_teacher t','t.id = cred.user_id','inner')
-         ->join('tbl_teacher_student ts', 'ts.teacher_id = t.id','inner');
+         ->join('tbl_teacher_student ts', 'ts.teacher_id = t.id','inner')
+         ->where('a.status', 'saved')
+         ->where('s.status', 'saved')
+         ->where('cred.status', 'saved')
+         ->where('t.status', 'saved');
 
         //user type conditions 
         if($this->user->user_type == 'teacher'){ 
@@ -42,8 +48,8 @@ class Announcements_model extends CI_Model{
         //get subjects data
         $this->db->select('s.*')
         ->from('tbl_teacher_subjects ts')
-        ->join('tbl_subject s','s.id = ts.subject_id','inner');
-
+        ->join('tbl_subject s','s.id = ts.subject_id','inner')
+        ->where('s.status', 'saved');
         //user type conditions 
         if($this->user->user_type){
             $this->db->where('ts.teacher_id',$this->user->user_id);
@@ -107,8 +113,10 @@ class Announcements_model extends CI_Model{
         redirect(base_url().'announcements'); //redirect back to student page
     }
     public function delete(){
-        foreach($_POST['announcementId'] as $each){ // looping the ids for tbl_teacher
-            $this->db->delete('tbl_announcement', array('id' => $each)); // delete from tbl_teacher
+        foreach($_POST['announcementId'] as $each){ // looping the ids for tbl_announcement
+            $this->db->set('status', 'deleted'); // delete from tbl_announcement
+            $this->db->where('id', $each);
+            $this->db->update('tbl_announcement'); //delete tbl_announcement
         }
 
         $userData = $this->session->userdata['user'];

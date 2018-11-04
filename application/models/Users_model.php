@@ -7,7 +7,9 @@ class Users_model extends CI_Model{
         //query that joins teacher and subject
         $this->db->select('a.*, c.username, c.password')
          ->from('tbl_admin a')
-         ->join('tbl_credentials c', 'a.id = c.user_id', 'inner');
+         ->join('tbl_credentials c', 'a.id = c.user_id', 'inner')
+         ->where('a.status', 'saved')
+         ->where('c.status', 'saved');
          $this->db->where('c.user_type', 'admin');
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
             $this->db->where('a.id', $id);
@@ -69,7 +71,7 @@ class Users_model extends CI_Model{
         $this->db->where('id', $id);
         $this->db->update('tbl_admin'); //update tbl_admin
         
-        $query = $this->db->get_where('tbl_credentials', array('user_id' => $id, 'user_type' => 'admin'));
+        $query = $this->db->get_where('tbl_credentials', array('user_id' => $id, 'user_type' => 'admin', 'status' => 'saved'));
 		$data = $query->result();
         // data that will be updated to tbl_credentials
         $this->db->set('username', $_POST['username']);
@@ -88,12 +90,15 @@ class Users_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
 
-        $this->session->set_flashdata('msg', 'Parent was successfully updated.');
+        $this->session->set_flashdata('msg', 'User was successfully updated.');
         redirect(base_url().'users'); //redirect back to teacher page
     }
     public function delete(){
-        foreach($_POST['usersId'] as $each){ // looping the ids for tbl_teacher
-            $this->db->delete('tbl_admin', array('id' => $each)); // delete from tbl_teacher
+        foreach($_POST['usersId'] as $each){ // looping the ids for tbl_admin
+            //$this->db->delete('tbl_admin', array('id' => $each)); // delete from tbl_admin
+            $this->db->set('status', 'deleted'); // delete from tbl_admin
+            $this->db->where('id', $each);
+            $this->db->update('tbl_admin'); //delete tbl_admin
         }
         
         $userData = $this->session->userdata['user'];
@@ -105,7 +110,7 @@ class Users_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
         
-        $this->session->set_flashdata('msg', 'Parent/s was successfully deleted.');
-        redirect(base_url().'teachers'); //redirect back to teacher page
+        $this->session->set_flashdata('msg', 'User/s was successfully deleted.');
+        redirect(base_url().'users'); //redirect back to teacher page
 	}
 }

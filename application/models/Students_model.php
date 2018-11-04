@@ -10,7 +10,9 @@ class Students_model extends CI_Model{
         $this->db->select('s.*, g.id guardian_id , g.first_name g_fname, g.last_name g_lname, g.middle_name g_mname, g.registered g_registered, g.email g_email')
          ->from('tbl_students s')
          ->join('tbl_student_guardian sg', 'sg.student_id = s.id', 'inner')
-         ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'inner');
+         ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'inner')
+         ->where('s.status', 'saved')
+         ->where('g.status', 'saved');
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
             $this->db->where('s.id', $id);
         }
@@ -22,14 +24,18 @@ class Students_model extends CI_Model{
         $this->db->select('s.*, g.id guardian_id , g.first_name g_fname, g.last_name g_lname, g.middle_name g_mname, g.registered g_registered, g.email g_email')
             ->from('tbl_students s')
             ->join('tbl_student_guardian sg', 'sg.student_id = s.id', 'inner')
-            ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'inner');
-            $this->db->where('s.created_by', $this->user->id);
+            ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'inner')
+            ->where('s.status', 'saved')
+            ->where('g.status', 'saved');
+        $this->db->where('s.created_by', $this->user->id);
         $query = $this->db->get(); // get results of query
         return $query->result();
     }
     public function studentsList(){
-        $this->db->select('s.id, CONCAT(s.last_name, ", ", s.first_name, " ", s.middle_name) student');
-        $query = $this->db->get('tbl_students s');
+        $this->db->select('s.id, CONCAT(s.last_name, ", ", s.first_name, " ", s.middle_name) student')
+            ->from('tbl_students s')
+            ->where('s.status', 'saved');
+        $query = $this->db->get(); // get results of query
         return $query->result();
     }
     public function gengrades(){
@@ -38,12 +44,14 @@ class Students_model extends CI_Model{
             $this->db->select('s.*');
             $this->db->from('tbl_students s');
             $this->db->where('s.id', $user->user_id);
+            $this->db->where('s.status', 'saved');
             $query = $this->db->get(); // get results of query
             $userData = $query->result();
         } else if ($user->user_type == 'parent'){
             $this->db->select('g.*');
             $this->db->from('tbl_guardian g');
             $this->db->where('g.id', $user->user_id);
+            $this->db->where('g.status', 'saved');
             $query = $this->db->get(); // get results of query
             $userData = $query->result();
 
@@ -73,7 +81,8 @@ class Students_model extends CI_Model{
             AND third_grade.period = '3rd' AND third_grade.YEAR = '".$year."'","left")
         ->join("tbl_students_grade fourth_grade","ON fourth_grade.teacher_student_id = t_stud.id
             AND fourth_grade.period = '4th' AND fourth_grade.YEAR = '".$year."'","left")
-        ->join("tbl_student_guardian guardian","ON guardian.student_id = stud.id","left");
+        ->join("tbl_student_guardian guardian","ON guardian.student_id = stud.id","left")
+        ->where('stud.status', 'saved');
         if($user->user_type == 'student'){
             $this->db->where("stud.id",$userData[0]->id);
         } else if($user->user_type == 'parent') {
@@ -221,10 +230,29 @@ class Students_model extends CI_Model{
         redirect(base_url().'students'); //redirect back to student page
     }
     public function delete(){
-        foreach($_POST['studentId'] as $each){ // looping the ids for tbl_teacher
-            $this->db->delete('tbl_students', array('id' => $each)); // delete from tbl_teacher
-            $studentInfo = $this->getAllDataStudents($id);
-            $this->db->delete('tbl_guardian', array('id' => $studentInfo[0]->guardian_id)); // delete from tbl_guardian
+        foreach($_POST['studentId'] as $each){ // looping the ids for tbl_students
+            //$this->db->delete('tbl_students', array('id' => $each)); // delete from tbl_students
+            $this->db->set('status', 'deleted'); // delete from tbl_students
+            $this->db->where('id', $each);
+            $this->db->update('tbl_students'); //delete tbl_students
+
+            $studentInfo = $this->getAllDataStudents($each);
+            //$this->db->delete('tbl_guardian', array('id' => $studentInfo[0]->guardian_id)); // delete from tbl_guardian
+            $this->db->set('status', 'deleted'); // delete from tbl_guardian
+            $this->db->where('id', $studentInfo[0]->guardian_id);
+            $this->db->update('tbl_guardian'); //delete tbl_guardian
+
+            $query = $this->db->get_where('tbl_credentials', array('user_id' => $each, 'user_type' => 'teacher'));
+            $data = $query->result();
+            $this->db->set('status', 'deleted'); // delete from tbl_credentials
+            $this->db->where('id', $data[0]->id);
+            $this->db->update('tbl_credentials'); //delete tbl_credentials
+
+            $query2 = $this->db->get_where('tbl_credentials', array('user_id' => $studentInfo[0]->guardian_id, 'user_type' => 'teacher'));
+            $data2 = $query2->result();
+            $this->db->set('status', 'deleted'); // delete from tbl_credentials
+            $this->db->where('id', $data2[0]->id);
+            $this->db->update('tbl_credentials'); //delete tbl_credentials
         }
 
         $userData = $this->session->userdata['user'];
