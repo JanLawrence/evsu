@@ -32,7 +32,7 @@ $(function(){
         }
     })
     $('#deleteForm').submit(function(){
-        var r = confirm('Are you sure you want to delete this announcement?');
+        var r = confirm('Are you sure you want to delete this announcement/s?');
         if(r ==  true){
             return;
         }else{

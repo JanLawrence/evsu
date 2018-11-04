@@ -41,7 +41,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">From:</label>
                                         <div class="col-sm-9">
-                                        <input type="date" class="form-control" name="from" value="<?= isset($_GET['from']) ? $_GET['from'] : date('Y-m-d')?>">
+                                        <input type="date" class="form-control" name="from" value="<?= isset($_GET['from']) ? $_GET['from'] : date('Y-m-01')?>">
                                         </div>
                                     </div>
                                 </div>

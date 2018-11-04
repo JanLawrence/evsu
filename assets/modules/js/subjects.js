@@ -18,7 +18,7 @@ $(function(){
             }
         })
         $('#deleteForm').submit(function(){
-            var r = confirm('Are you sure you want to delete this subject?');
+            var r = confirm('Are you sure you want to delete this subject/s?');
             if(r ==  true){
                 return;
             }else{
