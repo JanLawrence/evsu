@@ -15,15 +15,19 @@ $(function(){
     })
 
     $('#addForm').submit(function(){
-        var r = confirm('Are you sure?');
+        var r = confirm('Are you sure you want to add this feedback?');
         if(r ==  true){
             return;
+        }else{
+            return false;
         }
     })
     $('#deleteForm').submit(function(){
-        var r = confirm('Are you sure?');
+        var r = confirm('Are you sure you want to delete this feedback?');
         if(r ==  true){
             return;
+        }else{
+            return false;
         }
     })
 })

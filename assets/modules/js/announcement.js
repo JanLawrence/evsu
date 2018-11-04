@@ -16,21 +16,27 @@ $(function(){
         $('#viewModal').modal('toggle'); //toggle modal
     })
     $('#addForm').submit(function(){
-        var r = confirm('Are you sure?');
+        var r = confirm('Are you sure you want to add this announcement?');
         if(r ==  true){
             return;
+        }else{
+            return false;
         }
     })
     $('#editForm').submit(function(){
-        var r = confirm('Are you sure?');
+        var r = confirm('Are you sure you want to edit this announcement?');
         if(r ==  true){
             return;
+        }else{
+            return false;
         }
     })
     $('#deleteForm').submit(function(){
-        var r = confirm('Are you sure?');
+        var r = confirm('Are you sure you want to delete this announcement?');
         if(r ==  true){
             return;
+        }else{
+            return false;
         }
     })
 })
