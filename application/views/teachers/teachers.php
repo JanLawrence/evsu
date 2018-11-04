@@ -12,7 +12,7 @@
             <div class="page-header">
                 <div class="page-title">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
                         <li class="breadcrumb-item active">Teachers</li>
                     </ol>
                 </div>

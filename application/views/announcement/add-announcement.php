@@ -12,8 +12,7 @@
             <div class="page-header">
                 <div class="page-title">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item">Announcements</li>
+                        <li class="breadcrumb-item"><a href="<?=base_url('announcements')?>">Announcements</a></li>
                         <li class="breadcrumb-item active">Add Announcement</li>
                     </ol>
                 </div>

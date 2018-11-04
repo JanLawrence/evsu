@@ -38,6 +38,7 @@
                     <section id="main-content">
                                 <div class="row">
                                     <div class="col-lg-8 mx-auto">
+                                        <div class="text-center"><span class="text-light">Login as</span></div>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <a href="<?=base_url()?>home/teacher">

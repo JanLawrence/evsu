@@ -130,7 +130,7 @@
                                     <ul>
                                         <li><a href="#"><i class="ti-settings"></i> <span>Manage Account</span></a></li>
                                         <li><a href="#"><i class="ti-key"></i> <span>Change Password</span></a></li>
-                                        <li><a href="<?= base_url()?>home/logout"><i class="ti-power-off"></i> <span>Logout</span></a></li>
+                                        <li><a href="<?= base_url()?>home/logout" id="logout"><i class="ti-power-off"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -141,3 +141,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $('#logout').click(function(){
+            var r = confirm('Are you sure you want to logout?');
+            if(r==true){
+                return;
+            } else {
+                return false;
+            }
+        })
+    })
+</script>

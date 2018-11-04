@@ -63,5 +63,7 @@ $route['feedbacks/(:any)'] = 'feedbacks/index/$1/';
 $route['feedbacks/(:any)/(:any)'] = 'feedbacks/index/$1/$2';
 $route['subjects/(:any)'] = 'subjects/index/$1/';
 $route['subjects/(:any)/(:any)'] = 'subjects/index/$1/$2';
+$route['users/(:any)'] = 'users/index/$1/';
+$route['users/(:any)/(:any)'] = 'users/index/$1/$2';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

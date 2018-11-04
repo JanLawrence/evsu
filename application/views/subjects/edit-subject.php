@@ -12,8 +12,7 @@
             <div class="page-header">
                 <div class="page-title">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item">Subjects</li>
+                        <li class="breadcrumb-item"><a href="<?=base_url('subjects')?>">Subjects</a></li>
                         <li class="breadcrumb-item active">Edit Subject</li>
                     </ol>
                 </div>
