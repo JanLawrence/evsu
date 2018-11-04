@@ -7,7 +7,8 @@ class Subjects_model extends CI_Model{
     }
     public function getAllDataSubjects($id){
         $this->db->select('s.*')
-         ->from('tbl_subject s');
+         ->from('tbl_subject s')
+         ->where('s.status', 'saved');
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
             $this->db->where('s.id', $id);
         }
@@ -62,7 +63,10 @@ class Subjects_model extends CI_Model{
     }
     public function delete(){
         foreach($_POST['subjectId'] as $each){ // looping the ids for tbl_subject
-            $this->db->delete('tbl_subject', array('id' => $each)); // delete from tbl_subject
+            //$this->db->delete('tbl_subject', array('id' => $each)); // delete from tbl_subject
+            $this->db->set('status', 'deleted'); // delete from tbl_subject
+            $this->db->where('id', $each);
+            $this->db->update('tbl_subject'); //delete tbl_subject
         }
 
         $userData = $this->session->userdata['user'];

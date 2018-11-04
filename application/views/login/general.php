@@ -37,10 +37,10 @@
                     <!-- /# row -->
                     <section id="main-content">
                                 <div class="row">
-                                    <div class="col-lg-8 mx-auto">
+                                    <div class="col-lg-10 mx-auto">
                                         <div class="text-center"><span class="text-light">Login as</span></div>
                                         <div class="row">
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-3">
                                                 <a href="<?=base_url()?>home/teacher">
                                                     <div class="card">
                                                         <div class="stat-widget-one">
@@ -52,7 +52,7 @@
                                                     </div>
                                                 </a>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-3">
                                                 <a href="<?=base_url()?>home/student">
                                                     <div class="card">
                                                         <div class="stat-widget-one">
@@ -63,13 +63,25 @@
                                                         </div>
                                                     </div>
                                             </div>
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-3">
                                                 <a href="<?=base_url()?>home/parent">
                                                     <div class="card">
                                                         <div class="stat-widget-one">
                                                             <div class="stat-icon dib"><i class="ti-user color-pink border-pink"></i></div>
                                                             <div class="stat-content dib">
                                                                 <div class="stat-text">Parent</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <a href="<?=base_url()?>home/admin">
+                                                    <div class="card">
+                                                        <div class="stat-widget-one">
+                                                            <div class="stat-icon dib"><i class="ti-user color-danger border-danger"></i></div>
+                                                            <div class="stat-content dib">
+                                                                <div class="stat-text">Admin</div>
                                                             </div>
                                                         </div>
                                                     </div>

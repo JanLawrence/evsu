@@ -10,7 +10,10 @@ class Feedbacks_model extends CI_Model{
          ->from('tbl_feedback f')
          ->join('tbl_teacher t', 't.id = f.teacher_id', 'inner')
          ->join('tbl_teacher_subjects ts', 't.id = ts.teacher_id', 'inner')
-         ->join('tbl_subject s', 's.id = ts.subject_id', 'inner');
+         ->join('tbl_subject s', 's.id = ts.subject_id', 'inner')
+         ->where('f.status', 'saved')
+         ->where('t.status', 'saved')
+         ->where('s.status', 'saved');
         if($id != 0){ // if id not equal to 0 the query will filter per feedback id 
             $this->db->where('f.id', $id);
         }
@@ -23,7 +26,11 @@ class Feedbacks_model extends CI_Model{
         ->join('tbl_teacher t', 't.id = f.teacher_id', 'inner')
         ->join('tbl_teacher_subjects ts', 't.id = ts.teacher_id', 'inner')
         ->join('tbl_subject s', 's.id = ts.subject_id', 'inner')
-        ->join('tbl_credentials cred', 'cred.id = f.created_by', 'inner');
+        ->join('tbl_credentials cred', 'cred.id = f.created_by', 'inner')
+        ->where('f.status', 'saved')
+        ->where('t.status', 'saved')
+        ->where('s.status', 'saved')
+        ->where('cred.status', 'saved');
 
         if($this->user->user_type == 'student'){
             $this->db->where('f.created_by', $this->user->id);
@@ -40,7 +47,8 @@ class Feedbacks_model extends CI_Model{
         //get teachers data
         $this->db->select('t.*')
         ->from('tbl_teacher_student ts')
-        ->join('tbl_teacher t','t.id = ts.teacher_id','inner');
+        ->join('tbl_teacher t','t.id = ts.teacher_id','inner')
+        ->where('t.status', 'saved');
         //user type conditions 
         if($this->user->user_type = 'student'){
             $this->db->where('ts.student_id',$this->user->user_id);
@@ -86,7 +94,10 @@ class Feedbacks_model extends CI_Model{
 	}
     public function delete(){
         foreach($_POST['feedbackId'] as $each){ // looping the ids for tbl_feedback
-            $this->db->delete('tbl_feedback', array('id' => $each)); // delete from tbl_feedback
+            // $this->db->delete('tbl_feedback', array('id' => $each)); // delete from tbl_feedback
+            $this->db->set('status', 'deleted'); // delete from tbl_feedback
+            $this->db->where('id', $each);
+            $this->db->update('tbl_feedback'); //delete tbl_feedback
         }
 
         $userData = $this->session->userdata['user'];
