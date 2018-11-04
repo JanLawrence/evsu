@@ -55,6 +55,7 @@ class Announcements extends CI_Controller {
 		$from = isset($_GET['from']) ? $_GET['from'] : date('Y-m-d');
 		$to = isset($_GET['to']) ? $_GET['to'] : date('Y-m-d');
 		$data['genAnnouncements'] = $this->announcements_model->genAnnouncements($from,$to);
+		$this->announcements_model->genAnnouncementLog();
 		$this->load->view('templates/header');
 		$this->load->view('announcement/admin-announcement',$data);
 		$this->load->view('templates/footer');

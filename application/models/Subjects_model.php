@@ -28,8 +28,8 @@ class Subjects_model extends CI_Model{
         $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
-            'user_type' => 'admin',
-            'transaction' => 'Add Subject',
+            'user_type' => $userData->user_type,
+            'transaction' => 'Add New Subject',
             'transaction_date' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
@@ -52,7 +52,7 @@ class Subjects_model extends CI_Model{
         $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
-            'user_type' => 'admin',
+            'user_type' => $userData->user_type,
             'transaction' => 'Edit Subject',
             'transaction_date' => date('Y-m-d H:i:s')
         );
@@ -72,7 +72,7 @@ class Subjects_model extends CI_Model{
         $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
-            'user_type' => 'admin',
+            'user_type' => $userData->user_type,
             'transaction' => 'Delete Subject',
             'transaction_date' => date('Y-m-d H:i:s')
         );

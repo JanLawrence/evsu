@@ -68,8 +68,8 @@ class Teachers_model extends CI_Model{
         
         $dataLog = array(
             'user_id' => $userData->user_id,
-            'user_type' => 'admin',
-            'transaction' => 'Add Teacher',
+            'user_type' => $userData->user_type,
+            'transaction' => 'Add New Teacher',
             'transaction_date' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
@@ -104,8 +104,8 @@ class Teachers_model extends CI_Model{
 
         $dataLog = array(
             'user_id' => $userData->user_id,
-            'user_type' => 'admin',
-            'transaction' => 'Edit Teacher',
+            'user_type' => $userData->user_type,
+            'transaction' => 'Edit Teacher Details',
             'transaction_date' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
@@ -130,7 +130,7 @@ class Teachers_model extends CI_Model{
         $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
-            'user_type' => 'admin',
+            'user_type' => $userData->user_type,
             'transaction' => 'Delete Teacher',
             'transaction_date' => date('Y-m-d H:i:s')
         );

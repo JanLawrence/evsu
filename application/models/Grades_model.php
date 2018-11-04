@@ -82,8 +82,8 @@ class Grades_model extends CI_Model{
         $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
-            'user_type' => 'teacher',
-            'transaction' => 'Add Grades',
+            'user_type' => $userData->user_type,
+            'transaction' => 'Save new grades',
             'transaction_date' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
@@ -96,5 +96,6 @@ class Grades_model extends CI_Model{
             $this->db->delete('tbl_teacher', array('id' => $each)); // delete from tbl_teacher
         }
         redirect(base_url().'teachers'); //redirect back to teacher page
-	} */
+    } */
+    
 }
