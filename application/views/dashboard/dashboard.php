@@ -24,26 +24,30 @@
             <section id="main-content">
             <div class="row">
                             <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-user color-success border-success"></i></div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text">Teacher</div>
-                                            <div class="stat-digit"><?= count($teachers)?></div>
+                                <a href="<?= base_url()?>teachers">
+                                    <div class="card">
+                                        <div class="stat-widget-one">
+                                            <div class="stat-icon dib"><i class="ti-user color-success border-success"></i></div>
+                                            <div class="stat-content dib">
+                                                <div class="stat-text">Teacher</div>
+                                                <div class="stat-digit"><?= count($teachers)?></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="stat-widget-one">
-                                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i></div>
-                                        <div class="stat-content dib">
-                                            <div class="stat-text">Student</div>
-                                            <div class="stat-digit"><?= count($students)?></div>
+                                <a href="<?= base_url()?>students">
+                                    <div class="card">
+                                        <div class="stat-widget-one">
+                                            <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i></div>
+                                            <div class="stat-content dib">
+                                                <div class="stat-text">Student</div>
+                                                <div class="stat-digit"><?= count($students)?></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-4">
                                 <div class="card">
