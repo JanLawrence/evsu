@@ -25,12 +25,12 @@
             var URL = "<?= base_url(); ?>"
         </script>
     </head>
-    <body style=" background: linear-gradient(120deg, #00B4DB, #0083B0); padding: 10px;">
+    <body style=" background: transparent; padding: 10px;">
         <div class="container-fluid  mt-5">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="login-logo mx-auto">
-                                <img src="<?= base_url(); ?>assets/img/evsu.png" class="logo-img" alt="" />
+                                <img src="<?= base_url(); ?>assets/img/evsu-dark.png" class="logo-img" alt="" />
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                     <section id="main-content">
                                 <div class="row">
                                     <div class="col-lg-10 mx-auto">
-                                        <div class="text-center"><span class="text-light">Login as</span></div>
+                                    <hr>
                                         <div class="row">
                                             <div class="col-lg-3">
                                                 <a href="<?=base_url()?>home/teacher">

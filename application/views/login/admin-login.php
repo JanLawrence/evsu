@@ -25,17 +25,18 @@
             var URL = "<?= base_url(); ?>"
         </script>
     </head>
-    <body>
+    <body style=" background: linear-gradient(120deg, #ed213a, #93291e);">
     <div class="unix-login">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="login-content" style="margin: 40px;">
-                        <div class="login-logo" style=" background: linear-gradient(120deg, #00B4DB, #0083B0); padding: 10px;">
+                        <div class="login-logo" style=" background: transparent; padding: 10px;">
                             <img src="<?= base_url(); ?>assets/img/evsu.png" class="logo-img" alt="" />
                         </div>
                         <div class="login-form">
-                            <h4>Administrator Login</h4>
+                            <h4>Administrator Portal</h4>
+                            <div class="text-center"><span>Please enter your details to login</span></div>
                             <form method="post" action="admin">
                                 <div class="form-group">
                                     <label>Username</label>
@@ -48,7 +49,7 @@
                                 <div class="text-center">
                                     <?= validation_errors('<span class="alert alert-danger"><i class="ti-alert"></i> ', '</span>')?> 
                                 </div>
-                                <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30" style=" background: linear-gradient(120deg, #00B4DB, #0083B0);">Sign in</button>
+                                <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30" style=" background: linear-gradient(120deg, #ed213a, #93291e);">Sign in</button>
                             </form>
                         </div>
                     </div>
