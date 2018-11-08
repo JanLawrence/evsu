@@ -114,16 +114,6 @@ class Announcements_model extends CI_Model{
         $this->session->set_flashdata('msg', 'Announcement was successfully updated.');
         redirect(base_url().'announcements'); //redirect back to student page
     }
-    public function genAnnouncementLog(){
-        $userData = $this->session->userdata['user'];
-        $dataLog = array(
-            'user_id' => $userData->user_id,
-            'user_type' => $userData->user_type,
-            'transaction' => 'View Announcements',
-            'transaction_date' => date('Y-m-d H:i:s')
-        );
-        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
-    }
     public function delete(){
         foreach($_POST['announcementId'] as $each){ // looping the ids for tbl_announcement
             $this->db->set('status', 'deleted'); // delete from tbl_announcement

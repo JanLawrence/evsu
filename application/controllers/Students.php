@@ -60,7 +60,6 @@ class Students extends CI_Controller {
 	}
 	public function studentgrade(){
 		$data['grades'] = $this->students_model->gengrades();
-		$this->students_model->genGradesLog();
 		$this->load->view('templates/header');
 		$this->load->view('students/student-grade', $data);
 		$this->load->view('templates/footer');

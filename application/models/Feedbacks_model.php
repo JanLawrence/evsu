@@ -112,14 +112,4 @@ class Feedbacks_model extends CI_Model{
         $this->session->set_flashdata('msg', 'Feedback/s was successfully deleted.');
         redirect(base_url().'feedbacks'); //redirect back to feedbacks page
     }
-    public function genFeedbacksLog(){
-        $userData = $this->session->userdata['user'];
-        $dataLog = array(
-            'user_id' => $userData->user_id,
-            'user_type' => $userData->user_type,
-            'transaction' => 'View Feedbacks',
-            'transaction_date' => date('Y-m-d H:i:s')
-        );
-        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
-    }
 }
