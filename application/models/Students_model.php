@@ -24,9 +24,9 @@ class Students_model extends CI_Model{
         $this->db->select('s.*, g.id guardian_id , g.first_name g_fname, g.last_name g_lname, g.middle_name g_mname, g.registered g_registered, g.email g_email')
             ->from('tbl_students s')
             ->join('tbl_student_guardian sg', 'sg.student_id = s.id', 'inner')
-            ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'inner')
-            ->where('s.status', 'saved')
-            ->where('g.status', 'saved');
+            ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'inner');
+            /*->where('s.status', 'saved')
+            ->where('g.status', 'saved');*/
         if($this->user->user_type == 'teacher'){
             $this->db->where('s.created_by', $this->user->id);
         }

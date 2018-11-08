@@ -61,7 +61,7 @@
                                             <td><?= $each->phone?></td>
                                             <td><?= $each->subject_name?></td>
                                             <td>    
-                                                <span class="badge badge-pill badge-<?=$each->registered != 'yes' ? 'danger' : ($each->login_stat == 'in' ? 'success' : 'danger')?>">
+                                                <span class="badge badge-pill badge-<?=$each->registered != 'yes' ? 'info' : ($each->login_stat == 'in' ? 'success' : 'danger')?>">
                                                     <?= $each->registered != 'yes' ? 'Not Registered' : ($each->login_stat == 'in' ? 'Active' : 'Inactive')?>
                                                 </span>
                                             </td>
