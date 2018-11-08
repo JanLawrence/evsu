@@ -50,7 +50,6 @@ class Feedbacks extends CI_Controller {
 		$from = isset($_GET['from']) ? $_GET['from'] : date('Y-m-d');
 		$to = isset($_GET['to']) ? $_GET['to'] : date('Y-m-d');
 		$data['feedbacksList'] = $this->feedbacks_model->genFeedback($from,$to);
-		$this->feedbacks_model->genFeedbacksLog();
 		$this->load->view('templates/header');
 		$this->load->view('feedbacks/admin-feedback',$data);
 		$this->load->view('templates/footer');

@@ -27,7 +27,9 @@ class Students_model extends CI_Model{
             ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'inner')
             ->where('s.status', 'saved')
             ->where('g.status', 'saved');
-        $this->db->where('s.created_by', $this->user->id);
+        if($this->user->user_type == 'teacher'){
+            $this->db->where('s.created_by', $this->user->id);
+        }
         $query = $this->db->get(); // get results of query
         return $query->result();
     }
@@ -267,15 +269,5 @@ class Students_model extends CI_Model{
 
         $this->session->set_flashdata('msg', 'Student/s was successfully deleted.');
         redirect(base_url().'students'); //redirect back to student page
-    }
-    public function genGradesLog(){
-        $userData = $this->session->userdata['user'];
-        $dataLog = array(
-            'user_id' => $userData->user_id,
-            'user_type' => $userData->user_type,
-            'transaction' => 'View Grades',
-            'transaction_date' => date('Y-m-d H:i:s')
-        );
-        $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
     }
 }
