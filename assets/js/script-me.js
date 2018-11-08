@@ -47,7 +47,7 @@ function checkboxViewTable(link){ // link variable is passed (link of the view p
         let check = checkbox.length;
         //check if only 1 checkbox is selected
         if(check > 1 || check <= 0){ //if greater than 1 or less than or equal to 0
-            alert('Please select only one to edit');
+            alert('Please select only one to view');
         } else { //else proceed to edit page
             location.href = link+checkbox.val(); 
         }
