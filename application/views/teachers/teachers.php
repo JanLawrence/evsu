@@ -33,6 +33,7 @@
                                     </div>
                                     <input type="text" class="form-control search-box-input" placeholder="Search">
                                     <div class="input-group-prepend input-group-left">
+                                        <button type="button" class="btn btn-standard btn-view"><i class="ti-search"></i> <span>View</span></button>
                                         <a href="<?=base_url();?>teachers/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
                                         <button type="button" class="btn btn-standard btn-sm btn-edit"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
                                         <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
