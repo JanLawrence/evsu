@@ -61,9 +61,15 @@
                                                 <td><?= $each->school_id?></td>
                                                 <td><?= $each->g_lname.', '.$each->g_fname.' '.$each->g_mname ?></td>
                                                 <td>    
-                                                    <span class="badge badge-pill badge-<?=$each->g_registered == 'yes' ? 'success' : 'danger'?>">
-                                                        <?= $each->g_registered == 'yes' ? 'Registered' : 'Not Registered'?>
-                                                    </span>
+                                                    <?php if($each->status == 'deleted'){?>
+                                                        <span class="badge badge-pill badge-danger">
+                                                            Inactive
+                                                        </span>
+                                                    <?php }elseif($each->status == 'saved'){ ?>
+                                                        <span class="badge badge-pill badge-<?=$each->g_registered == 'yes' ? 'success' : 'info'?>">
+                                                            <?= $each->g_registered == 'yes' ? 'Registered' : 'Not Registered'?>
+                                                        </span>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach;?>
