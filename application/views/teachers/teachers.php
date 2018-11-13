@@ -37,7 +37,7 @@
                                         <a href="<?=base_url();?>teachers/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
                                         <button type="button" class="btn btn-standard btn-sm btn-edit"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
                                         <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
-                                        <button type="submit" class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
+                                        <button type="submit" class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Deactivate</span></button>
                                     </div>
                                 </div>
                             </div>

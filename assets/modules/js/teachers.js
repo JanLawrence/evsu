@@ -20,7 +20,7 @@ $(function(){
         }
     })
     $('#deleteForm').submit(function(){
-        var r = confirm('Are you sure you want to delete this teacher/s?');
+        var r = confirm('Are you sure you want to deactivate this teacher/s?');
         if(r ==  true){
             return;
         }else{

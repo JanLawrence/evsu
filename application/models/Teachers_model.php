@@ -114,12 +114,33 @@ class Teachers_model extends CI_Model{
         redirect(base_url().'teachers'); //redirect back to teacher page
     }
     public function delete(){
+        $userData = $this->session->userdata['user'];
         foreach($_POST['teacherId'] as $each){ // looping the ids for tbl_teacher
             //$this->db->delete('tbl_teacher', array('id' => $each)); // delete from tbl_teacher
             $this->db->set('status', 'deleted'); // delete from tbl_teacher
             $this->db->where('id', $each);
             $this->db->update('tbl_teacher'); //delete tbl_teacher
+
+            $query = $this->db->get_where('tbl_teacher', array('id' => $each));
+            $dataInsert = $query->result();
+            $data = array(
+                'first_name' => $dataInsert[0]->first_name,
+                'middle_name' => $dataInsert[0]->middle_name,
+                'last_name' => $dataInsert[0]->last_name,
+                'phone' => $dataInsert[0]->phone,
+                'advisory' => $dataInsert[0]->advisory,
+                'address' => $dataInsert[0]->address,
+                'email' => $dataInsert[0]->email,
+                'school_id_no' => $dataInsert[0]->school_id_no,
+                'license_no' => $dataInsert[0]->license_no,
+                'status' => 'deleted',
+                'registered' => $dataInsert[0]->registered,
+                'created_by' => $userData->user_id,
+                'date_created' => date('Y-m-d H:i:s')
+            );
             
+            $this->db->insert('tbl_teacher_deactivated', $data); // insert into tbl_teacher_deactivated
+    
             $query = $this->db->get_where('tbl_credentials', array('user_id' => $each, 'user_type' => 'teacher'));
             $data = $query->result();
             $this->db->set('status', 'deleted'); // delete from tbl_credentials
@@ -127,7 +148,7 @@ class Teachers_model extends CI_Model{
             $this->db->update('tbl_credentials'); //delete tbl_credentials
         }
         
-        $userData = $this->session->userdata['user'];
+        
         $dataLog = array(
             'user_id' => $userData->user_id,
             'user_type' => $userData->user_type,
@@ -136,7 +157,7 @@ class Teachers_model extends CI_Model{
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
         
-        $this->session->set_flashdata('msg', 'Teacher/s was successfully deleted.');
+        $this->session->set_flashdata('msg', 'Teacher/s was successfully deactivated.');
         redirect(base_url().'teachers'); //redirect back to teacher page
 	}
 }
