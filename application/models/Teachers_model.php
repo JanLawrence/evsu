@@ -10,7 +10,6 @@ class Teachers_model extends CI_Model{
          ->join('tbl_teacher_subjects ts', 'ts.teacher_id = t.id', 'inner')
          ->join('tbl_subject s', 's.id = ts.subject_id', 'inner')
          ->join('tbl_credentials c', 'c.user_id = t.id AND c.user_type = "teacher"', 'inner')
-         ->where('t.status', 'saved')
          ->where('s.status', 'saved');
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
             $this->db->where('t.id', $id);
@@ -152,7 +151,7 @@ class Teachers_model extends CI_Model{
         $dataLog = array(
             'user_id' => $userData->user_id,
             'user_type' => $userData->user_type,
-            'transaction' => 'Delete Teacher',
+            'transaction' => 'Deactivate Teacher',
             'transaction_date' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs

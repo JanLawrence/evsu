@@ -51,11 +51,11 @@
                                             <?= form_error('lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group row d-none">
                                         <label class="col-sm-3 col-form-label">User Level:</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="type">
-                                                <option value="admin">Admin</option>
+                                                <option value="admin" selected>Admin</option>
                                                 <option value="staff">Staff</option>
                                             </select>
                                             <?= form_error('type', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>

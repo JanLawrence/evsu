@@ -35,7 +35,7 @@
                             <img src="<?= base_url(); ?>assets/img/evsu.png" class="logo-img" alt="" />
                         </div>
                         <div class="login-form">
-                            <h4>Administrator Portal</h4>
+                            <h4>ADMIN LOGIN</h4>
                             <div class="text-center"><span>Please enter your details to login</span></div>
                             <form method="post" action="admin">
                                 <div class="form-group">

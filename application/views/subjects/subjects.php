@@ -52,8 +52,8 @@
                                     <tbody>
                                         <?php foreach($subjects as $each): ?>
                                         <tr>
-                                            <td><input type="checkbox" class="table-check" name="subjectId[]" value="<?= $each->id?>"></td>
-                                            <td><?= $each->subject_name ?></td>
+                                            <td width="5%"><input type="checkbox" class="table-check" name="subjectId[]" value="<?= $each->id?>"></td>
+                                            <td width="95%"><?= $each->subject_name ?></td>
                                             <td></td>
                                         </tr>
                                         <?php endforeach;?>

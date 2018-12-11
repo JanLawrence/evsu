@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1><i class="ti-plus"></i> Add User</h1>
+                    <h1><i class="ti-plus"></i> Edit User</h1>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                                             <?= form_error('lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <div class="form-group row d-none">
                                         <label class="col-sm-3 col-form-label">User Level:</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="type">

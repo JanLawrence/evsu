@@ -45,9 +45,8 @@
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox" ></th>
-                                            <th>Name</th>
+                                            <th>Name of User</th>
                                             <th>Username</th>
-                                            <th>User Type</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -56,7 +55,6 @@
                                             <td><input type="checkbox" class="table-check" name="usersId[]" value="<?= $each->id?>"></td>
                                             <td><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name ?></td>
                                             <td><?= $each->username?></td>
-                                            <td><?= $each->admin_type?></td>
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>
