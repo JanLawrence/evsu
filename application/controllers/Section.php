@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Subjects extends CI_Controller {
+class Section extends CI_Controller {
 
-	public function index($sub = 'subjects', $id = 0)
+	public function index($sub = 'section', $id = 0)
 	{	
 		// default prefix is empty if not '-subject' is concatenated
-		$prefix = $sub == 'subjects' ? '' : '-subject';
+		$prefix = $sub == 'section' ? '' : '-section';
 
 		//if the file do not exist show 404 error page
-		if(!file_exists(APPPATH.'views/subjects/'.$sub.$prefix.'.php')){
+		if(!file_exists(APPPATH.'views/section/'.$sub.$prefix.'.php')){
 			// if method/function exist load function
 			if(method_exists($this, $sub)){
 				$this->{$sub}();
@@ -20,36 +20,37 @@ class Subjects extends CI_Controller {
 		}
 
 		//set validation rules
-		$this->form_validation->set_rules('subject', 'Subject', 'required'. ($sub == 'add' ? '|is_unique[tbl_subject.subject_name]' : ''));
-		$this->form_validation->set_rules('section', 'Section', 'required');
+		$this->form_validation->set_rules('section', 'Section', 'required'. ($sub == 'add' ? '|is_unique[tbl_section.section]' : ''));
+		// $this->form_validation->set_rules('section', 'Section', 'required');
 		$this->form_validation->set_rules('grade', 'Grade', 'required');
-		$this->form_validation->set_rules('teacher', 'Teacher', 'required');
-
+		$this->form_validation->set_rules('teacher', 'teacher', 'required');
+		
 		//if validation is success
         if($this->form_validation->run() == TRUE){
 			if($sub == 'add'){ //if add page, load model addSubject()
 				//load teachers_model -> addSubject() function
-				$this->subjects_model->addSubject();
+				$this->section_model->addSection();
 			} else if($sub == 'edit') { //if edit page, load model editSubject()
 				//load subjects_model -> editSubject() function
-				$this->subjects_model->editSubject($id);
+				$this->section_model->editSection($id);
 			}
 		} else { //if validation failed, page will load again
 			// get data
-			$data['subjects'] = $this->subjects_model->showSubj($id);
+			$data['section'] = $this->section_model->showSection($id);
 			$data['teacher'] = $this->section_model->showTeacher();
-			$data['section'] = $this->section_model->showSection($id=0);
 			// load page
 			$this->load->view('templates/header');
-			$this->load->view('subjects/'.$sub.$prefix, $data);
+			$this->load->view('section/'.$sub.$prefix, $data);
 			$this->load->view('templates/footer');
 		}
 		
 	}
 	public function delete(){
 		//load subjects_model -> delete() function
-		$this->subjects_model->delete();
+		$this->section_model->delete();
 	}
-
+	// public function showTeacher(){
+	// 	$this->teachers_model->getAllDataTeachers();
+	// }
 	
 }

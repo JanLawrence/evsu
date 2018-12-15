@@ -44,7 +44,7 @@ class Register extends CI_Controller {
             $this->form_validation->set_rules('lastName', 'Last Name', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-            $this->form_validation->set_rules('subject', 'Subject', 'required');
+            // $this->form_validation->set_rules('subject', 'Subject', 'required');
             $this->form_validation->set_rules('username', 'Username', 'required|callback_usernamecheck['.$sub.'_'.$id.']');
             $this->form_validation->set_rules('password', 'Password', 'required');
             $this->form_validation->set_rules('password_confirm', 'Confirm Password', 'callback_validate['.$pass.']');
@@ -56,7 +56,7 @@ class Register extends CI_Controller {
             } else { //if validation failed, page will load again
                 // get data
                 $data['teacher'] = $this->register_model->getTeacherData($id);
-                $data['subjects'] = $this->register_model->getAllDataSubjects();
+                // $data['subjects'] = $this->register_model->getAllDataSubjects();
                 // load page
                 $this->load->view('register/'.$sub, $data);
             }

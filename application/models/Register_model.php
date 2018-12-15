@@ -27,11 +27,9 @@ class Register_model extends CI_Model{
     }
     public function getTeacherData($id){
         //query that joins teacher and subject
-        $this->db->select('t.*, c.username, c.id cred_id, c.password, , s.id subject_id , s.subject_name')
+        $this->db->select('t.*, c.username, c.id cred_id, c.password')
          ->from('tbl_teacher t')
-         ->join('tbl_credentials c', 'c.user_id = t.id AND user_type = "teacher"', 'inner')
-         ->join('tbl_teacher_subjects ts', 'ts.teacher_id = t.id', 'inner')
-         ->join('tbl_subject s', 's.id = ts.subject_id', 'inner');
+         ->join('tbl_credentials c', 'c.user_id = t.id AND user_type = "teacher"', 'inner');
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
             $this->db->where('t.id', $id);
         }

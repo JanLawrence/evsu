@@ -53,7 +53,7 @@ class Announcements_model extends CI_Model{
         ->join('tbl_subject s','s.id = ts.subject_id','inner')
         ->where('s.status', 'saved');
         //user type conditions 
-        if($this->user->user_type){
+        if($this->user->user_type == 'teacher'){
             $this->db->where('ts.teacher_id',$this->user->user_id);
         }
         $this->db->order_by('s.subject_name');

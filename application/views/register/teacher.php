@@ -57,7 +57,7 @@
                                         <?= form_error('lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Subject:</label>
                                     <div class="col-sm-9">
                                         <select class="form-control select2" name="subject">
@@ -68,7 +68,7 @@
                                         </select>
                                         <?= form_error('subject', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label">Address:</label>
                                     <div class="col-sm-9">
