@@ -41,7 +41,7 @@ class Teachers_model extends CI_Model{
 
         // data that will be inserted to tbl_credentials
         $data = array(
-            'username' => 'teacher_'.$teacherId,
+            'username' => $_POST['lastName'],
             'password' => $this->encryptpass->pass_crypt($_POST['phone']),
             'user_type' => 'teacher',
             'confirm' => 'yes',
