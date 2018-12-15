@@ -25,14 +25,14 @@
             var URL = "<?= base_url(); ?>"
         </script>
     </head>
-    <body style=" background: linear-gradient(120deg, #56ab2f, #a8e063);">
+    <body style="background-image: url('<?= base_url(); ?>assets/img/evsu-bg.jpg');background-repeat: no-repeat; background-size: 100%;">
     <div class="unix-login">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="login-content" style="margin: 40px;">
                         <div class="login-logo" style=" background: transparent; padding: 10px;">
-                            <img src="<?= base_url(); ?>assets/img/evsu.png" class="logo-img" alt="" />
+                            <img src="<?= base_url(); ?>assets/img/evsu-dark.png" class="logo-img" alt="" />
                         </div>
                         <div class="login-form">
                             <h4>TEACHERS LOGIN</h4>

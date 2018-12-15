@@ -25,7 +25,7 @@
             var URL = "<?= base_url(); ?>"
         </script>
     </head>
-    <body style=" background: transparent; padding: 10px;">
+    <body style="background-image: url('<?= base_url(); ?>assets/img/evsu-bg.jpg');background-repeat: no-repeat; background-size: 100%;">
         <div class="container-fluid  mt-5">
                     <div class="row">
                         <div class="col-lg-12">

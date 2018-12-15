@@ -5,12 +5,9 @@ class Teachers_model extends CI_Model{
     
     public function getAllDataTeachers($id){
         //query that joins teacher and subject
-        $this->db->select('t.*, s.id subject_id , s.subject_name, c.login_stat')
+        $this->db->select('t.*, c.login_stat')
          ->from('tbl_teacher t')
-         ->join('tbl_teacher_subjects ts', 'ts.teacher_id = t.id', 'inner')
-         ->join('tbl_subject s', 's.id = ts.subject_id', 'inner')
-         ->join('tbl_credentials c', 'c.user_id = t.id AND c.user_type = "teacher"', 'inner')
-         ->where('s.status', 'saved');
+         ->join('tbl_credentials c', 'c.user_id = t.id AND c.user_type = "teacher"', 'inner');
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
             $this->db->where('t.id', $id);
         }
@@ -29,7 +26,7 @@ class Teachers_model extends CI_Model{
             'middle_name' => $_POST['middleName'],
             'last_name' => $_POST['lastName'],
             'phone' => $_POST['phone'],
-            'advisory' => $_POST['advisory'],
+            // 'advisory' => $_POST['advisory'],
             'address' => $_POST['address'],
             'email' => $_POST['email'],
             'school_id_no' => 1,
@@ -56,14 +53,14 @@ class Teachers_model extends CI_Model{
         $this->db->insert('tbl_credentials', $data); // insert into tbl_credentials
         
         // data that will be inserted to tbl_teacher_subjects
-        $dataSubject = array(
-            'teacher_id' => $teacherId,
-            'subject_id' => $_POST['subject'],
-            'created_by' => $userData->user_id,
-            'date_created' => date('Y-m-d H:i:s')
-        );
+        // $dataSubject = array(
+        //     'teacher_id' => $teacherId,
+        //     'subject_id' => $_POST['subject'],
+        //     'created_by' => $userData->user_id,
+        //     'date_created' => date('Y-m-d H:i:s')
+        // );
         
-        $this->db->insert('tbl_teacher_subjects', $dataSubject); // insert into tbl_teacher_subjects
+        // $this->db->insert('tbl_teacher_subjects', $dataSubject); // insert into tbl_teacher_subjects
         
         $dataLog = array(
             'user_id' => $userData->user_id,
@@ -84,7 +81,7 @@ class Teachers_model extends CI_Model{
         $this->db->set('middle_name', $_POST['middleName']);
         $this->db->set('last_name', $_POST['lastName']);
         $this->db->set('phone', $_POST['phone']);
-        $this->db->set('advisory', $_POST['advisory']);
+        // $this->db->set('advisory', $_POST['advisory']);
         $this->db->set('address', $_POST['address']);
         $this->db->set('email', $_POST['email']);
         $this->db->set('school_id_no', 1);
@@ -95,11 +92,11 @@ class Teachers_model extends CI_Model{
         $this->db->update('tbl_teacher'); //update tbl_teacher
         
         // data that will be updated to tbl_teacher_subjects
-        $this->db->set('subject_id', $_POST['subject']);
-        $this->db->set('modified_by', $userData->user_id);
-        $this->db->set('date_modified', date('Y-m-d H:i:s'));
-        $this->db->where('teacher_id', $id);
-        $this->db->update('tbl_teacher_subjects'); // update tbl_teacher_subjects
+        // $this->db->set('subject_id', $_POST['subject']);
+        // $this->db->set('modified_by', $userData->user_id);
+        // $this->db->set('date_modified', date('Y-m-d H:i:s'));
+        // $this->db->where('teacher_id', $id);
+        // $this->db->update('tbl_teacher_subjects'); // update tbl_teacher_subjects
 
         $dataLog = array(
             'user_id' => $userData->user_id,
@@ -127,7 +124,7 @@ class Teachers_model extends CI_Model{
                 'middle_name' => $dataInsert[0]->middle_name,
                 'last_name' => $dataInsert[0]->last_name,
                 'phone' => $dataInsert[0]->phone,
-                'advisory' => $dataInsert[0]->advisory,
+                // 'advisory' => $dataInsert[0]->advisory,
                 'address' => $dataInsert[0]->address,
                 'email' => $dataInsert[0]->email,
                 'school_id_no' => $dataInsert[0]->school_id_no,

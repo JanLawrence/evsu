@@ -3,7 +3,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Subjects</h1>
+                    <h1>Inbox</h1>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Subjects</li>
+                        <li class="breadcrumb-item active">Inbox</li>
                     </ol>
                 </div>
             </div>
@@ -32,45 +32,58 @@
                                         <span class="input-group-text"><i class="ti-search"></i></span>
                                     </div>
                                     <input type="text" class="form-control search-box-input" placeholder="Search">
-                                    <div class="input-group-prepend input-group-left">
-                                        <a href="<?=base_url();?>subjects/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
-                                        <!-- <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#addModal"><i class="ti-plus"></i> <span>New</span></button> -->
-                                        <button type="button" class="btn btn-standard btn-sm btn-edit"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
-                                        <button type="submit" class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="table-responsive">
+                                <?php  
+                                    $user = $this->session->userdata['user'];
+                                ?>
+                                <?php if($user->user_type == 'teacher'):?>
                                 <table class="table table-hovered table-striped datatables">
                                     <thead>
                                         <tr>
-                                            <th><input type="checkbox" ></th>
-                                            <th>Grade</th>
-                                            <th>Section</th>
+                                            <th>Parent Name</th>
+                                            <th>Student Name</th>
                                             <th>Subject</th>
-                                            <th>Teacher</th>
-                                            <th>Teacher Status</th>
-                                            <th></th>
+                                            <!-- <th>Last Communication</th> -->
+                                            <th>Chat</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($subjects as $each): ?>
+                                        <?php foreach($inbox as $each):?>
                                         <tr>
-                                            <td><input type="checkbox" class="table-check" name="subjectId[]" value="<?= $each->id?>"></td>
-                                            <td><?= $each->grade ?></td>
-                                            <td><?= $each->section ?></td>
-                                            <td><?= $each->subject_name ?></td>
-                                            <td><?= $each->teacher ?></td>
-                                            <td>    
-                                                <span class="badge badge-pill badge-<?= ($each->registered == 'yes' && $each->t_stat == 'saved') ? 'success' : 'danger'?>">
-                                                    <?= ($each->registered == 'yes' && $each->t_stat == 'saved') ? 'Active ' : 'Inactive'?>
-                                                </span>
-                                            </td>
-                                            <td></td>
+                                            <td><?= $each->first_name.' '.$each->middle_name.' '.$each->last_name ?></td>
+                                            <td><?= $each->stud_name?></td>
+                                            <td><?= $each->subject_name?></td>
+                                            <!-- <td></td> -->
+                                            <td><a href="<?=base_url('inbox/chat/'.$each->id); ?>" class="btn btn-info btn-sm" parent-id ="<?=$each->id?>">Chat</button></td>
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>
                                 </table>
+                                <?php elseif($user->user_type == 'parent'):?>
+                                <table class="table table-hovered table-striped datatables">
+                                    <thead>
+                                        <tr>
+                                            <th>Teacher Name</th>
+                                            <th>Subject</th>
+                                            <!-- <th>Last Communication</th> -->
+                                            <th>Chat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach($inbox as $each):?>
+                                        <tr>
+                                            <td><?= $each->first_name.' '.$each->middle_name.' '.$each->last_name ?></td>
+                                            <td><?= $each->subject_name?></td>
+                                            <!-- <td></td> -->
+                                            <td><a href="<?=base_url('inbox/chat/'.$each->id); ?>" class="btn btn-info btn-sm" parent-id ="<?=$each->id?>">Chat</button></td>
+                                        </tr>
+                                        <?php endforeach;?>
+                                    </tbody>
+                                </table>
+                                <?php endif;?>
                             </div>
                         </div>
                     </div>

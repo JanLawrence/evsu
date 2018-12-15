@@ -22,6 +22,8 @@
                     <!-- <li><a href="<?= base_url(); ?>students/studentlog"><i class="ti-agenda"></i> Student Log</a></li> -->
                     <li><a href="<?= base_url(); ?>announcements/announcementList"><i class="ti-announcement"></i> Announcements</a></li>
                     <li><a href="<?= base_url(); ?>feedbacks/feedbackList"><i class="ti-comments"></i> Feedbacks</a></li>
+                    <li><a href="<?= base_url(); ?>section"><i class="ti-comments"></i> Sections</a></li>
+                    <li><a href="<?= base_url(); ?>school_year"><i class="ti-comments"></i> School Year</a></li>
                     <?php if($dataUser[0]->admin_type=='admin'):?>
                         <li><a href="<?= base_url(); ?>users"><i class="ti-user"></i> User</a></li>
                     <?php endif;?>

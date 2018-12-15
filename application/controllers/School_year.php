@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Subjects extends CI_Controller {
+class School_year extends CI_Controller {
 
-	public function index($sub = 'subjects', $id = 0)
+	public function index($sub = 'school_year', $id = 0)
 	{	
 		// default prefix is empty if not '-subject' is concatenated
-		$prefix = $sub == 'subjects' ? '' : '-subject';
+		$prefix = $sub == 'school_year' ? '' : '-school_year';
 
 		//if the file do not exist show 404 error page
-		if(!file_exists(APPPATH.'views/subjects/'.$sub.$prefix.'.php')){
+		if(!file_exists(APPPATH.'views/school_year/'.$sub.$prefix.'.php')){
 			// if method/function exist load function
 			if(method_exists($this, $sub)){
 				$this->{$sub}();
@@ -20,35 +20,31 @@ class Subjects extends CI_Controller {
 		}
 
 		//set validation rules
-		$this->form_validation->set_rules('subject', 'Subject', 'required'. ($sub == 'add' ? '|is_unique[tbl_subject.subject_name]' : ''));
-		$this->form_validation->set_rules('section', 'Section', 'required');
-		$this->form_validation->set_rules('grade', 'Grade', 'required');
-		$this->form_validation->set_rules('teacher', 'Teacher', 'required');
+		$this->form_validation->set_rules('from', 'From', 'required');
+		$this->form_validation->set_rules('to', 'To', 'required');
 
 		//if validation is success
         if($this->form_validation->run() == TRUE){
 			if($sub == 'add'){ //if add page, load model addSubject()
 				//load teachers_model -> addSubject() function
-				$this->subjects_model->addSubject();
+				$this->school_year_model->addSY();
 			} else if($sub == 'edit') { //if edit page, load model editSubject()
 				//load subjects_model -> editSubject() function
-				$this->subjects_model->editSubject($id);
+				$this->school_year_model->editSY($id);
 			}
 		} else { //if validation failed, page will load again
 			// get data
-			$data['subjects'] = $this->subjects_model->showSubj($id);
-			$data['teacher'] = $this->section_model->showTeacher();
-			$data['section'] = $this->section_model->showSection($id=0);
+			$data['school_year'] = $this->school_year_model->showSchoolYear($id);
 			// load page
 			$this->load->view('templates/header');
-			$this->load->view('subjects/'.$sub.$prefix, $data);
+			$this->load->view('school_year/'.$sub.$prefix, $data);
 			$this->load->view('templates/footer');
 		}
 		
 	}
 	public function delete(){
 		//load subjects_model -> delete() function
-		$this->subjects_model->delete();
+		$this->school_year_model->delete();
 	}
 
 	

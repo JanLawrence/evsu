@@ -3,7 +3,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Teachers</h1>
+                    <h1>Sections</h1>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?=base_url('dashboard')?>">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Teachers</li>
+                        <li class="breadcrumb-item active">Sections</li>
                     </ol>
                 </div>
             </div>
@@ -23,7 +23,7 @@
     <section id="main-content">
         <div class="row">
             <div class="col-md-12">
-                <form action="teachers/delete" method="post" id="deleteForm">
+                <form action="section/delete" method="post" id="deleteForm">
                     <div class="card card-table">
                         <div class="card-body">
                             <div class="search-box">
@@ -33,11 +33,10 @@
                                     </div>
                                     <input type="text" class="form-control search-box-input" placeholder="Search">
                                     <div class="input-group-prepend input-group-left">
-                                        <button type="button" class="btn btn-standard btn-view"><i class="ti-search"></i> <span>View</span></button>
-                                        <a href="<?=base_url();?>teachers/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
+                                        <a href="<?=base_url();?>section/add" class="btn btn-standard btn-sm"><i class="ti-plus"></i> <span>New</span></a>
+                                        <!-- <button class="btn btn-standard btn-sm" data-toggle="modal" data-target="#addModal"><i class="ti-plus"></i> <span>New</span></button> -->
                                         <button type="button" class="btn btn-standard btn-sm btn-edit"><i class="ti-pencil-alt"></i> <span>Edit</span></button>
-                                        <!-- <button class="btn btn-standard btn-sm"><i class="ti-pencil-alt"></i> <span>Edit</span></button> -->
-                                        <button type="submit" class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Deactivate</span></button>
+                                        <button type="submit" class="btn btn-standard btn-sm"><i class="ti-trash"></i> <span>Delete</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -46,24 +45,22 @@
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox" ></th>
-                                            <th>Name</th>
-                                            <th>Address</th>
-                                            <th>Phone No.</th>
-                                            <th>Status</th>
+                                            <th>Grade</th>
+                                            <th>Section Name</th>
+                                            <th>Adviser</th>
+                                            <!-- <th>Subjects</th> -->
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($teachers as $each): ?>
+                                        <?php foreach($section as $each): ?>
                                         <tr>
-                                            <td><input type="checkbox" class="table-check" name="teacherId[]" value="<?= $each->id?>"></td>
-                                            <td><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name ?></td>
-                                            <td><?= $each->address?></td>
-                                            <td><?= $each->phone?></td>
-                                            <td>    
-                                                <span class="badge badge-pill badge-<?= ($each->registered == 'yes' && $each->status == 'saved') ? 'success' : 'danger'?>">
-                                                    <?= ($each->registered == 'yes' && $each->status == 'saved') ? 'Active ' : 'Inactive'?>
-                                                </span>
-                                            </td>
+                                            <td><input type="checkbox" class="table-check" name="id[]" value="<?= $each->id?>"></td>
+                                            <td><?= $each->grade?></td>
+                                            <td><?= $each->section?></td>
+                                            <td><?= $each->name?></td>
+                                            <td></td>
+                                            <!-- <td>asdsa</td> -->
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>
@@ -79,4 +76,4 @@
 <?php if(isset($_SESSION['msg'])):?>
     <script>alert("<?= $_SESSION['msg']?>");</script>
 <?php endif;?>
-<script src="<?= base_url()?>assets/modules/js/teachers.js"></script>
+<script src="<?= base_url()?>assets/modules/js/section.js"></script>
