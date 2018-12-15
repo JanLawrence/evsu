@@ -31,7 +31,7 @@ class Teachers_model extends CI_Model{
             'email' => $_POST['email'],
             'school_id_no' => 1,
             'license_no' => 1,
-            'registered' => 'no',
+            'registered' => 'yes',
             'created_by' => $userData->user_id,
             'date_created' => date('Y-m-d H:i:s')
         );
@@ -44,7 +44,7 @@ class Teachers_model extends CI_Model{
             'username' => 'teacher_'.$teacherId,
             'password' => $this->encryptpass->pass_crypt('pass-123'),
             'user_type' => 'teacher',
-            'confirm' => 'no',
+            'confirm' => 'yes',
             'user_id' => $teacherId,
             'created_by' => $userData->user_id,
             'date_created' => date('Y-m-d H:i:s')
