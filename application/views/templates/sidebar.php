@@ -34,6 +34,7 @@
                     <li><a href="<?= base_url(); ?>grades"><i class="ti-clipboard"></i> Grades</a></li>
                     <!-- <li><a href="<?= base_url(); ?>students/studentattendance"><i class="ti-agenda"></i> Student Attendance</a></li> -->
                     <li><a href="<?= base_url(); ?>students"><i class="ti-user"></i> Students</a></li>
+                    <li><a href="<?= base_url(); ?>inbox"><i class="ti-comments"></i> Inbox</a></li>
                 <?php endif;?>
 
                 <?php if($user->user_type == 'student'):?>
@@ -44,6 +45,7 @@
                 <?php endif;?>
                 <?php if($user->user_type == 'parent'):?>
                     <li><a href="<?= base_url(); ?>students/studentgrade"><i class="ti-clipboard"></i> Student Grade</a></li>
+                    <li><a href="<?= base_url(); ?>inbox"><i class="ti-comments"></i> Inbox</a></li>
                 <?php endif;?>
             </ul>
         </div>
