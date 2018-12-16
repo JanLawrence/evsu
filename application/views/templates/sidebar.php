@@ -33,10 +33,11 @@
 
                 <?php if($user->user_type == 'teacher'):?>
                     <li><a href="<?= base_url(); ?>announcements"><i class="ti-announcement"></i> Announcements</a></li>
-                    <li><a href="<?= base_url(); ?>grades"><i class="ti-clipboard"></i> Grades</a></li>
+                    <li><a href="<?= base_url(); ?>grades/add"><i class="ti-clipboard"></i> Grades</a></li>
                     <!-- <li><a href="<?= base_url(); ?>students/studentattendance"><i class="ti-agenda"></i> Student Attendance</a></li> -->
                     <li><a href="<?= base_url(); ?>students"><i class="ti-user"></i> Students</a></li>
                     <li><a href="<?= base_url(); ?>inbox"><i class="ti-comments"></i> Inbox</a></li>
+                    <li><a href="<?= base_url(); ?>advisory"><i class="ti-write"></i> Advisory</a></li>
                 <?php endif;?>
 
                 <?php if($user->user_type == 'student'):?>

@@ -40,6 +40,40 @@ class Students_model extends CI_Model{
         $query = $this->db->get(); // get results of query
         return $query->result();
     }
+    public function gengrades2($year){
+        $user = $this->session->userdata['user'];
+        if($user->user_type == 'student'){
+            $userId = $user->user_id;
+        } else {
+            $this->db->select('tg.*');
+            $this->db->from('tbl_student_guardian tg');
+            $this->db->where('tg.guardian_id', $user->user_id);
+            $query = $this->db->get(); // get results of query
+            $userData = $query->result();
+
+            $userId =$userData[0]->student_id;
+        }
+        // questudent_idry that joins student and grading periods
+        $this->db->select("t_stud.student_id,subj.subject_name,
+                    CONCAT(student.last_name, ', ', student.first_name, ' ', student.last_name) student,
+                IF(1st.grade IS NULL, 'N/A', 1st.grade) first_grade,
+                IF(2nd.grade IS NULL, 'N/A', 2nd.grade) second_grade,
+                IF(3rd.grade IS NULL, 'N/A', 3rd.grade) third_grade,	
+                IF(4th.grade IS NULL, 'N/A', 4th.grade) fourth_grade
+          ")
+        ->from("tbl_students student")
+        ->join("tbl_teacher_student t_stud", "ON t_stud.student_id = student.id","left")
+        ->join("tbl_teacher_subjects t_subj", "ON t_subj.teacher_id = t_stud.teacher_id","left")
+        ->join("tbl_subject subj", "ON subj.id = t_subj.subject_id","left")
+        
+        ->join("tbl_students_grade 1st", "ON 1st.teacher_student_id = t_stud.id AND 1st.teacher_subjects_id = t_subj.id AND 1st.period = '1st' AND 1st.year=".$year,"left")
+        ->join("tbl_students_grade 2nd", "ON 2nd.teacher_student_id = t_stud.id AND 2nd.teacher_subjects_id = t_subj.id AND 2nd.period = '2nd' AND 2nd.year=".$year,"left")
+        ->join("tbl_students_grade 3rd", "ON 3rd.teacher_student_id = t_stud.id AND 3rd.teacher_subjects_id = t_subj.id AND 3rd.period = '3rd' AND 3rd.year=".$year,"left")
+        ->join("tbl_students_grade 4th", "ON 4th.teacher_student_id = t_stud.id AND 4th.teacher_subjects_id = t_subj.id AND 4th.period = '4th' AND 4th.year=".$year,"left");
+        $this->db->where('student.id',$userId);
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function gengrades(){
         $user = $this->session->userdata['user'];
         if($user->user_type == 'student'){

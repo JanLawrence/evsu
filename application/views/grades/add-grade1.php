@@ -29,51 +29,40 @@
                             <div class="row mt-1">
                                 <div class="col-md-12">
                                     <div class="form-group row">
-                                        <div class="col-md-3">
-                                            <label>School Year</label>
-                                            <select name="school_year" id="" class="form-control">
-                                                <?php foreach($sy as $each):?>
-                                                    <option value="<?= $each->id?>"> <?= $each->sy_from.' - '.$each->sy_to?></option>
-                                                <?php endforeach;?> 
-                                            </select>
+                                        <div class="col-md-4">
+                                            <label class="col-sm-4 col-form-label">Grading</label>
+                                            <div class="sol-sm-8">
+                                                <select name="grading" id="" class="form-control">
+                                                    <option value="" selected disabled>Select Grading</option>
+                                                    <option value="1st">1st Grading</option>
+                                                    <option value="2nd">2nd Grading</option>
+                                                    <option value="3rd">3rd Grading</option>
+                                                    <option value="4th">4th Grading</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-md-3">
-                                            <label>Period</label>
-                                            <select name="grading" id="" class="form-control">
-                                                <option value="" selected disabled>Select Period</option>
-                                                <option value="1st">1st Grading</option>
-                                                <option value="2nd">2nd Grading</option>
-                                                <option value="3rd">3rd Grading</option>
-                                                <option value="4th">4th Grading</option>
-                                            </select>
+                                        <div class="col-md-4">
+                                            <label class="col-sm-3 col-form-label">Year</label>
+                                            <div class="sol-sm-9">
+                                                <select name="school_year" id="" class="form-control">
+                                                    <option value="" selected disabled>Select Year</option>
+                                                    <option value="2018-2019">2018-2019</option>
+                                                    <option value="2019-2020">2019-2020</option>
+                                                    <option value="2020-2021">2020-2021</option>
+                                                    <option value="2021-2022">2021-2022</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="col-md-3">
-                                            <label>Grade</label>
-                                            <?php
-                                                $grade = array(7,8,9,10,11,12);
-                                            ?>
-                                            <select name="gradelevel" id="" class="form-control">
-                                                <option value="" selected disabled> Select Grade</option>
-                                                <?php foreach($grade as $each):?>
-                                                    <option value="<?= $each?>"> <?= $each?></option>
-                                                <?php endforeach;?> 
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Section</label>
-                                            <select name="section" id="" class="form-control">
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Subject</label>
-                                            <select name="subject" id="" class="form-control">
-                                                <option value="" selected disabled>Select Subject</option>
-                                                <?php foreach ($subjects as $each) {?>
-                                                    <option value="<?= $each->id?>"><?= $each->subject_name?></option>
-                                                <?php } ?>
-                                            </select>
+                                        <div class="col-md-4">
+                                            <label class="col-sm-3 col-form-label">Subject</label>
+                                            <div class="col-sm-9">
+                                                <select name="subject" id="" class="form-control">
+                                                    <option value="" selected disabled>Select Subject</option>
+                                                    <?php foreach ($subjects as $each) {?>
+                                                        <option value="<?= $each->id?>"><?= $each->subject_name?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

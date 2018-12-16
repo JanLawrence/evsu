@@ -56,16 +56,12 @@ class Grades extends CI_Controller {
 			// get data
 			$data['subjects'] = $this->announcements_model->getAllDataSubjects();
 			$data['students'] = $this->grades_model->studentPerTeacher();
-			$data['sy'] = $this->grades_model->getSchoolYear();
-			$data['grades'] = $this->grades_model->studentGradeList2();
+			$data['grades'] = $this->grades_model->studentGradeList();
 			// load page
 			$this->load->view('templates/header');
 			$this->load->view('grades/'.$sub.$prefix, $data);
 			$this->load->view('templates/footer');
 		}
 		
-    }
-    public function getSections(){
-        $this->grades_model->getSections();
-    }
+	}
 }

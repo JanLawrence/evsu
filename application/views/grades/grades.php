@@ -40,7 +40,8 @@
                             <table class="table table-hovered table-striped datatables">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Student</th>
+                                        <th>Subject</th>
                                         <th>1st Grading</th>
                                         <th>2nd Grading</th>
                                         <th>3rd Grading</th>
@@ -51,6 +52,7 @@
                                     <?php foreach($grades as $each){ ?>
                                         <tr>
                                             <td><?= $each->student?></td>
+                                            <td><?= $each->subject_name?></td>
                                             <td><?= $each->first_grade?></td>
                                             <td><?= $each->second_grade?></td>
                                             <td><?= $each->third_grade?></td>

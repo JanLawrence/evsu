@@ -25,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card card-table">
                     <div class="card-body">
-                        <form action="studentgrade" method="post">
+                        <form action="studentgrade" method="get">
                             <!-- <div class="row mt-2">
                                 <div class="col-md-4">
                                     <div class="form-group row">
@@ -50,11 +50,9 @@
                                         <label class="col-sm-3 col-form-label">Year:</label>
                                         <div class="col-sm-9">
                                             <select name="school_year" id="" class="form-control">
-                                                <option value="" selected disabled>List of Year</option>
-                                                <option value="2018-2019">2018-2019</option>
-                                                <option value="2019-2020">2019-2020</option>
-                                                <option value="2020-2021">2020-2021</option>
-                                                <option value="2021-2022">2021-2022</option>
+                                                <?php foreach($sy as $each):?>
+                                                    <option value="<?= $each->id?>"> <?= $each->sy_from.' - '.$each->sy_to?></option>
+                                                <?php endforeach;?> 
                                             </select>
                                         </div>
                                     </div>
