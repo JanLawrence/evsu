@@ -98,7 +98,7 @@ class Grades_model extends CI_Model{
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
         
         $this->session->set_flashdata('msg', 'Grades was successfully saved.');
-        redirect(base_url().'grades'); //redirect back to grade page
+        redirect(base_url().'grades/add'); //redirect back to grade page
 	}
    /*  public function delete(){
         foreach($_POST['teacherId'] as $each){ // looping the ids for tbl_teacher

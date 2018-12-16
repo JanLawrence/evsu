@@ -77,7 +77,7 @@ class Inbox_model extends CI_Model{
 
             $data = array(
                 'teacher_id' =>  $this->user->user_type == 'teacher' ?  $this->user->user_id : $_POST['id'],
-                'parent_id' => $this->user->user_type == 'teacher' ?  $this->user->user_id : $_POST['id'],
+                'parent_id' => $this->user->user_type == 'parent' ?  $this->user->user_id : $_POST['id'],
                 'created_by' => $this->user->user_id,
                 'date_created' => date('Y-m-d H:i:s')
             );
