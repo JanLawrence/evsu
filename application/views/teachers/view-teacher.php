@@ -80,7 +80,7 @@
                                             <?= form_error('email', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row">
+                                    <!-- <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Subject:</label>
                                         <div class="col-sm-9">
                                             <?php $subject = ''; foreach($subjects as $each): ?>
@@ -89,7 +89,7 @@
                                             <input readonly type="text" class="form-control" name="email" value="<?=$subject ?>">
                                             <?= form_error('subject', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="row">
