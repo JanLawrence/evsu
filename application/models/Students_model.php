@@ -155,8 +155,8 @@ class Students_model extends CI_Model{
 
         // data that will be inserted to tbl_credentials
         $data = array(
-            'username' => 'student_'.$studentId,
-            'password' => $this->encryptpass->pass_crypt('pass-123'),
+            'username' => $_POST['firstName'],
+            'password' => $this->encryptpass->pass_crypt($_POST['schoolId']),
             'user_type' => 'student',
             'confirm' => 'no',
             'user_id' => $studentId,
