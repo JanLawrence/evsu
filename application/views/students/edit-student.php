@@ -76,7 +76,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Email:</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="email" value="<?= $students[0]->email ?>">
+                                            <input type="text" class="form-control" name="email" value="<?= $students[0]->email ?>" onblur="checkEmail(this.value)">
                                             <?= form_error('email', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>

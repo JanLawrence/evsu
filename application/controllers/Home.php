@@ -65,7 +65,11 @@ class Home extends CI_Controller {
                     redirect(base_url().'students/studentgrade');
                 }
             } else {
-                $this->load->view('login/'.$sub.$prefix);
+                $data = array(
+                    'username'          => $this->input->post('username'),
+                    'password'            => $this->input->post('password'),
+                );
+                $this->load->view('login/'.$sub.$prefix, $data);
             }
         }
 
