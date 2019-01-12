@@ -20,6 +20,7 @@ class Section_model extends CI_Model{
         if($id != 0){ // if id not equal to 0 the query will filter per section id 
             $this->db->where('s.id', $id);
         }
+        $this->db->order_by('s.section','ASC');
         $query = $this->db->get();
         return $query->result();
     }

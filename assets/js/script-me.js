@@ -22,6 +22,16 @@ $(function(){ //toggle ready jquery
     })
     //selectpicker
     $('.select2').select2();
+    $('input[name="email"]').blur(function(){
+        var that = $(this);
+        var str = $(this).val();
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(!re.test(str)){
+            that.val('');
+            alert("Please enter a valid email address");
+        }
+
+    })
 })
 
 //global functions
