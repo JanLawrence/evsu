@@ -51,6 +51,13 @@
                                             <?= form_error('lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Email:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="email">
+                                            <?= form_error('email', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
+                                        </div>
+                                    </div>
                                     <div class="form-group row d-none">
                                         <label class="col-sm-3 col-form-label">User Level:</label>
                                         <div class="col-sm-9">
@@ -90,6 +97,7 @@
                                     <button class="btn btn-default" type="submit"><i class="ti-save"></i> Submit</button>
                                 </div>
                             </div>
+                            <?= validation_errors('<span class="alert alert-danger"><i class="ti-alert"></i> ', '</span>')?> 
                         </form>
                     </div>
                 </div>

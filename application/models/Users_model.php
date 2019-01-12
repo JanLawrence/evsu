@@ -18,13 +18,13 @@ class Users_model extends CI_Model{
         return $query->result();
     }
 	public function addUser(){
-        
         $userData = $this->session->userdata['user'];
         // data that will be inserted to tbl_admin
         $data = array(
             'first_name' => $_POST['firstName'],
             'middle_name' => $_POST['middleName'],
             'last_name' => $_POST['lastName'],
+            'email' => $_POST['email'],
             'admin_type' => $_POST['type'],
             'created_by' => $userData->user_id,
             'date_created' => date('Y-m-d H:i:s')
@@ -65,6 +65,7 @@ class Users_model extends CI_Model{
         $this->db->set('first_name', $_POST['firstName']);
         $this->db->set('middle_name', $_POST['middleName']);
         $this->db->set('last_name', $_POST['lastName']);
+        $this->db->set('email', $_POST['email']);
         $this->db->set('admin_type', $_POST['type']);
         $this->db->set('modified_by', $userData->user_id);
         $this->db->set('date_modified', date('Y-m-d H:i:s'));

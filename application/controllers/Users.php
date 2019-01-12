@@ -20,11 +20,14 @@ class Users extends CI_Controller {
 		}
 
 		//set validation rules
+		if($sub == 'edit'){
+			$this->form_validation->set_rules('oldpassword', 'Old Password', 'callback_oldpass');
+		}
 		$this->form_validation->set_rules('firstName', 'First Name', 'required');
 		$this->form_validation->set_rules('lastName', 'Last Name', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|callback_emailcheck['.$id.']');
 		$this->form_validation->set_rules('type', 'Last Name', 'required');
 		$this->form_validation->set_rules('username', 'Username', 'required|callback_usernamecheck['.$id.']');
-		$this->form_validation->set_rules('oldpassword', 'Old Password', 'callback_oldpass');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 		$this->form_validation->set_rules('confirmpass', 'Confirm Password', 'callback_confirmpass');
 		
@@ -55,7 +58,18 @@ class Users extends CI_Controller {
 		$query = $this->db->get_where('tbl_credentials', array('user_id' => $id, 'user_type' => 'admin'));
 		$data = $query->result();
 		if(!empty($data)){
-			return TRUE;
+			if($username == $data[0]->username){
+				return TRUE;
+			} else {
+				$query2 = $this->db->get_where('tbl_credentials', array('username' => $username));
+				$data2 = $query2->result();
+				if(!empty($data2)){
+					$this->form_validation->set_message('usernamecheck', 'Username existing');
+					return FALSE;
+				} else {
+					return TRUE;
+				}
+			}
 		} else {
 			$query2 = $this->db->get_where('tbl_credentials', array('username' => $username));
 			$data2 = $query2->result();
@@ -67,13 +81,45 @@ class Users extends CI_Controller {
 			}
 		}
 	}	
+	public function emailcheck($email,$id){
+		$query = $this->db->get_where('tbl_admin', array('id' => $id));
+		$data = $query->result();
+		if(!empty($data)){
+			if($email == $data[0]->email){
+				return TRUE;
+			} else {
+				$query2 = $this->db->get_where('tbl_admin', array('email' => $email));
+				$data2 = $query2->result();
+				if(!empty($data2)){
+					$this->form_validation->set_message('emailcheck', 'Email existing');
+					return FALSE;
+				} else {
+					return TRUE;
+				}
+			}
+		} else {
+			$query2 = $this->db->get_where('tbl_admin', array('email' => $email));
+			$data2 = $query2->result();
+			if(!empty($data2)){
+				$this->form_validation->set_message('emailcheck', 'Email existing');
+				return FALSE;
+			} else {
+				return TRUE;
+			}
+		}
+	}
 	public function oldpass($pass){
 		$username = $this->input->post('username');
 		$query = $this->db->get_where('tbl_credentials', array('username'=>$username));
 		$data = $query->result();
-		$oldpass = $this->encryptpass->pass_crypt($data[0]->password, 'd'); 
-		if($oldpass == $pass){
-			return TRUE;
+		if(!empty($data)){
+			$oldpass = $this->encryptpass->pass_crypt($data[0]->password, 'd'); 
+			if($oldpass == $pass){
+				return TRUE;
+			} else {
+				$this->form_validation->set_message('oldpass', 'Invalid PasswordSSS');
+				return FALSE;
+			}
 		} else {
 			$this->form_validation->set_message('oldpass', 'Invalid Password');
 			return FALSE;

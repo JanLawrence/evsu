@@ -54,12 +54,19 @@
                                             <?= form_error('lastName', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
-                                    <div class="form-group row d-none">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Email:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="email" value="<?= $users[0]->email ?>">
+                                            <?= form_error('email', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">User Level:</label>
                                         <div class="col-sm-9">
                                             <select class="form-control" name="type">
                                                 <?php foreach($type as $key => $each): ?>
-                                                <option value="<?= $key?>" <?= $each== $users[0]->admin_type ? 'selected' : ''?>><?=$each?></option>
+                                                <option value="<?= $key?>" <?= $key == $users[0]->admin_type ? 'selected' : ''?>><?=$each?></option>
                                                 <?php endforeach;?>
                                             </select>
                                             <?= form_error('type', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
