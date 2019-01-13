@@ -35,70 +35,55 @@
                             <img src="<?= base_url(); ?>assets/img/evsu-dark.png" class="logo-img" alt="" />
                         </div>
                         <div class="login-form">
-                            <h4>ADMIN LOGIN</h4>
-                            <div class="text-center"><span>Please enter your details to login</span></div>
-                            <form method="post" action="admin">
+                            <h4>ADMIN PORTAL</h4>
+                            <div class="text-center"><span>Please set your new password below</span></div>
+                            <form method="post" id="formChangePass">
                                 <div class="form-group">
-                                    <label>Username</label>
-                                    <input type="text" class="form-control" name="username" placeholder="Username" value="<?=$username?>">
+                                    <label>New Password</label>
+                                    <input type="hidden" class="form-control" name="email" value="<?=$_GET['email']?>">
+                                    <input type="password" class="form-control" name="newpassword" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Password" value="<?=$password?>">
+                                    <label>Confirm Password</label>
+                                    <input type="password" class="form-control" name="confirmpassword" required>
                                 </div>
-                                <div class="text-center">
-                                    <?= validation_errors('<span class="alert alert-danger"><i class="ti-alert"></i> ', '</span>')?> 
-                                </div>
-                                <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30" style=" background: linear-gradient(120deg, #ed213a, #93291e);">Sign in</button>
-                                <div class="form-group">
-                                    <a class="btn-forgotpass" href="#"><small>Forgot Password?</small></a>
-                                </div>
+                                <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30" style=" background: linear-gradient(120deg, #ed213a, #93291e);">Proceed</button>
                             </form>
                         </div>
                     </div>
-                    <div class="modal fade" id="forgotPassModal">
+                </div>
+                <div class="modal fade" id="successModal">
                         <div class="modal-dialog modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-center">Forgot Password</h5>
+                                    <h5 class="modal-title text-center">Success</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <p class="text-center">Please enter your email below. We will be sending and email to change your password.</p>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                            <input type="text" class="form-control forgotemail" name="email">
-                                        </div>
-                                    </div>
+                                    <p class="text-center">Password successfully changed, please login.</p>
                                 <div class="modal-footer">
-                                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    <button class="btn btn-info btn-proceed">Proceed</button>
+                                    <a class="btn btn-info btn-proceed" href="<?= base_url(); ?>home/admin">Proceed</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
     <script>
         $(function(){
-            $('.btn-forgotpass').click(function(){
-                $('#forgotPassModal').modal('toggle');
-            })
-            $('.btn-proceed').click(function(){
-                var email = $('.forgotemail').val();
-                if(email != ''){
-                    $.post(URL+'account/emailSending', {'email': email})
+            $('#formChangePass').submit(function(){
+                var newpass = $('input[name="newpassword"]').val();
+                var confirmpass = $('input[name="confirmpassword"]').val();
+                var form = $(this).serialize();
+                if(newpass == confirmpass){
+                    $.post(URL+'account/changePassword', form)
                     .done(function(returnData){
-                        if(returnData == 1){
-                            location.href = URL + 'account/changePass?email=' + email;
-                        } else {
-                            alert('Invalid email')
-                        }
+                        $('#successModal').modal('toggle')
                     }) 
                 } else {
-                    alert('Please input your email')
+                    alert('New password and confirm password does not match, please try again.')
                 }
+                return false;
             })
         })
     </script>

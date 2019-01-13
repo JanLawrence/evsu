@@ -122,5 +122,38 @@ class Account extends CI_Controller {
 				return TRUE;
 			}
 		}
-	}	
+    }	
+    public function emailSending(){
+        // redirect na lang po muna
+        $email = $_REQUEST['email'];
+
+        $query2 = $this->db->get_where('tbl_admin', array('email' => $email));
+        $data2 = $query2->result();
+        if(!empty($data2)){
+            echo 1;
+            // redirect(base_url().'account/changePass?email='.$email);
+        } else {
+            echo 2;
+        }
+    }
+    public function changePassword(){
+        $email = $_REQUEST['email'];
+        $newpass = $_REQUEST['newpassword'];
+        $confirmpass = $_REQUEST['confirmpassword'];
+
+        $query2 = $this->db->get_where('tbl_admin', array('email' => $email));
+        $data2 = $query2->result();
+        $query = $this->db->get_where('tbl_credentials', array('user_type' => 'admin', 'user_id' => $data2[0]->id));
+        $data = $query->result();
+
+        $this->db->set('password', $this->encryptpass->pass_crypt($confirmpass));
+        $this->db->set('modified_by', $userData->user_id);
+        $this->db->set('date_modified', date('Y-m-d H:i:s'));
+        $this->db->where('id', $data[0]->id);
+        $this->db->update('tbl_credentials'); //update tbl_credentials
+    
+    }
+    public function changePass(){
+        $this->load->view('accounts/changePass');
+    }
 }
