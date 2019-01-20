@@ -14,12 +14,12 @@ class Advisory extends CI_Controller {
     }
 	public function viewGrade()
 	{	
-        $data['grade'] = $this->grades_model->studentGradeList();
+        $data['grade'] = $this->grades_model->studentGradeList3();
         $this->load->view('advisory/ajax/view', $data);
     }
 	public function exportGrade()
 	{	
-        $data['grade'] = $this->grades_model->studentGradeList();
+        $data['grade'] = $this->grades_model->studentGradeList3();
         $this->load->view('advisory/ajax/export', $data);
     }
 }

@@ -111,21 +111,23 @@
         </tr>
     </thead>
     <tbody>
-        <?php $total =0; foreach($grade as $each):?>
+            <?php $total =0; foreach($grade as $each):?>
             <tr>
                 <td><?= $each->subject_name?></td>
-                <td><?= $each->first_grade?></td>
-                <td><?= $each->second_grade?></td>
-                <td><?= $each->third_grade?></td>
-                <td><?= $each->fourth_grade?></td>
+                <td><?= $each->period_1?></td>
+                <td><?= $each->period_2?></td>
+                <td><?= $each->period_3?></td>
+                <td><?= $each->period_4?></td>
                 <td><?= $each->average?></td>
+
+
                 <td><?= $each->remarks?></td>
             </tr><?php $total+=$each->average?>
         <?php endforeach;?>
             <tr>
                 <td colspan="3">Grading Plan used: Averaging</td>
                 <td colspan="2">General Average:</td>
-                <td><?= $overall= ($total / count($grade))?></td>
+                <td><?= $overall = ($total / count($grade))?></td>
                 <td><?= $overall >= 75 ? 'Passed' : ($overall < 75 ? 'Failed' : '')?></td>
             </tr>
     </tbody>

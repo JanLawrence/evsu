@@ -3,38 +3,108 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Grades_model extends CI_Model{
     
-    public function studentGradeList(){
-        $user = $this->session->userdata['user'];
-        // questudent_idry that joins student and grading periods
-        $this->db->select("t_stud.student_id,subj.subject_name,
-                    CONCAT(student.last_name, ', ', student.first_name, ' ', student.last_name) student,
-                IF(1st.grade IS NULL, 'N/A', 1st.grade) first_grade,
-                IF(2nd.grade IS NULL, 'N/A', 2nd.grade) second_grade,
-                IF(3rd.grade IS NULL, 'N/A', 3rd.grade) third_grade,	
-                IF(4th.grade IS NULL, 'N/A', 4th.grade) fourth_grade,
-                ((IF(1st.grade IS NULL, 0, 1st.grade) +  IF(2nd.grade IS NULL, 0, 2nd.grade)+  IF(3rd.grade IS NULL, 0, 3rd.grade)  + IF(4th.grade IS NULL, 0, 4th.grade)) / 4) average ,
-                CASE
-                    WHEN ((IF(1st.grade IS NULL, 0, 1st.grade) +  IF(2nd.grade IS NULL, 0, 2nd.grade)+  IF(3rd.grade IS NULL, 0, 3rd.grade)  + IF(4th.grade IS NULL, 0, 4th.grade)) / 4) >= 75 THEN 'Passed'
-                    WHEN ((IF(1st.grade IS NULL, 0, 1st.grade) +  IF(2nd.grade IS NULL, 0, 2nd.grade)+  IF(3rd.grade IS NULL, 0, 3rd.grade)  + IF(4th.grade IS NULL, 0, 4th.grade)) / 4) < 75 THEN 'Failed'
-                    ELSE ''
-                END remarks
-          ")
-        ->from("tbl_students student")
-        ->join("tbl_teacher_student t_stud", "ON t_stud.student_id = student.id","left")
-        ->join("tbl_teacher_subjects t_subj", "ON t_subj.teacher_id = t_stud.teacher_id","left")
-        ->join("tbl_subject subj", "ON subj.id = t_subj.subject_id","left")
+    // public function studentGradeList(){
+    //     $user = $this->session->userdata['user'];
+    //     // questudent_idry that joins student and grading periods
+    //     $this->db->select("t_stud.student_id,subj.subject_name,
+    //                 CONCAT(student.last_name, ', ', student.first_name, ' ', student.last_name) student,
+    //             IF(1st.grade IS NULL, 'N/A', 1st.grade) first_grade,
+    //             IF(2nd.grade IS NULL, 'N/A', 2nd.grade) second_grade,
+    //             IF(3rd.grade IS NULL, 'N/A', 3rd.grade) third_grade,	
+    //             IF(4th.grade IS NULL, 'N/A', 4th.grade) fourth_grade,
+    //             ((IF(1st.grade IS NULL, 0, 1st.grade) +  IF(2nd.grade IS NULL, 0, 2nd.grade)+  IF(3rd.grade IS NULL, 0, 3rd.grade)  + IF(4th.grade IS NULL, 0, 4th.grade)) / 4) average ,
+    //             CASE
+    //                 WHEN ((IF(1st.grade IS NULL, 0, 1st.grade) +  IF(2nd.grade IS NULL, 0, 2nd.grade)+  IF(3rd.grade IS NULL, 0, 3rd.grade)  + IF(4th.grade IS NULL, 0, 4th.grade)) / 4) >= 75 THEN 'Passed'
+    //                 WHEN ((IF(1st.grade IS NULL, 0, 1st.grade) +  IF(2nd.grade IS NULL, 0, 2nd.grade)+  IF(3rd.grade IS NULL, 0, 3rd.grade)  + IF(4th.grade IS NULL, 0, 4th.grade)) / 4) < 75 THEN 'Failed'
+    //                 ELSE ''
+    //             END remarks
+    //       ")
+    //     ->from("tbl_students student")
+    //     ->join("tbl_teacher_student t_stud", "ON t_stud.student_id = student.id","left")
+    //     ->join("tbl_teacher_subjects t_subj", "ON t_subj.teacher_id = t_stud.teacher_id","left")
+    //     ->join("tbl_subject subj", "ON subj.id = t_subj.subject_id","left")
         
-        ->join("tbl_students_grade 1st", "ON 1st.teacher_student_id = t_stud.id AND 1st.teacher_subjects_id = t_subj.id AND 1st.period = '1st' AND 1st.year=".$_REQUEST['year'],"left")
-        ->join("tbl_students_grade 2nd", "ON 2nd.teacher_student_id = t_stud.id AND 2nd.teacher_subjects_id = t_subj.id AND 2nd.period = '2nd' AND 2nd.year=".$_REQUEST['year'],"left")
-        ->join("tbl_students_grade 3rd", "ON 3rd.teacher_student_id = t_stud.id AND 3rd.teacher_subjects_id = t_subj.id AND 3rd.period = '3rd' AND 3rd.year=".$_REQUEST['year'],"left")
-        ->join("tbl_students_grade 4th", "ON 4th.teacher_student_id = t_stud.id AND 4th.teacher_subjects_id = t_subj.id AND 4th.period = '4th' AND 4th.year=".$_REQUEST['year'],"left");
-        $this->db->where('student.id', $_REQUEST['id']);
-        $this->db->where('t_stud.teacher_id',$user->user_id);
+    //     ->join("tbl_students_grade 1st", "ON 1st.teacher_student_id = t_stud.id AND 1st.teacher_subjects_id = t_subj.id AND 1st.period = '1st' AND 1st.year=".$_REQUEST['year'],"left")
+    //     ->join("tbl_students_grade 2nd", "ON 2nd.teacher_student_id = t_stud.id AND 2nd.teacher_subjects_id = t_subj.id AND 2nd.period = '2nd' AND 2nd.year=".$_REQUEST['year'],"left")
+    //     ->join("tbl_students_grade 3rd", "ON 3rd.teacher_student_id = t_stud.id AND 3rd.teacher_subjects_id = t_subj.id AND 3rd.period = '3rd' AND 3rd.year=".$_REQUEST['year'],"left")
+    //     ->join("tbl_students_grade 4th", "ON 4th.teacher_student_id = t_stud.id AND 4th.teacher_subjects_id = t_subj.id AND 4th.period = '4th' AND 4th.year=".$_REQUEST['year'],"left");
+    //     $this->db->where('student.id', $_REQUEST['id']);
+    //     $this->db->where('t_stud.teacher_id',$user->user_id);
 
-        $query = $this->db->get();
+    //     $query = $this->db->get();
+    //     return $query->result();
+    // }
+    public function studentGradeList2(){
+        $user = $this->session->userdata['user'];
+        $subject = $_POST['subject'];
+        $section = $_POST['section'];
+        $grade = $_POST['grade'];
+        $year = $_POST['year'];
+        $sql = "SELECT * FROM tbl_students s
+                LEFT JOIN 
+                    tbl_teacher_student ts
+                ON 
+                    ts.student_id = s.id
+                LEFT JOIN 
+                    tbl_credentials c
+                ON 
+                    c.user_id = s.id AND c.user_type = 'student'
+                LEFT JOIN 
+                    (SELECT sg.*
+                        FROM tbl_students_grade sg
+                        LEFT JOIN 
+                            tbl_teacher_student ts
+                        ON ts.id = sg.teacher_student_id
+                        LEFT JOIN
+                            tbl_teacher_subjects tsub
+                        ON tsub.id = sg.teacher_subjects_id
+                        WHERE ts.teacher_id =  $user->user_id
+                        AND tsub.subject_id = $subject
+                        AND tsub.section_id = $section
+                        AND tsub.grade = $grade
+                        AND sg.`year` = $year
+                    
+                    ) g
+                ON g.teacher_student_id = ts.id
+                WHERE ts.teacher_id = $user->user_id
+                AND c.confirm = 'yes'";
+        $query = $this->db->query($sql);
         return $query->result();
     }
-  
+    public function studentGradeList3(){
+        $user = $this->session->userdata['user'];
+        $stud = $_REQUEST['id'];
+        $year = $_REQUEST['year'];
+        $sql = "SELECT *, s.id student_id FROM tbl_students s
+                    LEFT JOIN 
+                        tbl_teacher_student ts
+                    ON 
+                        ts.student_id = s.id
+                    LEFT JOIN 
+                        (SELECT sg.*, sub.subject_name,
+                            (sg.period_1 + sg.period_2 + sg.period_3 + sg.period_4) / 4 average,
+                            CASE
+                                WHEN ((sg.period_1 + sg.period_2 + sg.period_3 + sg.period_4) / 4) >= 75 THEN 'Passed'
+                                WHEN ((sg.period_1 + sg.period_2 + sg.period_3 + sg.period_4) / 4) < 75 THEN 'Failed'
+                            ELSE ''
+                            END remarks
+                            FROM tbl_students_grade sg
+                            LEFT JOIN 
+                                tbl_teacher_student ts
+                            ON ts.id = sg.teacher_student_id
+                            LEFT JOIN
+                                tbl_teacher_subjects tsub
+                            ON tsub.id = sg.teacher_subjects_id
+                            LEFT JOIN
+                                tbl_subject sub
+                            ON sub.id = tsub.subject_id
+                        ) g
+                    ON g.teacher_student_id = ts.id
+                    WHERE ts.student_id = $stud
+                    AND g.year = $year";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
     public function studentPerTeacher(){
         $user = $this->session->userdata['user'];
         $this->db->select('t.*');
@@ -58,10 +128,13 @@ class Grades_model extends CI_Model{
         return $query->result();
     }
     public function getSections(){
-        $query = $this->db->get_where('tbl_section', array('grade' => $_POST['grade']));
+        $user = $this->session->userdata['user'];
+        $query = $this->db->get_where('tbl_section', array('grade' => $_POST['grade'], 'teacher_id' => $user->user_id));
         echo json_encode($query->result());
     }
 	public function addGrade(){
+        // print_r($_POST);
+        // exit;
         $user = $this->session->userdata['user'];
         $this->db->select('t.*');
         $this->db->from('tbl_teacher t');
@@ -69,23 +142,43 @@ class Grades_model extends CI_Model{
         $query = $this->db->get(); // get results of query
         $userData = $query->result();
         // data that will be inserted to tbl_students_grade
-        foreach ($_POST['grade'] as $key => $each) {
+        foreach ($_POST['grade_1'] as $key => $each) {
 
             $teacherstud_id = $this->db->get_where('tbl_teacher_student', array('student_id' => $_POST['stud_id'][$key], 'teacher_id' => $userData[0]->id));
             $teacherstud_id = $teacherstud_id->result();
             $teachersubj_id = $this->db->get_where('tbl_teacher_subjects', array('section_id' => $_POST['section'], 'subject_id' => $_POST['subject'], 'teacher_id' => $userData[0]->id, 'grade' => $_POST['gradelevel']));
             $teachersubj_id = $teachersubj_id->result();
-            $data = array(
-                'teacher_student_id' => $teacherstud_id[0]->id,
-                'teacher_subjects_id' => $teachersubj_id[0]->id,
-                'period' => $_POST['grading'],
-                'year' => $_POST['school_year'],
-                'grade' => $each,
-                'created_by' => 1,
-                'date_created' => date('Y-m-d H:i:s')
-            );
 
-            $this->db->insert('tbl_students_grade', $data); // insert into tbl_students_grade
+            $queryCheck = $this->db->get_where('tbl_students_grade', array('teacher_student_id' => $teacherstud_id[0]->id, 'teacher_subjects_id' => $teachersubj_id[0]->id, 'year' => $_POST['school_year']));
+            $dataCheck = $queryCheck->result();
+            if(empty($dataCheck)){
+
+                $data = array(
+                    'teacher_student_id' => $teacherstud_id[0]->id,
+                    'teacher_subjects_id' => $teachersubj_id[0]->id,
+                    'year' => $_POST['school_year'],
+                    'period_1' => $each,
+                    'period_2' => $_POST['grade_2'][$key],
+                    'period_3' => $_POST['grade_3'][$key],
+                    'period_4' => $_POST['grade_4'][$key],
+                    'created_by' => $user->user_id,
+                    'date_created' => date('Y-m-d H:i:s')
+                );
+                
+                $this->db->insert('tbl_students_grade', $data); // insert into tbl_students_grade
+            } else {
+                if($dataCheck[0]->locked == 'no'){
+                    $this->db->set('period_1', $each);
+                    $this->db->set('period_2', $_POST['grade_2'][$key]);
+                    $this->db->set('period_3', $_POST['grade_3'][$key]);
+                    $this->db->set('period_4', $_POST['grade_4'][$key]);
+                    $this->db->set('locked', 'yes');
+                    $this->db->set('modified_by', $user->user_id);
+                    $this->db->set('date_modified', date('Y-m-d H:i:s'));
+                    $this->db->where('id', $dataCheck[0]->id);
+                    $this->db->update('tbl_students_grade');
+                }
+            }
         } 
         
         $userData = $this->session->userdata['user'];
@@ -96,7 +189,6 @@ class Grades_model extends CI_Model{
             'transaction_date' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
-        
         $this->session->set_flashdata('msg', 'Grades was successfully saved.');
         redirect(base_url().'grades/add'); //redirect back to grade page
 	}

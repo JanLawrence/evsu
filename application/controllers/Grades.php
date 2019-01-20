@@ -41,10 +41,13 @@ class Grades extends CI_Controller {
 		}
 
 		//set validation rules
-		$this->form_validation->set_rules('grading', 'Grading', 'required');
+		// $this->form_validation->set_rules('grading', 'Grading', 'required');
 		$this->form_validation->set_rules('school_year', 'Year', 'required');
 		$this->form_validation->set_rules('subject', 'Subject', 'required');
-		$this->form_validation->set_rules('grade[]', 'Grade', 'required');
+		// $this->form_validation->set_rules('grade_[]', 'Grade', 'required');
+		// $this->form_validation->set_rules('grade[]', 'Grade', 'required');
+		// $this->form_validation->set_rules('grade[]', 'Grade', 'required');
+		// $this->form_validation->set_rules('grade[]', 'Grade', 'required');
 		
 		//if validation is success
         if($this->form_validation->run() == TRUE){
@@ -66,5 +69,36 @@ class Grades extends CI_Controller {
     }
     public function getSections(){
         $this->grades_model->getSections();
-    }
+	}
+	public function returnStudentGrades(){
+		$data = $this->grades_model->studentGradeList2();
+		// $this->load->view('grades/ajax/return', $data);
+		echo '<table class="table table-hovered table-striped datatables">';
+		echo	'<thead>';
+			echo	'<tr>';
+				echo	'<th>School Id</th>';
+				echo	'<th>Student Name</th>';
+				echo	'<th>1st</th>';
+				echo	'<th>2nd</th>';
+				echo	'<th>3rd</th>';
+				echo	'<th>4th</th>';
+				echo	'<th>Status</th>';
+			echo	'</tr>';
+		echo	'</thead>';
+		echo	'<tbody>';
+		foreach($data as $each){
+        echo '<tr>';
+			echo '<td style="width:10%">'.$each->school_id.'</td>';
+			echo '<td style="width:40%">'.$each->last_name.', '.$each->first_name.' '.$each->middle_name.'</td>';
+			echo '<input name="stud_id[]" type="hidden" value="'.$each->student_id.'">';
+			echo '<td style="width:10%"><input name="grade_1[]" required type="text" value="'.$each->period_1.'"></td>';
+			echo '<td style="width:10%"><input name="grade_2[]" required type="text" value="'.$each->period_2.'"></td>';
+			echo '<td style="width:10%"><input name="grade_3[]" required type="text" value="'.$each->period_3.'"></td>';
+			echo '<td style="width:10%"><input name="grade_4[]" required type="text" value="'.$each->period_4.'"></td>';
+			echo '<td style="width:10%">'.($each->locked == 'yes' ? 'Locked' : 'For Edit').'</td>';
+		echo '</tr>';
+        } 
+		echo	'</tbody>';
+		echo	'</table>';
+	}
 }

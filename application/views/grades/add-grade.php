@@ -39,7 +39,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-md-3">
+                                        <!-- <div class="col-md-3">
                                             <label>Period</label>
                                             <select name="grading" id="" class="form-control">
                                                 <option value="" selected disabled>Select Period</option>
@@ -48,7 +48,7 @@
                                                 <option value="3rd">3rd Grading</option>
                                                 <option value="4th">4th Grading</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <div class="col-md-3">
                                             <label>Grade</label>
                                             <?php
@@ -78,28 +78,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive mt-0">
-                                <table class="table table-hovered table-striped datatables">
-                                    <thead>
-                                        <tr>
-                                            <th>Student Name</th>
-                                            <th>Grade</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach($students as $each){?>
-                                            <tr>
-                                                <td style="width:70%"><?= $each->student?></td>
-                                                <input name="stud_id[]" type="hidden" value="<?= $each->student_id?>">
-                                                <td style="width:30%"><input name="grade[]" type="text"></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                            <div class="table-responsive mt-0 returnHere">
+                                
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-right">
-                                        <a class="btn btn-danger" href="<?=base_url()?>grades"><i class="ti-arrow-circle-left"></i> Back</a>
                                         <button class="btn btn-default" type="submit"><i class="ti-save"></i> Submit</button>
                                 </div>
                             </div>

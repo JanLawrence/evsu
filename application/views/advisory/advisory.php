@@ -58,8 +58,8 @@
                                         <tr>
                                             <td><?= $each->school_id?></td>
                                             <td><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name?></td>
-                                            <td><button type="button" class="btn btn-info btn-sm view-grade" stud-id="<?= $each->id?>">View</button></td>
-                                            <td><button type="button" class="btn btn-info btn-sm export-grade" stud-id="<?= $each->id?>">Export</button></td>
+                                            <td><button type="button" class="btn btn-info btn-sm view-grade <?= $each->status_grade == 'no' ? 'd-none' : ''?>" stud-id="<?= $each->id?>">View</button></td>
+                                            <td><button type="button" class="btn btn-info btn-sm export-grade  <?= $each->status_grade == 'no' ? 'd-none' : ''?>" stud-id="<?= $each->id?>">Export</button></td>
                                         </tr>
                                     <?php }?>
                                 </tbody>

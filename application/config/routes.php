@@ -58,6 +58,7 @@ $route['teachers/(:any)/(:any)'] = 'teachers/index/$1/$2';
 $route['students/(:any)'] = 'students/index/$1/';
 $route['students/(:any)/(:any)'] = 'students/index/$1/$2';
 $route['grades/(:any)'] = 'grades/index/$1/';
+$route['grades/(:any)/(:any)'] = 'grades/index/$1/$2';
 $route['announcements/(:any)'] = 'announcements/index/$1/';
 $route['announcements/(:any)/(:any)'] = 'announcements/index/$1/$2';
 $route['feedbacks/(:any)'] = 'feedbacks/index/$1/';

@@ -144,5 +144,6 @@ $autoload['model'] = array(
         'section_model',
         'school_year_model',
         'inbox_model', 
-        'advisory_model'
+        'advisory_model',
+        'admingrade_model'
 );
