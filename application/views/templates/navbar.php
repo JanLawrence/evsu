@@ -1,5 +1,8 @@
 <?php  
     $user = $this->session->userdata['user'];
+    $this->db->select('id, title, portal');
+    $help = $this->db->get_where('tbl_help', array('portal'=>$user->user_type));
+    $help = $help->result();
 ?>
 <div class="header">
     <div class="container-fluid">
@@ -123,6 +126,17 @@
                                 </div>
                             </div>
                         </li> -->
+                        <li class="header-icon dib"><span class="user-avatar">Help <i class="ti-angle-down f-s-10"></i></span>
+                            <div class="drop-down dropdown-profile">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <?php foreach($help as $each): ?>
+                                        <li><a href="<?= base_url()?>help/download?id=<?=$each->id?>" style="font-size: 12px;"><?= $each->title?></a></li> 
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
                         <li class="header-icon dib"><span class="user-avatar">Welcome! <?= $user->username ?> <i class="ti-angle-down f-s-10"></i></span>
                             <div class="drop-down dropdown-profile">
                                 <div class="dropdown-content-body">
