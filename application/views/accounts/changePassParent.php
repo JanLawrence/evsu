@@ -61,7 +61,7 @@
                                 <div class="modal-body">
                                     <p class="text-center">Password successfully changed, please login.</p>
                                 <div class="modal-footer">
-                                    <a class="btn btn-info btn-proceed" href="<?= base_url(); ?>home/admin">Proceed</a>
+                                    <a class="btn btn-info btn-proceed" href="<?= base_url(); ?>home/parent">Proceed</a>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                 var confirmpass = $('input[name="confirmpassword"]').val();
                 var form = $(this).serialize();
                 if(newpass == confirmpass){
-                    $.post(URL+'account/changePassword', form)
+                    $.post(URL+'account/changePasswordParent', form)
                     .done(function(returnData){
                         $('#successModal').modal('toggle')
                     }) 

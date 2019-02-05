@@ -50,13 +50,58 @@
                                     <?= validation_errors('<span class="alert alert-danger"><i class="ti-alert"></i> ', '</span>')?> 
                                 </div>
                                 <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30" style=" background: linear-gradient(120deg, #da22ff, #9733ee);">Sign in</button>
+                                <div class="form-group">
+                                    <a class="btn-forgotpass" href="#"><small>Forgot Password?</small></a>
+                                </div>
                             </form>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="forgotPassModal">
+                        <div class="modal-dialog modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-center">Forgot Password</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-center">Please enter your email below. We will be sending and email to change your password.</p>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                            <input type="text" class="form-control forgotemail" name="email">
+                                        </div>
+                                    </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-info btn-proceed">Proceed</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(function(){
+            $('.btn-forgotpass').click(function(){
+                $('#forgotPassModal').modal('toggle');
+            })
+            $('.btn-proceed').click(function(){
+                var email = $('.forgotemail').val();
+                if(email != ''){
+                    $.post(URL+'account/emailSendingParent', {'email': email})
+                    .done(function(returnData){
+                        if(returnData == 1){
+                            location.href = URL + 'account/changePassParent?email=' + email;
+                        } else {
+                            alert('Invalid email')
+                        }
+                    }) 
+                } else {
+                    alert('Please input your email')
+                }
+            })
+        })
+    </script>
     <script src="<?= base_url();?>assets/js/lib/jquery.nanoscroller.min.js"></script>
         <!-- nano scroller -->
         <script src="<?= base_url();?>assets/js/lib/menubar/sidebar.js"></script>
