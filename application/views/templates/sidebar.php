@@ -29,6 +29,8 @@
                         <li><a href="<?= base_url(); ?>users"><i class="ti-user"></i> User</a></li>
                     <?php endif;?>
                     <li><a href="<?= base_url(); ?>logs/userlogs"><i class="ti-agenda"></i> User Logs</a></li>
+                    <li><a href="<?= base_url(); ?>logs/userlogs"><i class="ti-agenda"></i> User Logs</a></li>
+                    <li><a href="<?= base_url(); ?>help"><i class="ti-announcement"></i> Help</a></li>
                 <?php endif;?>
 
 
