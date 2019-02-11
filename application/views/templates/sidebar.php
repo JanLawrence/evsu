@@ -29,7 +29,6 @@
                         <li><a href="<?= base_url(); ?>users"><i class="ti-user"></i> User</a></li>
                     <?php endif;?>
                     <li><a href="<?= base_url(); ?>logs/userlogs"><i class="ti-agenda"></i> User Logs</a></li>
-                    <li><a href="<?= base_url(); ?>logs/userlogs"><i class="ti-agenda"></i> User Logs</a></li>
                     <li><a href="<?= base_url(); ?>help"><i class="ti-announcement"></i> Help</a></li>
                 <?php endif;?>
 
@@ -40,7 +39,7 @@
                     <!-- <li><a href="<?= base_url(); ?>students/studentattendance"><i class="ti-agenda"></i> Student Attendance</a></li> -->
                     <li><a href="<?= base_url(); ?>students"><i class="ti-user"></i> Students</a></li>
                     <li><a href="<?= base_url(); ?>inbox"><i class="ti-comments"></i> Inbox</a></li>
-                    <li><a href="<?= base_url(); ?>advisory"><i class="ti-write"></i> Advisory</a></li>
+                    <li><a href="<?= base_url(); ?>advisory"><i class="ti-write"></i> Class Cards</a></li>
                 <?php endif;?>
 
                 <?php if($user->user_type == 'student'):?>

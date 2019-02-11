@@ -3,7 +3,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Advisory</h1>
+                    <h1>Class Cards</h1>
                 </div>
             </div>
         </div>
@@ -13,7 +13,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Advisory</li>
+                        <li class="breadcrumb-item active">Class Cards</li>
                     </ol>
                 </div>
             </div>

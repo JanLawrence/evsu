@@ -50,8 +50,13 @@
                                     <?= validation_errors('<span class="alert alert-danger"><i class="ti-alert"></i> ', '</span>')?> 
                                 </div>
                                 <button type="submit" class="btn btn-info btn-flat m-b-30 m-t-30" style=" background: linear-gradient(120deg, #da22ff, #9733ee);">Sign in</button>
-                                <div class="form-group">
-                                    <a class="btn-forgotpass" href="#"><small>Forgot Password?</small></a>
+                                <div class="form-group clearfix">
+                                    <div class="float-left">
+                                        <a class="btn-forgotpass" href="#"><small>Forgot Password?</small></a>
+                                    </div>
+                                    <div class="float-right">
+                                        <a href="<?= base_url()?>"><small>< Back</small></a>
+                                    </div>
                                 </div>
                             </form>
                         </div>

@@ -118,6 +118,6 @@ class Home extends CI_Controller {
         //destroy session
         $this->session->sess_destroy();
         //redirect to homepage
-        redirect(base_url().'home/'.$session->user_type);
+        redirect(base_url());
     }
 }
