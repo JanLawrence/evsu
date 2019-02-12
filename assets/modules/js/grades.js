@@ -1,15 +1,14 @@
 $(function(){
     $('select[name="gradelevel"]').change(function(){
         var grade = $(this).val();
-        $.post(URL + 'grades/getSections', {'grade': grade})
+        $.post(URL+'section/gradePerSection',{'grade': grade})
         .done(function(returnData){
             var data = $.parseJSON(returnData);
-            var append = '<option value="" selected disabled>Select Section</option>';
+            var append = "";
             $.each(data, function(key,a){
                 append += '<option value="'+a.id+'">'+a.section+'</option>';
             })
             $('select[name="section"]').html(append);
-
         })
     })
     $('select[name="subject"]').change(function(){

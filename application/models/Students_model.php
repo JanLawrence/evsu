@@ -139,6 +139,7 @@ class Students_model extends CI_Model{
         $userData = $query->result();
         // data that will be inserted to tbl_students
         $data = array(
+            'section_id' => $_POST['section'],
             'school_id' => $_POST['schoolId'],
             'first_name' => $_POST['firstName'],
             'middle_name' => $_POST['middleName'],
@@ -205,16 +206,6 @@ class Students_model extends CI_Model{
         
         $this->db->insert('tbl_student_guardian', $dataStudentGuardian); // insert into tbl_student_guardian
 
-        // data that will be inserted to tbl_teacher_student
-        $dataStudentGuardian = array(
-            'teacher_id' => $userData[0]->id,
-            'student_id' => $studentId,
-            'created_by' => $this->user->id,
-            'date_created' => date('Y-m-d H:i:s')
-        );
-        
-        $this->db->insert('tbl_teacher_student', $dataStudentGuardian); // insert into tbl_teacher_student
-        
         $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,

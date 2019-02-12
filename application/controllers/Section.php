@@ -50,7 +50,6 @@ class Section extends CI_Controller {
 		$this->section_model->delete();
 	}
 	public function gradePerSection(){
-		//load subjects_model -> delete() function
 		$query = $this->db->get_where('tbl_section', array('grade' => $_REQUEST['grade']));
 		echo json_encode($query->result());
 	}

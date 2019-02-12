@@ -26,20 +26,6 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-3 col-form-label">Subject:</label>
-							<div class="col-sm-9">
-								<select class="form-control select2" name="subject">
-									<option value="" selected disabled></option>
-									<?php foreach($subjects as $each): ?>
-									<option value="<?= $each->id?>" <?=($teacher[0]->subject_id == $each->id) ? 'selected' : ''?>>
-										<?= $each->subject_name?>
-									</option>
-									<?php endforeach;?>
-								</select>
-								<?= form_error('subject', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
-							</div>
-						</div>
-						<div class="form-group row">
 							<label class="col-sm-3 col-form-label">Address:</label>
 							<div class="col-sm-9">
 								<textarea class="form-control" rows="20" name="address"><?= $teacher[0]->address?></textarea>

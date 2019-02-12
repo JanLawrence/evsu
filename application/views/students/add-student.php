@@ -112,7 +112,7 @@
                                         <div class="col-sm-9">
                                             <select name="section" class="form-control">
                                             </select>
-                                            <?= form_error('address', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
+                                            <?= form_error('section', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
                                     </div>
                                 </div>

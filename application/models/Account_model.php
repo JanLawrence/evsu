@@ -27,11 +27,9 @@ class Account_model extends CI_Model{
     }
     public function getTeacherData($id){
         //query that joins teacher and subject
-        $this->db->select('t.*, c.username, c.id cred_id, c.password, , s.id subject_id , s.subject_name')
+        $this->db->select('t.*, c.username, c.id cred_id, c.password')
          ->from('tbl_teacher t')
-         ->join('tbl_credentials c', 'c.user_id = t.id AND user_type = "teacher"', 'inner')
-         ->join('tbl_teacher_subjects ts', 'ts.teacher_id = t.id', 'inner')
-         ->join('tbl_subject s', 's.id = ts.subject_id', 'inner');
+         ->join('tbl_credentials c', 'c.user_id = t.id AND user_type = "teacher"', 'inner');
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
             $this->db->where('t.id', $id);
         }
@@ -60,7 +58,6 @@ class Account_model extends CI_Model{
         $this->db->set('middle_name', $_POST['middleName']);
         $this->db->set('last_name', $_POST['lastName']);
         $this->db->set('phone', $_POST['phone']);
-        $this->db->set('advisory', $_POST['advisory']);
         $this->db->set('address', $_POST['address']);
         $this->db->set('email', $_POST['email']);
         $this->db->set('school_id_no', $_POST['schoolId']);
@@ -70,13 +67,6 @@ class Account_model extends CI_Model{
         $this->db->set('registered', 'yes');
         $this->db->where('id', $id);
         $this->db->update('tbl_teacher'); //update tbl_teacher
-        
-        // data that will be updated to tbl_teacher_subjects
-        $this->db->set('subject_id', $_POST['subject']);
-        $this->db->set('modified_by', $id);
-        $this->db->set('date_modified', date('Y-m-d H:i:s'));
-        $this->db->where('teacher_id', $id);
-        $this->db->update('tbl_teacher_subjects'); // update tbl_teacher_subjects
 
         // data that will be updated to tbl_credentials
         $this->db->set('username', $_POST['username']);

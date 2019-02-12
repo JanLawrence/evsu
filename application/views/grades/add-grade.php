@@ -52,7 +52,7 @@
                                         <div class="col-md-3">
                                             <label>Grade</label>
                                             <?php
-                                                $grade = array(7,8,9,10,11,12);
+                                                $grade = array(1,2,3,4,5,6,7,8,9,10,11,12);
                                             ?>
                                             <select name="gradelevel" id="" class="form-control">
                                                 <option value="" selected disabled> Select Grade</option>

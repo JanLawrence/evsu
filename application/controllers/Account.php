@@ -44,7 +44,6 @@ class Account extends CI_Controller {
             $this->form_validation->set_rules('lastName', 'Last Name', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-            $this->form_validation->set_rules('subject', 'Subject', 'required');
             $this->form_validation->set_rules('username', 'Username', 'required|callback_usernamecheck['.$sub.'_'.$id.']');
             
             //if validation is success
