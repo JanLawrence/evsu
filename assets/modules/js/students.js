@@ -25,4 +25,11 @@ $(function(){
             return false;
         }
     })
+    $('select[name="grade"]').change(function(){
+        var grade = $(this).val();
+        $.post(URL+'section/gradePerSection',{'grade': grade})
+        .done(function(returnData){
+            alert(returnData)
+        })
+    })
 })

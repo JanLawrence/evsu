@@ -82,6 +82,41 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row mt-1">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Grade:</label>
+                                        <div class="col-sm-9">
+                                            <select name="grade" class="form-control">
+                                                <option value="" selected disabled> Select Grade</option>
+                                                <option value="1"> 1</option>
+                                                <option value="2"> 2</option>
+                                                <option value="3"> 3</option>
+                                                <option value="4"> 4</option>
+                                                <option value="5"> 5</option>
+                                                <option value="6"> 6</option>
+                                                <option value="7"> 7</option>
+                                                <option value="8"> 8</option>
+                                                <option value="9"> 9</option>
+                                                <option value="10"> 10</option>
+                                                <option value="11"> 11</option>
+                                                <option value="12"> 12</option>
+                                            </select>
+                                            <?= form_error('grade', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Section:</label>
+                                        <div class="col-sm-9">
+                                            <select name="section" class="form-control">
+                                            </select>
+                                            <?= form_error('address', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card-title">
                                 <span>Guardian Information</span>
                             </div>

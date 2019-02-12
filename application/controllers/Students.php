@@ -24,6 +24,8 @@ class Students extends CI_Controller {
 		$this->form_validation->set_rules('firstName', 'First Name', 'required');
 		$this->form_validation->set_rules('lastName', 'Last Name', 'required');
 		$this->form_validation->set_rules('address', 'Address', 'required');
+		$this->form_validation->set_rules('grade', 'Grade', 'required');
+		$this->form_validation->set_rules('section', 'Section', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email'. ($sub == 'add' ? '|is_unique[tbl_students.email]' : ''));
 		$this->form_validation->set_rules('g_firstName', 'First Name', 'required');
 		$this->form_validation->set_rules('g_lastName', 'Last Name', 'required');
