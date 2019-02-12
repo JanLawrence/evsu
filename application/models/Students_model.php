@@ -7,10 +7,11 @@ class Students_model extends CI_Model{
     }
     public function getAllDataStudents($id){
         //query that joins teacher and subject
-        $this->db->select('s.*, g.id guardian_id , g.first_name g_fname, g.last_name g_lname, g.middle_name g_mname, g.registered g_registered, g.email g_email')
+        $this->db->select('s.*, g.id guardian_id ,sec.id sec_id, sec.section, sec.grade, g.first_name g_fname, g.last_name g_lname, g.middle_name g_mname, g.registered g_registered, g.email g_email')
          ->from('tbl_students s')
          ->join('tbl_student_guardian sg', 'sg.student_id = s.id', 'inner')
          ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'inner')
+         ->join('tbl_section sec', 'sec.id = s.section_id', 'left')
          ->where('s.status', 'saved')
          ->where('g.status', 'saved');
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
@@ -220,6 +221,7 @@ class Students_model extends CI_Model{
 	}
     public function editStudent($id){
         // data that will be updated to tbl_students
+        $this->db->set('section_id', $_POST['section']);
         $this->db->set('school_id', $_POST['schoolId']);
         $this->db->set('first_name', $_POST['firstName']);
         $this->db->set('middle_name', $_POST['middleName']);
