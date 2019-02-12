@@ -25,4 +25,17 @@ $(function(){
                 return false;
             }
         })
+
+        $('select[name="grade"]').change(function(){
+            var grade = $(this).val();
+            $.post(URL+'section/gradePerSection',{'grade': grade})
+            .done(function(returnData){
+                var data = $.parseJSON(returnData);
+                var append = "";
+                $.each(data, function(key,a){
+                    append += '<option value="'+a.id+'">'+a.section+'</option>';
+                })
+                $('select[name="section"]').html(append);
+            })
+        })
 })

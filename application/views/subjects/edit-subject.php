@@ -51,16 +51,6 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group row">
-                                        <label class="col-sm-1 col-form-label">Teacher:</label>
-                                        <div class="col-sm-5">
-                                            <select name="teacher" class="form-control">
-                                                <option value="" selected disabled> Select Adviser</option>
-                                                <?php foreach($teacher as $each){?>
-                                                    <option value="<?= $each->id?>" <?= $each->id == $subjects[0]->teacher_id ? 'selected' : '' ?>> <?= $each->name?></option>
-                                                <?php }?>
-                                            </select>
-                                            <?= form_error('teacher', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
-                                        </div>
                                         <label class="col-sm-1 col-form-label">Section:</label>
                                         <div class="col-sm-5">
                                             <select name="section" class="form-control">
@@ -71,6 +61,16 @@
                                             </select>
                                             <?= form_error('section', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
+                                        <label class="col-sm-1 col-form-label">Teacher:</label>
+                                        <!-- <div class="col-sm-5">
+                                            <select name="teacher" class="form-control">
+                                                <option value="" selected disabled> Select Adviser</option>
+                                                <?php foreach($teacher as $each){?>
+                                                    <option value="<?= $each->id?>" <?= $each->id == $subjects[0]->teacher_id ? 'selected' : '' ?>> <?= $each->name?></option>
+                                                <?php }?>
+                                            </select>
+                                            <?= form_error('teacher', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

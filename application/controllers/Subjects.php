@@ -23,7 +23,6 @@ class Subjects extends CI_Controller {
 		$this->form_validation->set_rules('subject', 'Subject', 'required'. ($sub == 'add' ? '|is_unique[tbl_subject.subject_name]' : ''));
 		$this->form_validation->set_rules('section', 'Section', 'required');
 		$this->form_validation->set_rules('grade', 'Grade', 'required');
-		$this->form_validation->set_rules('teacher', 'Teacher', 'required');
 
 		//if validation is success
         if($this->form_validation->run() == TRUE){
@@ -37,7 +36,7 @@ class Subjects extends CI_Controller {
 		} else { //if validation failed, page will load again
 			// get data
 			$data['subjects'] = $this->subjects_model->showSubj($id);
-			$data['teacher'] = $this->section_model->showTeacher();
+			// $data['teacher'] = $this->section_model->showTeacher();
 			$data['section'] = $this->section_model->showSection($id=0);
 			// load page
 			$this->load->view('templates/header');

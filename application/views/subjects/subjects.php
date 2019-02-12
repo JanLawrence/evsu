@@ -48,8 +48,6 @@
                                             <th>Grade</th>
                                             <th>Section</th>
                                             <th>Subject</th>
-                                            <th>Teacher</th>
-                                            <th>Teacher Status</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -60,10 +58,9 @@
                                             <td><?= $each->grade ?></td>
                                             <td><?= $each->section ?></td>
                                             <td><?= $each->subject_name ?></td>
-                                            <td><?= $each->teacher ?></td>
                                             <td>    
-                                                <span class="badge badge-pill badge-<?= ($each->registered == 'yes' && $each->t_stat == 'saved') ? 'success' : 'danger'?>">
-                                                    <?= ($each->registered == 'yes' && $each->t_stat == 'saved') ? 'Active ' : 'Inactive'?>
+                                                <span class="badge badge-pill badge-<?= ($each->status == 'saved') ? 'success' : 'danger'?>">
+                                                    <?= ($each->status == 'saved') ? 'Active ' : 'Inactive'?>
                                                 </span>
                                             </td>
                                             <td></td>
