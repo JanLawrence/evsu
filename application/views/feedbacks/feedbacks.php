@@ -45,7 +45,6 @@
                                         <tr>
                                             <th><input type="checkbox"></th>
                                             <th>Teacher</th>
-                                            <th>Subject</th>
                                             <th>Date</th>
                                             <th>Feedback</th>
                                             <th>Read</th>
@@ -56,11 +55,10 @@
                                         <tr>
                                             <td><input type="checkbox" name="feedbackId[]" value="<?= $each->id?>"</td>
                                             <td><?= $each->t_lname.', '.$each->t_fname.' '.$each->t_mname ?></td>
-                                            <td><?= $each->subject_name?></td>
                                             <td><?= date('F d, Y', strtotime($each->date_created))?></td>
                                             <td><?= $each->feedback?></td>
                                             <td>
-                                                <button type="button" fdate="<?= date('F d, Y', strtotime($each->date_created))?>" fback="<?= $each->feedback?>" sname="<?= $each->subject_name?>" tname="<?= $each->t_lname.', '.$each->t_fname.' '.$each->t_mname ?>" class="btn btn-info btn-sm view-more">View More</button>
+                                                <button type="button" fdate="<?= date('F d, Y', strtotime($each->date_created))?>" fback="<?= $each->feedback?>" tname="<?= $each->t_lname.', '.$each->t_fname.' '.$each->t_mname ?>" class="btn btn-info btn-sm view-more">View More</button>
                                             </td>
                                         </tr>
                                         <?php endforeach;?>
@@ -84,7 +82,6 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <p>Teacher: <span class="teacher"></span></p>
-                        <p>Subject: <span class="subject"></span></p> 
                         <p>Date: <span class="date"></span></p> 
                     </div>
                     <div class="col-sm-6">

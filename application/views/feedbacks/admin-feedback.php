@@ -68,7 +68,6 @@
                                 <thead>
                                     <tr>
                                         <th>Teacher</th>
-                                        <th>Subject</th>
                                         <th>Date</th>
                                         <th>Feedback</th>
                                         <th>Read</th>
@@ -78,11 +77,10 @@
                                     <?php foreach($feedbacksList as $each){?>
                                         <tr>
                                             <td><?= $each->t_lname.', '.$each->t_fname.' '.$each->t_mname ?></td>
-                                            <td><?= $each->subject_name?></td>
                                             <td><?= date('F d, Y', strtotime($each->date_created))?></td>
                                             <td><?= $each->feedback?></td>
                                             <td>
-                                                <button class="btn btn-info btn-sm view-more" fdate="<?= date('F d, Y', strtotime($each->date_created))?>" fback="<?= $each->feedback?>" sname="<?= $each->subject_name?>" tname="<?= $each->t_lname.', '.$each->t_fname.' '.$each->t_mname ?>">View More</button>
+                                                <button class="btn btn-info btn-sm view-more" fdate="<?= date('F d, Y', strtotime($each->date_created))?>" fback="<?= $each->feedback?>" tname="<?= $each->t_lname.', '.$each->t_fname.' '.$each->t_mname ?>">View More</button>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -105,7 +103,6 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <p>Teacher: <span class="teacher"></span></p>
-                        <p>Subject: <span class="subject"></span></p> 
                         <p>Date: <span class="date"></span></p> 
                     </div>
                     <div class="col-sm-6">

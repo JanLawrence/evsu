@@ -45,7 +45,6 @@
                                         <tr>
                                             <th>Parent Name</th>
                                             <th>Student Name</th>
-                                            <th>Subject</th>
                                             <!-- <th>Last Communication</th> -->
                                             <th>Chat</th>
                                         </tr>
@@ -55,7 +54,6 @@
                                         <tr>
                                             <td><?= $each->first_name.' '.$each->middle_name.' '.$each->last_name ?></td>
                                             <td><?= $each->stud_name?></td>
-                                            <td><?= $each->subject_name?></td>
                                             <!-- <td></td> -->
                                             <td><a href="<?=base_url('inbox/chat/'.$each->id); ?>" class="btn btn-info btn-sm" parent-id ="<?=$each->id?>">Chat</button></td>
                                         </tr>
@@ -67,7 +65,6 @@
                                     <thead>
                                         <tr>
                                             <th>Teacher Name</th>
-                                            <th>Subject</th>
                                             <!-- <th>Last Communication</th> -->
                                             <th>Chat</th>
                                         </tr>
@@ -76,7 +73,6 @@
                                         <?php foreach($inbox as $each):?>
                                         <tr>
                                             <td><?= $each->first_name.' '.$each->middle_name.' '.$each->last_name ?></td>
-                                            <td><?= $each->subject_name?></td>
                                             <!-- <td></td> -->
                                             <td><a href="<?=base_url('inbox/chat/'.$each->id); ?>" class="btn btn-info btn-sm" parent-id ="<?=$each->id?>">Chat</button></td>
                                         </tr>

@@ -7,14 +7,12 @@ class Inbox_model extends CI_Model{
     }
     public function getTeacherInbox(){
           //query that joins teacher and subject
-        $this->db->select('g.*, sub.subject_name, CONCAT(stud.first_name," ",stud.middle_name," ",stud.last_name) stud_name')
+        $this->db->select('g.*, CONCAT(stud.first_name," ",stud.middle_name," ",stud.last_name) stud_name')
           ->from('tbl_teacher t')
-          ->join('tbl_teacher_student ts', 'ts.teacher_id = t.id', 'left')
-          ->join('tbl_student_guardian sg', 'sg.student_id = ts.student_id', 'left')
+          ->join('tbl_section sec', 'sec.teacher_id = t.id', 'left')
+          ->join('tbl_students stud', 'stud.section_id = sec.id', 'left')
+          ->join('tbl_student_guardian sg', 'sg.student_id = stud.id', 'left')
           ->join('tbl_guardian g', 'g.id = sg.guardian_id', 'left')
-          ->join('tbl_teacher_subjects ss', 'ss.teacher_id = t.id', 'left')
-          ->join('tbl_subject sub', 'sub.id = ss.subject_id', 'left')
-          ->join('tbl_students stud', 'stud.id = ts.student_id', 'left')
           ->where('g.registered', 'yes')
           ->where('g.`status`', 'saved')
           ->where('t.id', $this->user->user_id)
@@ -26,13 +24,12 @@ class Inbox_model extends CI_Model{
     }
     public function getParentInbox(){
           //query that joins teacher and subject
-        $this->db->select('t.*, sub.subject_name')
+        $this->db->select('t.*')
           ->from('tbl_guardian g')
           ->join('tbl_student_guardian sg', 'g.id = sg.guardian_id', 'left')
-          ->join('tbl_teacher_student ts', 'ts.student_id = sg.student_id', 'left')
-          ->join('tbl_teacher t', 't.id = ts.teacher_id', 'left')
-          ->join('tbl_teacher_subjects ss', 'ss.teacher_id = t.id', 'left')
-          ->join('tbl_subject sub', 'sub.id = ss.subject_id', 'left')
+          ->join('tbl_students s', 's.id = sg.student_id', 'left')
+          ->join('tbl_section sec', 'sec.id = s.section_id', 'left')
+          ->join('tbl_teacher t', 't.id = sec.teacher_id', 'left')
           ->where('t.registered', 'yes')
           ->where('t.`status`', 'saved')
           ->where('g.id', $this->user->user_id)

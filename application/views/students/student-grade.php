@@ -51,7 +51,7 @@
                                         <div class="col-sm-9">
                                             <select name="school_year" id="" class="form-control">
                                                 <?php foreach($sy as $each):?>
-                                                    <option value="<?= $each->id?>"> <?= $each->sy_from.' - '.$each->sy_to?></option>
+                                                    <option value="<?= $each->id?>" <?= isset($_GET['school_year']) &&  $_GET['school_year'] == $each->id ? 'selected' : ''?>> <?= $each->sy_from.' - '.$each->sy_to?></option>
                                                 <?php endforeach;?> 
                                             </select>
                                         </div>
@@ -82,10 +82,10 @@
                                     <?php foreach($grades as $each){?>
                                         <tr>
                                             <td><?= $each->subject_name?></td>
-                                            <td><?= $each->first_grade?></td>
-                                            <td><?= $each->second_grade?></td>
-                                            <td><?= $each->third_grade?></td>
-                                            <td><?= $each->fourth_grade?></td>
+                                            <td><?= $each->period_1?></td>
+                                            <td><?= $each->period_2?></td>
+                                            <td><?= $each->period_3?></td>
+                                            <td><?= $each->period_4?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

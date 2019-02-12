@@ -12,7 +12,7 @@ class Announcements_model extends CI_Model{
          ->where('a.status', 'saved')
          ->where('s.status', 'saved');
         if($id != 0){ // if id not equal to 0 the query will filter per announement id 
-            $this->db->where('a.id', $id);
+            $this->db->where('a.id', $id);  
         }
         $query = $this->db->get(); // get results of query
         return $query->result();
@@ -25,7 +25,8 @@ class Announcements_model extends CI_Model{
          ->join('tbl_credentials cred', 'cred.id = a.created_by', 'inner')
          ->join('tbl_teacher t','t.id = cred.user_id','inner');
         if ($this->user->user_type == 'student'){
-        $this->db->join('tbl_teacher_student ts', 'ts.teacher_id = t.id','inner');
+        $this->db->join('tbl_section sec', 'sec.id = s.section_id','inner');
+        $this->db->join('tbl_students stud', 'sec.id = stud.section_id','inner');
         }
         $this->db->where('a.status', 'saved')
          ->where('s.status', 'saved')
@@ -38,7 +39,7 @@ class Announcements_model extends CI_Model{
         }elseif($this->user->user_type == 'admin'){
             $this->db->where('a.date >= "'.$from.'" && a.date <= "'.$to.'"');
         }elseif($this->user->user_type == 'student'){
-            $this->db->where('ts.student_id', $this->user->user_id);
+            $this->db->where('stud.id', $this->user->user_id);
             $this->db->where('a.date >= "'.$from.'" && a.date <= "'.$to.'"');
         }
         $this->db->order_by('a.date','DESC');
@@ -47,14 +48,15 @@ class Announcements_model extends CI_Model{
         return $query->result();
     }
     public function getAllDataSubjects(){
+        $user = $this->session->userdata['user'];
         //get subjects data
         $this->db->select('s.*')
-        ->from('tbl_teacher_subjects ts')
-        ->join('tbl_subject s','s.id = ts.subject_id','inner')
+        ->from('tbl_subject s')
+        ->join('tbl_section sec','s.section_id = sec.id','inner')
         ->where('s.status', 'saved');
         //user type conditions 
         if($this->user->user_type == 'teacher'){
-            $this->db->where('ts.teacher_id',$this->user->user_id);
+            $this->db->where('sec.teacher_id',$this->user->user_id);
         }
         $this->db->order_by('s.subject_name');
 

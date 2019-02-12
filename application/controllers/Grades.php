@@ -68,6 +68,12 @@ class Grades extends CI_Controller {
     }
     public function getSections(){
         $this->grades_model->getSections();
+	}	
+    public function lockGrades(){
+        $this->grades_model->lockGrades();
+	}
+    public function unlockGrades(){
+        $this->grades_model->unlockGrades();
 	}
 	public function returnStudentGrades(){
 		// $data = $this->grades_model->studentGradeList2();
@@ -91,6 +97,33 @@ class Grades extends CI_Controller {
 			echo '<td style="width:10%"><input name="grade_2[]" required type="text" value="'.$each->period_2.'"></td>';
 			echo '<td style="width:10%"><input name="grade_3[]" required type="text" value="'.$each->period_3.'"></td>';
 			echo '<td style="width:10%"><input name="grade_4[]" required type="text" value="'.$each->period_4.'"></td>';
+		echo '</tr>';
+        } 
+		echo	'</tbody>';
+		echo	'</table>';
+	}
+	public function returnStudentGrades2(){
+		// $data = $this->grades_model->studentGradeList2();
+		$data = $this->grades_model->studentGradeList23();
+		// $this->load->view('grades/ajax/return', $data);
+		echo '<table class="table table-hovered table-striped datatables">';
+		echo	'<thead>';
+			echo	'<tr>';
+				echo	'<th>Subject</th>';
+				echo	'<th>1st</th>';
+				echo	'<th>2nd</th>';
+				echo	'<th>3rd</th>';
+				echo	'<th>4th</th>';
+			echo	'</tr>';
+		echo	'</thead>';
+		echo	'<tbody>';
+		foreach($data as $each){
+        echo '<tr>';
+			echo '<td style="width:40%">'.$each->subject_name.'</td>';
+			echo '<td style="width:10%">'.$each->period_1.'</td>';
+			echo '<td style="width:10%">'.$each->period_2.'</td>';
+			echo '<td style="width:10%">'.$each->period_3.'</td>';
+			echo '<td style="width:10%">'.$each->period_4.'</td>';
 		echo '</tr>';
         } 
 		echo	'</tbody>';

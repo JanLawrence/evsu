@@ -114,6 +114,34 @@ class Grades_model extends CI_Model{
         $query = $this->db->query($sql);
         return $query->result();
     }
+    public function studentGradeList23(){
+        $teacher = $_POST['teacher'];
+        $student = $_POST['student'];
+        $year = $_POST['year'];
+        $sql = "SELECT 
+                    sub.id sub_id,
+                    sub.subject_name,
+                    grade.*
+                FROM tbl_subject sub
+                LEFT JOIN (
+                    SELECT 
+                        *
+                    FROM tbl_students_grade sg
+                    WHERE sg.student_id = $student
+                    AND sg.year = $year
+                ) grade
+                ON grade.subject_id = sub.id
+                INNER JOIN 
+                    tbl_section sec
+                ON sec.id = sub.section_id
+                INNER JOIN
+                    tbl_teacher t
+                ON t.id = sec.teacher_id
+                WHERE t.id = $teacher
+                ";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
     public function studentGradeList3(){
         $user = $this->session->userdata['user'];
         $stud = $_REQUEST['id'];
@@ -225,11 +253,32 @@ class Grades_model extends CI_Model{
                     'date_created' => date('Y-m-d H:i:s')
                 );
                 $this->db->insert('tbl_students_grade', $data); // insert into tbl_students_grade
+                $studentgradeId = $this->db->insert_id(); 
+                $data2 = array(
+                    'students_grade_id' => $studentgradeId,
+                    'period_1' => 'no',
+                    'period_2' => 'no',
+                    'period_3' => 'no',
+                    'period_4' => 'no',
+                    'created_by' => $userData->user_id,
+                    'date_created' => date('Y-m-d H:i:s')
+                );
+                $this->db->insert('tbl_lock_grade', $data2); // insert into tbl_students_grade
             } else {
-                $this->db->set('period_1', $each);
-                $this->db->set('period_2', $_POST['grade_2'][$key]);
-                $this->db->set('period_3', $_POST['grade_3'][$key]);
-                $this->db->set('period_4', $_POST['grade_4'][$key]);
+                $querylock = $this->db->get_where('tbl_lock_grade', array('students_grade_id' => $check[0]->id));
+                $lock = $querylock->result();
+                if($lock[0]->period_1 == 'no'){
+                    $this->db->set('period_1', $each);
+                }
+                if($lock[0]->period_2 == 'no'){
+                    $this->db->set('period_2', $_POST['grade_2'][$key]);
+                }
+                if($lock[0]->period_3 == 'no'){
+                    $this->db->set('period_3', $_POST['grade_3'][$key]);
+                }
+                if($lock[0]->period_4 == 'no'){
+                    $this->db->set('period_4', $_POST['grade_4'][$key]);
+                }
                 $this->db->set('modified_by', $userData->user_id);
                 $this->db->set('date_modified', date('Y-m-d H:i:s'));
                 $this->db->where('id', $check[0]->id);
@@ -246,7 +295,37 @@ class Grades_model extends CI_Model{
         $this->db->insert('tbl_user_logs', $dataLog); // insert into tbl_user_logs
         $this->session->set_flashdata('msg', 'Grades was successfully saved.');
         redirect(base_url().'grades/add'); //redirect back to grade page
-	}
+    }
+    public function lockGrades(){
+        $userData = $this->session->userdata['user'];
+        $querylock = $this->db->get_where('tbl_lock_grade', array('created_by' => $userData->user_id));
+        $lock = $querylock->result();
+        foreach($lock as $each){
+            $this->db->set('period_1', isset($_POST['period_1']) ? 'yes' : 'no');
+            $this->db->set('period_2', isset($_POST['period_2']) ? 'yes' : 'no');
+            $this->db->set('period_3', isset($_POST['period_3']) ? 'yes' : 'no');
+            $this->db->set('period_4', isset($_POST['period_4']) ? 'yes' : 'no');
+            $this->db->set('modified_by', $userData->user_id);
+            $this->db->set('date_modified', date('Y-m-d H:i:s'));
+            $this->db->where('id', $lock[0]->id);
+            $this->db->update('tbl_lock_grade');
+        }
+    }
+    public function unlockGrades(){
+        $userData = $this->session->userdata['user'];
+        $querylock = $this->db->get_where('tbl_lock_grade', array('created_by' => $_REQUEST['id']));
+        $lock = $querylock->result();
+        foreach($lock as $each){
+            $this->db->set('period_1', 'no');
+            $this->db->set('period_2', 'no');
+            $this->db->set('period_3', 'no');
+            $this->db->set('period_4', 'no');
+            $this->db->set('modified_by', $userData->user_id);
+            $this->db->set('date_modified', date('Y-m-d H:i:s'));
+            $this->db->where('id', $lock[0]->id);
+            $this->db->update('tbl_lock_grade');
+        }
+    }
    /*  public function delete(){
         foreach($_POST['teacherId'] as $each){ // looping the ids for tbl_teacher
             $this->db->delete('tbl_teacher', array('id' => $each)); // delete from tbl_teacher

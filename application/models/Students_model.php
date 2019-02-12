@@ -41,6 +41,37 @@ class Students_model extends CI_Model{
         $query = $this->db->get(); // get results of query
         return $query->result();
     }
+    public function gengrades3($year){
+        $user = $this->session->userdata['user'];
+        if($user->user_type == 'parent'){
+            $queryCheck = $this->db->get_where('tbl_student_guardian', array('guardian_id' => $user->user_id));
+            $data = $queryCheck->result();
+            $student = $data[0]->student_id;
+        } else {
+            $student = $user->user_id;
+        }
+        $sql = "SELECT 
+                    sub.id sub_id,
+                    sub.subject_name,
+                    grade.*
+                FROM tbl_subject sub
+                LEFT JOIN (
+                    SELECT 
+                        *
+                    FROM tbl_students_grade sg
+                    WHERE sg.student_id = $student
+                    AND sg.year = $year
+                ) grade
+                ON grade.subject_id = sub.id
+                INNER JOIN 
+                    tbl_section sec
+                ON sec.id = sub.section_id
+                INNER JOIN
+                    tbl_teacher t
+                ON t.id = sec.teacher_id";
+         $query = $this->db->query($sql);
+         return $query->result();
+    }
     public function gengrades2($year){
         $user = $this->session->userdata['user'];
         if($user->user_type == 'student'){
@@ -157,10 +188,10 @@ class Students_model extends CI_Model{
 
         // data that will be inserted to tbl_credentials
         $data = array(
-            'username' => $_POST['firstName'],
-            'password' => $this->encryptpass->pass_crypt($_POST['schoolId']),
+            'username' => $_POST['schoolId'],
+            'password' => $this->encryptpass->pass_crypt('12345678'),
             'user_type' => 'student',
-            'confirm' => 'no',
+            'confirm' => 'yes',
             'user_id' => $studentId,
             'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')

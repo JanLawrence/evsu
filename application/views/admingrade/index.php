@@ -51,8 +51,6 @@
                                             <th>Grade</th>
                                             <th>Section Name</th>
                                             <th>Adviser</th>
-                                            <th>Subject</th>
-                                            <th>Teacher</th>
                                             <!-- <th>Status</th> -->
                                             <th>View</th>
                                             <th>Change</th>
@@ -64,25 +62,17 @@
                                             <td><?= $each->grade?></td>
                                             <td><?= $each->section ?></td>
                                             <td><?= $each->t_adviser_name?></td>
-                                            <td><?= $each->subject_name?></td>
-                                            <td><?= $each->sub_t_name?></td>
                                             <!-- <td></td> -->
                                             <td>
                                                 <a href="#" 
-                                                    data-section="<?=$each->section_id?>" 
-                                                    data-subject="<?=$each->sub_id?>" 
-                                                    data-teacher="<?=$each->sub_t_id?>" 
-                                                    data-grade="<?=$each->grade?>"
+                                                    data-teacher="<?=$each->t_adviser_id?>"
                                                     class="btnViewGrade">
                                                     View
                                                 </a>
                                             </td>
                                             <td>
-                                                <a href="#" 
-                                                    data-section="<?=$each->section_id?>" 
-                                                    data-subject="<?=$each->sub_id?>" 
-                                                    data-teacher="<?=$each->sub_t_id?>" 
-                                                    data-grade="<?=$each->grade?>"
+                                                <a href="#"
+                                                    data-teacher="<?=$each->t_adviser_id?>"
                                                     class="btnChangeGrade">
                                                     Change
                                                 </a>
@@ -111,8 +101,6 @@
                         <p>Grade: <span class="grade" style="font-weight: bolder"></span></p>
                         <p>Section Name: <span class="section" style="font-weight: bolder"></span></p>
                         <p>Adviser: <span class="adviser" style="font-weight: bolder"></span></p>
-                        <p>Subject: <span class="subject" style="font-weight: bolder"></span></p> 
-                        <p>Teacher: <span class="teacher" style="font-weight: bolder"></span></p>
                         <p>Year: <span class="year" style="font-weight: bolder"></span></p>
                     </div>
                 </div>
@@ -139,30 +127,21 @@
 
             var grade_name = $(this).closest('tr').find('td:nth-child(1)').text();
             var section_name = $(this).closest('tr').find('td:nth-child(2)').text();
-            var subject_name = $(this).closest('tr').find('td:nth-child(4)').text();
-            var teacher_name = $(this).closest('tr').find('td:nth-child(5)').text();
             var adviser_name = $(this).closest('tr').find('td:nth-child(3)').text();
             $('#viewModal').find('span.grade').text(grade_name);
             $('#viewModal').find('span.section').text(section_name);
             $('#viewModal').find('span.adviser').text(adviser_name);
-            $('#viewModal').find('span.subject').text(subject_name);
-            $('#viewModal').find('span.teacher').text(teacher_name);
             $('#viewModal').find('span.year').text(year_name);
-            $.post(URL + 'admingrade/viewGrade', {'teacher': teacher, 'grade': grade, 'year':year, 'section': section, 'subject':subject})
+            $.post(URL + 'admingrade/viewGrade', {'teacher': teacher, 'year':year})
             .done(function(returnData){
                 $('.returnHere').html(returnData);
             })
             $('#viewModal').modal('toggle')
         })
         $('table').on('click', '.btnChangeGrade', function(){
-            var section = $(this).attr('data-section');
-            var subject = $(this).attr('data-subject');
             var teacher= $(this).attr('data-teacher');
-            var grade = $(this).attr('data-grade');
-            var year = $('select[name="school_year"]').val();
-
             if(confirm('Do you want to change the status?')){
-                $.post(URL + 'admingrade/changeGrade', {'teacher': teacher, 'grade': grade, 'year':year, 'section': section, 'subject':subject})
+                $.post(URL + 'grades/unlockGrades', {'id': teacher})
                 .done(function(returnData){
                     alert('Success');
                 })

@@ -1,3 +1,11 @@
+<?php 
+
+    $userData = $this->session->userdata['user']; 
+
+    if($userData->user_type == 'parent'){
+        $userData->user_type = 'guardian';
+    }
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-7 p-r-0 title-margin-right">
@@ -26,13 +34,35 @@
                 <h6 class="mb-4"><i class="ti-comments"></i> <?= $user[0]->name?></h6>
                 <?php if(!empty($chat)): ?>
                 <?php foreach($chat as $each): ?>
-                <div class="card <?= $each->user_type == 'teacher' ? 'text-white bg-primary' : 'bg-light' ?> mb-3">
-                    <div class="card-body" > 
-                        <p style="<?= $each->user_type == 'teacher' ? 'color: #fff!important' : '' ?>"><?= $each->user_type == 'teacher' ? $each->teacher_name : $each->parent_name ?><p>
-                        <p style="<?= $each->user_type == 'teacher' ? 'color: #fff!important' : '' ?>"><?= date('F d, Y H:i: A', strtotime($each->date_created))?><p>
-                        <p style="<?= $each->user_type == 'teacher' ? 'color: #fff!important' : '' ?>"><?= $each->content ?><p>
+                <?php if($each->user_type == $userData->user_type): ?>
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card <?= $each->user_type == 'teacher' ? 'text-white bg-primary' : 'bg-light' ?> mb-3">
+                            <div class="card-body" > 
+                                <p style="<?= $each->user_type == 'teacher' ? 'color: #fff!important' : '' ?>"><?= $each->user_type == 'teacher' ? $each->teacher_name : $each->parent_name ?><p>
+                                <p style="<?= $each->user_type == 'teacher' ? 'color: #fff!important' : '' ?>"><?= date('F d, Y H:i: A', strtotime($each->date_created))?><p>
+                                <p style="<?= $each->user_type == 'teacher' ? 'color: #fff!important' : '' ?>"><?= $each->content ?><p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <?php else: ?>  
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card <?= $each->user_type == 'teacher' ? 'text-white bg-primary' : 'bg-light' ?> mb-3">
+                            <div class="card-body" > 
+                                <p style="<?= $each->user_type == 'teacher' ? 'color: #fff!important' : '' ?>"><?= $each->user_type == 'teacher' ? $each->teacher_name : $each->parent_name ?><p>
+                                <p style="<?= $each->user_type == 'teacher' ? 'color: #fff!important' : '' ?>"><?= date('F d, Y H:i: A', strtotime($each->date_created))?><p>
+                                <p style="<?= $each->user_type == 'teacher' ? 'color: #fff!important' : '' ?>"><?= $each->content ?><p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div> 
+                <?php endif; ?>   
                 <?php endforeach; ?>   
                 <?php else:?>
                     <div class="card">

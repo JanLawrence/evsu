@@ -7,32 +7,33 @@ class Admingrade_model extends CI_Model{
     }
     public function subList(){
         $sql = "SELECT 
-                    ts.grade,
+                    sec.grade,
                     sec.id section_id,
                     sec.section,
-                    sub.id sub_id,
-                    sub.subject_name,
-                    t.id sub_t_id,
-                    CONCAT(t.last_name,', ',t.first_name,' ',t.last_name) as sub_t_name,
-                    t_adviser.id t_adviser_id,
-                    CONCAT(t_adviser.last_name,', ',t_adviser.first_name,' ',t_adviser.last_name) as t_adviser_name
-                FROM 
-                    tbl_teacher_subjects ts
-                LEFT JOIN
+                    t.id t_adviser_id,
+                    CONCAT(t.last_name,', ',t.first_name,' ',t.last_name) as t_adviser_name
+                FROM
                     tbl_teacher t
-                ON t.id = ts.teacher_id
-                LEFT JOIN
-                    tbl_subject sub
-                ON sub.id = ts.subject_id
                 LEFT JOIN
                     tbl_section sec
-                ON sec.id = ts.section_id
-                LEFT JOIN
-                    tbl_teacher t_adviser
-                ON t_adviser.id = sec.teacher_id
+                ON sec.teacher_id = t.id
                 ";
         $query = $this->db->query($sql);
         return $query->result();
+    }
+    public function studentPerTeacher2(){
+        $sql = "SELECT 
+                    stud.*
+                FROM tbl_students stud
+                INNER JOIN 
+                    tbl_section sec
+                ON sec.id = stud.section_id
+                INNER JOIN
+                    tbl_teacher t
+                ON t.id = sec.teacher_id
+                WHERE t.id = ".$_POST['teacher'];
+         $query = $this->db->query($sql);
+         return $query->result();
     }
     public function studentGradeList(){
         $teacher = $_POST['teacher'];

@@ -13,7 +13,7 @@ class Admingrade extends CI_Controller {
 	}
 	public function viewGrade()
 	{	
-        $data['grade'] = $this->admingrade_model->studentGradeList();
+		$data['students'] = $this->admingrade_model->studentPerTeacher2();
 		$this->load->view('admingrade/ajax/view', $data);
 	}
 	public function changeGrade()

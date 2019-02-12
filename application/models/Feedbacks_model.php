@@ -6,14 +6,12 @@ class Feedbacks_model extends CI_Model{
         $this->user = isset($this->session->userdata['user']) ? $this->session->userdata['user'] : ''; //get session
     }
     public function getAllDataFeedbacks($id){
-        $this->db->select('f.*, t.first_name t_fname , t.last_name t_lname, t.middle_name t_mname,  s.id subject_id , s.subject_name')
+        $this->db->select('f.*, t.first_name t_fname , t.last_name t_lname, t.middle_name t_mname')
          ->from('tbl_feedback f')
          ->join('tbl_teacher t', 't.id = f.teacher_id', 'inner')
-         ->join('tbl_teacher_subjects ts', 't.id = ts.teacher_id', 'inner')
-         ->join('tbl_subject s', 's.id = ts.subject_id', 'inner')
+         ->join('tbl_section sec', 'sec.teacher_id = t.id', 'inner')
          ->where('f.status', 'saved')
-         ->where('t.status', 'saved')
-         ->where('s.status', 'saved');
+         ->where('t.status', 'saved');
         if($id != 0){ // if id not equal to 0 the query will filter per feedback id 
             $this->db->where('f.id', $id);
         }
@@ -21,15 +19,13 @@ class Feedbacks_model extends CI_Model{
         return $query->result();
     }
     public function genFeedback($from,$to){
-        $this->db->select('f.*, t.first_name t_fname , t.last_name t_lname, t.middle_name t_mname,  s.id subject_id , s.subject_name')
+        $this->db->select('f.*, t.first_name t_fname , t.last_name t_lname, t.middle_name t_mname')
         ->from('tbl_feedback f')
         ->join('tbl_teacher t', 't.id = f.teacher_id', 'inner')
-        ->join('tbl_teacher_subjects ts', 't.id = ts.teacher_id', 'inner')
-        ->join('tbl_subject s', 's.id = ts.subject_id', 'inner')
+        ->join('tbl_section sec', 'sec.teacher_id = t.id', 'inner')
         ->join('tbl_credentials cred', 'cred.id = f.created_by', 'inner')
         ->where('f.status', 'saved')
         ->where('t.status', 'saved')
-        ->where('s.status', 'saved')
         ->where('cred.status', 'saved');
 
         if($this->user->user_type == 'student'){
@@ -46,17 +42,18 @@ class Feedbacks_model extends CI_Model{
     public function getAllDataTeachers(){
         //get teachers data
         $this->db->select('t.*')
-        ->from('tbl_teacher_student ts')
-        ->join('tbl_teacher t','t.id = ts.teacher_id','inner')
+        ->from('tbl_teacher t')
+        ->join('tbl_section sec','sec.teacher_id = t.id','inner')
+        ->join('tbl_students s','s.section_id = sec.id','inner')
         ->where('t.status', 'saved');
         //user type conditions 
         if($this->user->user_type = 'student'){
-            $this->db->where('ts.student_id',$this->user->user_id);
+            $this->db->where('s.id',$this->user->user_id);
         }
         $this->db->group_by('t.id');
         $this->db->order_by('t.last_name');
         
-        $query = $this->db->get('tbl_teacher'); // get all data for tbl_teacher
+        $query = $this->db->get(); // get all data for tbl_teacher
         return $query->result();
     }
 	public function addFeedback(){

@@ -28,4 +28,21 @@ $(function(){
             return false;
         }
     })
+    $('#lockForm').submit(function(){
+        var r = confirm('Are you sure you want to add this grades?');
+        var form = $(this).serialize();
+        if(r ==  true){
+            $.post(URL + 'grades/lockGrades', form)
+            .done(function(returnData){
+                alert('Grading(s) successfully locked.');
+                location.reload();
+            })
+            return false;
+        }else{
+            return false;
+        }
+    })
+    $('.lockbtn').click(function(){
+        $('#lockModal').modal('toggle');
+    })
 })

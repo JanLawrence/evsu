@@ -61,9 +61,9 @@ class Students extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 	public function studentgrade(){
-		$year = isset($_REQUEST['year']) ? $_REQUEST['year'] : 1;
+		$year = isset($_GET['school_year']) ? $_GET['school_year'] : 1;
 		$data['sy'] = $this->grades_model->getSchoolYear();
-		$data['grades'] = $this->students_model->gengrades2($year);
+		$data['grades'] = $this->students_model->gengrades3($year);
 		$this->load->view('templates/header');
 		$this->load->view('students/student-grade', $data);
 		$this->load->view('templates/footer');

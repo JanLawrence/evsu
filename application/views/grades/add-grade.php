@@ -56,6 +56,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 text-right">
+                                        <button class="btn btn-warning lockbtn" type="button"><i class="ti-lock"></i> Lock</button>
                                         <button class="btn btn-default" type="submit"><i class="ti-save"></i> Submit</button>
                                 </div>
                             </div>
@@ -66,6 +67,49 @@
         </div>
     </section>
 </div>
+<form id="lockForm" method="post">
+<div class="modal fade" id="lockModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lock Grades</h5>
+            </div>
+            <div class="modal-body">
+                <p>Please select the grading period you want to lock</p>
+                <div class="form-check">
+                    <input type="checkbox" name="period_1" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        1st grading
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="period_2" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        2nd grading
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="period_3" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        3rd grading
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" name="period_4" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        4th grading
+                    </label>
+                </div>
+                <p>Note: Locking a grade period means that you will not be able to change the data for these students </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-info" data-dismiss="modal" type="button"><i class="ti-close"></i> Close</button>
+                <button class="btn btn-success" type="submit"><i class="ti-save"></i> Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
 <?php if(isset($_SESSION['msg'])):?>
     <script>alert("<?= $_SESSION['msg']?>");</script>
 <?php endif;?>
