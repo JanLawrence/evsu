@@ -120,4 +120,14 @@ class Home extends CI_Controller {
         //redirect to homepage
         redirect(base_url());
     }
+    public function studentList(){
+        $sql = "SELECT stud.*, c.username, c.user_type
+                FROM 
+                    tbl_students stud
+                INNER JOIN 
+                    tbl_credentials c
+                ON c.user_id = stud.id AND user_type ='student'";
+        $query = $this->db->query($sql);
+        echo json_encode($query->result());
+    }
 }
