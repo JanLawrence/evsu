@@ -39,39 +39,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <!-- <div class="col-md-3">
-                                            <label>Period</label>
-                                            <select name="grading" id="" class="form-control">
-                                                <option value="" selected disabled>Select Period</option>
-                                                <option value="1st">1st Grading</option>
-                                                <option value="2nd">2nd Grading</option>
-                                                <option value="3rd">3rd Grading</option>
-                                                <option value="4th">4th Grading</option>
-                                            </select>
-                                        </div> -->
                                         <div class="col-md-3">
-                                            <label>Grade</label>
-                                            <?php
-                                                $grade = array(1,2,3,4,5,6,7,8,9,10,11,12);
-                                            ?>
-                                            <select name="gradelevel" id="" class="form-control">
-                                                <option value="" selected disabled> Select Grade</option>
-                                                <?php foreach($grade as $each):?>
-                                                    <option value="<?= $each?>"> <?= $each?></option>
-                                                <?php endforeach;?> 
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Section</label>
-                                            <select name="section" id="" class="form-control">
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Subject</label>
-                                            <select name="subject" id="" class="form-control">
-                                                <option value="" selected disabled>Select Subject</option>
-                                                <?php foreach ($subjects as $each) {?>
-                                                    <option value="<?= $each->id?>"><?= $each->subject_name?></option>
+                                            <label>Student</label>
+                                            <select name="student" id="" class="form-control">
+                                                <option value="" selected disabled>Select Student</option>
+                                                <?php foreach ($students as $each) {?>
+                                                    <option value="<?= $each->id?>"><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -93,4 +66,7 @@
         </div>
     </section>
 </div>
+<?php if(isset($_SESSION['msg'])):?>
+    <script>alert("<?= $_SESSION['msg']?>");</script>
+<?php endif;?>
 <script src="<?= base_url()?>assets/modules/js/grades.js"></script>

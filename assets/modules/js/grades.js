@@ -11,13 +11,11 @@ $(function(){
             $('select[name="section"]').html(append);
         })
     })
-    $('select[name="subject"]').change(function(){
+    $('select[name="student"]').change(function(){
         var year = $('select[name="school_year"]').val();
-        var grade = $('select[name="gradelevel"]').val();
-        var section = $('select[name="section"]').val();
-        var subject = $(this).val();
+        var student = $(this).val();
 
-        $.post(URL + 'grades/returnStudentGrades', {'grade': grade, 'year':year, 'section': section, 'subject':subject})
+        $.post(URL + 'grades/returnStudentGrades', {'year':year,'student':student})
         .done(function(returnData){
             $('.returnHere').html(returnData);
         })

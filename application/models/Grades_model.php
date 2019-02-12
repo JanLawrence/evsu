@@ -34,6 +34,21 @@ class Grades_model extends CI_Model{
     //     $query = $this->db->get();
     //     return $query->result();
     // }
+    public function studentPerTeacher2(){
+        $user = $this->session->userdata['user'];
+        $sql = "SELECT 
+                    stud.*
+                FROM tbl_students stud
+                INNER JOIN 
+                    tbl_section sec
+                ON sec.id = stud.section_id
+                INNER JOIN
+                    tbl_teacher t
+                ON t.id = sec.teacher_id
+                WHERE t.id = $user->user_id";
+         $query = $this->db->query($sql);
+         return $query->result();
+    }
     public function studentGradeList2(){
         $user = $this->session->userdata['user'];
         $subject = $_POST['subject'];
@@ -71,6 +86,34 @@ class Grades_model extends CI_Model{
         $query = $this->db->query($sql);
         return $query->result();
     }
+    public function studentGradeList22(){
+        $user = $this->session->userdata['user'];
+        $student = $_POST['student'];
+        $year = $_POST['year'];
+        $sql = "SELECT 
+                    sub.id sub_id,
+                    sub.subject_name,
+                    grade.*
+                FROM tbl_subject sub
+                LEFT JOIN (
+                    SELECT 
+                        *
+                    FROM tbl_students_grade sg
+                    WHERE sg.student_id = $student
+                    AND sg.year = $year
+                ) grade
+                ON grade.subject_id = sub.id
+                INNER JOIN 
+                    tbl_section sec
+                ON sec.id = sub.section_id
+                INNER JOIN
+                    tbl_teacher t
+                ON t.id = sec.teacher_id
+                WHERE t.id = $user->user_id
+                ";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
     public function studentGradeList3(){
         $user = $this->session->userdata['user'];
         $stud = $_REQUEST['id'];
@@ -105,6 +148,37 @@ class Grades_model extends CI_Model{
         $query = $this->db->query($sql);
         return $query->result();
     }
+    public function studentGradeList4(){
+        $user = $this->session->userdata['user'];
+        $stud = $_REQUEST['id'];
+        $year = $_REQUEST['year'];
+        $sql = "SELECT 
+                    grade.*, sub.subject_name,
+                    (grade.period_1 + grade.period_2 + grade.period_3 + grade.period_4) / 4 average,
+                    CASE
+                        WHEN ((grade.period_1 + grade.period_2 + grade.period_3 + grade.period_4) / 4) >= 75 THEN 'Passed'
+                        WHEN ((grade.period_1 + grade.period_2 + grade.period_3 + grade.period_4) / 4) < 75 THEN 'Failed'
+                    ELSE ''
+                    END remarks
+                FROM tbl_subject sub
+                LEFT JOIN (
+                    SELECT 
+                        *
+                    FROM tbl_students_grade sg
+                    WHERE sg.student_id = $stud
+                    AND sg.year = $year
+                ) grade
+                ON grade.subject_id = sub.id
+                INNER JOIN 
+                    tbl_section sec
+                ON sec.id = sub.section_id
+                INNER JOIN
+                    tbl_teacher t
+                ON t.id = sec.teacher_id
+                WHERE t.id = $user->user_id";
+        $query = $this->db->query($sql);
+        return $query->result();
+    }
     public function studentPerTeacher(){
         $user = $this->session->userdata['user'];
         $this->db->select('t.*');
@@ -133,55 +207,36 @@ class Grades_model extends CI_Model{
         echo json_encode($query->result());
     }
 	public function addGrade(){
-        // print_r($_POST);
-        // exit;
-        $user = $this->session->userdata['user'];
-        $this->db->select('t.*');
-        $this->db->from('tbl_teacher t');
-        $this->db->where('t.id', $user->user_id);
-        $query = $this->db->get(); // get results of query
-        $userData = $query->result();
         // data that will be inserted to tbl_students_grade
+        $userData = $this->session->userdata['user'];
         foreach ($_POST['grade_1'] as $key => $each) {
-
-            $teacherstud_id = $this->db->get_where('tbl_teacher_student', array('student_id' => $_POST['stud_id'][$key], 'teacher_id' => $userData[0]->id));
-            $teacherstud_id = $teacherstud_id->result();
-            $teachersubj_id = $this->db->get_where('tbl_teacher_subjects', array('section_id' => $_POST['section'], 'subject_id' => $_POST['subject'], 'teacher_id' => $userData[0]->id, 'grade' => $_POST['gradelevel']));
-            $teachersubj_id = $teachersubj_id->result();
-
-            $queryCheck = $this->db->get_where('tbl_students_grade', array('teacher_student_id' => $teacherstud_id[0]->id, 'teacher_subjects_id' => $teachersubj_id[0]->id, 'year' => $_POST['school_year']));
-            $dataCheck = $queryCheck->result();
-            if(empty($dataCheck)){
-
+            $query = $this->db->get_where('tbl_students_grade', array('subject_id' => $_POST['subject'][$key], 'student_id' =>  $_POST['student'], 'year' => $_POST['school_year']));
+            $check = $query->result();
+            if(empty($check)){
                 $data = array(
-                    'teacher_student_id' => $teacherstud_id[0]->id,
-                    'teacher_subjects_id' => $teachersubj_id[0]->id,
+                    'subject_id' => $_POST['subject'][$key],
+                    'student_id' => $_POST['student'],
                     'year' => $_POST['school_year'],
                     'period_1' => $each,
                     'period_2' => $_POST['grade_2'][$key],
                     'period_3' => $_POST['grade_3'][$key],
                     'period_4' => $_POST['grade_4'][$key],
-                    'created_by' => $user->user_id,
+                    'created_by' => $userData->user_id,
                     'date_created' => date('Y-m-d H:i:s')
                 );
-                
                 $this->db->insert('tbl_students_grade', $data); // insert into tbl_students_grade
             } else {
-                if($dataCheck[0]->locked == 'no'){
-                    $this->db->set('period_1', $each);
-                    $this->db->set('period_2', $_POST['grade_2'][$key]);
-                    $this->db->set('period_3', $_POST['grade_3'][$key]);
-                    $this->db->set('period_4', $_POST['grade_4'][$key]);
-                    $this->db->set('locked', 'yes');
-                    $this->db->set('modified_by', $user->user_id);
-                    $this->db->set('date_modified', date('Y-m-d H:i:s'));
-                    $this->db->where('id', $dataCheck[0]->id);
-                    $this->db->update('tbl_students_grade');
-                }
+                $this->db->set('period_1', $each);
+                $this->db->set('period_2', $_POST['grade_2'][$key]);
+                $this->db->set('period_3', $_POST['grade_3'][$key]);
+                $this->db->set('period_4', $_POST['grade_4'][$key]);
+                $this->db->set('modified_by', $userData->user_id);
+                $this->db->set('date_modified', date('Y-m-d H:i:s'));
+                $this->db->where('id', $check[0]->id);
+                $this->db->update('tbl_students_grade');
             }
         } 
         
-        $userData = $this->session->userdata['user'];
         $dataLog = array(
             'user_id' => $userData->user_id,
             'user_type' => $userData->user_type,
