@@ -130,4 +130,16 @@ class Home extends CI_Controller {
         $query = $this->db->query($sql);
         echo json_encode($query->result());
     }
+    public function studentAttendance(){
+        $data = array(
+            'student_id' => $session->user_id,
+            'attendance_date' => date('Y-m-d'),
+            'type' => $_REQUEST['type'],
+            'meridiem' => $_REQUEST['meridiem'],
+            'time' => date('Y-m-d H:i:s'),
+            'created_by' => 0,
+            'date_created' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_attendance', $data); // insert into tbl_attendance
+    }
 }
