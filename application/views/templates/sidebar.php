@@ -31,12 +31,14 @@
                     <?php endif;?>
                     <li><a href="<?= base_url(); ?>logs/userlogs"><i class="ti-agenda"></i> User Logs</a></li>
                     <li><a href="<?= base_url(); ?>help"><i class="ti-announcement"></i> Help</a></li>
+                    <li><a href="<?= base_url(); ?>attendance"><i class="ti-comments"></i> Attendance</a></li>
                 <?php endif;?>
 
 
                 <?php if($user->user_type == 'teacher'):?>
                     <li><a href="<?= base_url(); ?>announcements"><i class="ti-announcement"></i> Announcements</a></li>
                     <li><a href="<?= base_url(); ?>grades/add"><i class="ti-clipboard"></i> Grades</a></li>
+                    <li><a href="<?= base_url(); ?>attendance"><i class="ti-comments"></i> Attendance</a></li>
                     <!-- <li><a href="<?= base_url(); ?>students/studentattendance"><i class="ti-agenda"></i> Student Attendance</a></li> -->
                     <li><a href="<?= base_url(); ?>inbox"><i class="ti-comments"></i> Inbox</a></li>
                     <li><a href="<?= base_url(); ?>advisory"><i class="ti-write"></i> Class Cards</a></li>
@@ -51,6 +53,7 @@
                 <?php endif;?>
                 <?php if($user->user_type == 'parent'):?>
                     <li><a href="<?= base_url(); ?>students/studentgrade"><i class="ti-clipboard"></i> Student Grade</a></li>
+                    <li><a href="<?= base_url(); ?>attendance"><i class="ti-comments"></i> Attendance</a></li>
                     <li><a href="<?= base_url(); ?>inbox"><i class="ti-comments"></i> Inbox</a></li>
                 <?php endif;?>
             </ul>
