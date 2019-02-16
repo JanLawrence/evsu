@@ -121,12 +121,30 @@ class Home extends CI_Controller {
         redirect(base_url());
     }
     public function studentList(){
-        $sql = "SELECT stud.*, c.username, c.user_type
+        $sql = "SELECT stud.first_name, stud.middle_name, stud.last_name, stud.id student_id, IF(b.bio IS NOT NULL, b.bio, '') bio
                 FROM 
                     tbl_students stud
                 INNER JOIN 
                     tbl_credentials c
-                ON c.user_id = stud.id AND user_type ='student'";
+                ON c.user_id = stud.id AND user_type ='student'
+                LEFT JOIN 
+                    tbl_bio b
+                ON b.student_id = stud.id";
+        $query = $this->db->query($sql);
+        echo json_encode($query->result());
+    }
+    public function studentBio(){
+        $student = $_REQUEST['student_id'];
+        $sql = "SELECT stud.first_name, stud.middle_name, stud.last_name, stud.id student_id, IF(b.bio IS NOT NULL, b.bio, '') bio
+                FROM 
+                    tbl_students stud
+                INNER JOIN 
+                    tbl_credentials c
+                ON c.user_id = stud.id AND user_type ='student'
+                LEFT JOIN 
+                    tbl_bio b
+                ON b.student_id = stud.id
+                WHERE stud.id = $student";
         $query = $this->db->query($sql);
         echo json_encode($query->result());
     }
