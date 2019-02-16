@@ -71,7 +71,8 @@ class Students_model extends CI_Model{
                 ON t.id = sec.teacher_id
                 INNER JOIN 
                     tbl_students stud
-                ON stud.section_id = sec.id";
+                ON stud.section_id = sec.id
+                GROUP BY sub.id";
          $query = $this->db->query($sql);
          return $query->result();
     }
@@ -219,7 +220,7 @@ class Students_model extends CI_Model{
         
         // data that will be inserted to tbl_credentials
         $data = array(
-            'username' => $_POST['g_lastName'],
+            'username' => $_POST['g_firstName'],
             'password' => $this->encryptpass->pass_crypt('pass-123'),
             'user_type' => 'parent',
             'confirm' => 'yes',
