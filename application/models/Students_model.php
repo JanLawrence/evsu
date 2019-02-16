@@ -68,7 +68,10 @@ class Students_model extends CI_Model{
                 ON sec.id = sub.section_id
                 INNER JOIN
                     tbl_teacher t
-                ON t.id = sec.teacher_id";
+                ON t.id = sec.teacher_id
+                INNER JOIN 
+                    tbl_students stud
+                ON stud.section_id = sec.id";
          $query = $this->db->query($sql);
          return $query->result();
     }
@@ -205,7 +208,7 @@ class Students_model extends CI_Model{
             'middle_name' => $_POST['g_middleName'],
             'last_name' => $_POST['g_lastName'],
             'email' => $_POST['g_email'],
-            'registered' => 'no',
+            'registered' => 'yes',
             'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
         );
@@ -216,10 +219,10 @@ class Students_model extends CI_Model{
         
         // data that will be inserted to tbl_credentials
         $data = array(
-            'username' => 'guardian_'.$guardianId,
+            'username' => $_POST['g_lastName'],
             'password' => $this->encryptpass->pass_crypt('pass-123'),
             'user_type' => 'parent',
-            'confirm' => 'no',
+            'confirm' => 'yes',
             'user_id' => $guardianId,
             'created_by' => $this->user->id,
             'date_created' => date('Y-m-d H:i:s')
