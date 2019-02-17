@@ -150,7 +150,7 @@ class Home extends CI_Controller {
     }
     public function studentAttendance(){
         $data = array(
-            'student_id' => $session->user_id,
+            'student_id' => $_REQUEST['student_id'],
             'attendance_date' => date('Y-m-d'),
             'type' => $_REQUEST['type'],
             'meridiem' => $_REQUEST['meridiem'],
@@ -159,5 +159,14 @@ class Home extends CI_Controller {
             'date_created' => date('Y-m-d H:i:s')
         );
         $this->db->insert('tbl_attendance', $data); // insert into tbl_attendance
+    }
+    public function studentInsertBio(){
+        $data = array(
+            'student_id' => $_REQUEST['student_id'],
+            'bio' => $_REQUEST['bio'],
+            'created_by' => 0,
+            'date_created' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_bio', $data); // insert into tbl_bio
     }
 }
