@@ -19,12 +19,18 @@ class Announcements_model extends CI_Model{
     }
     public function genAnnouncements($from,$to){
         //query for announcements
+        if($this->user->user_type == 'parent'){
+            $queryCheck = $this->db->get_where('tbl_student_guardian', array('guardian_id' => $this->user->user_id));
+            $dataCheck = $queryCheck->result();
+        }
+
+
         $this->db->select('a.*, s.id subject_id , s.subject_name, CONCAT(t.last_name, ", ", t.first_name, " ", t.middle_name) name')
          ->from('tbl_announcement a')
          ->join('tbl_subject s', 's.id = a.subject_id', 'inner')
          ->join('tbl_credentials cred', 'cred.id = a.created_by', 'inner')
          ->join('tbl_teacher t','t.id = cred.user_id','inner');
-        if ($this->user->user_type == 'student'){
+        if ($this->user->user_type == 'student' || $this->user->user_type == 'parent'){
         $this->db->join('tbl_section sec', 'sec.id = s.section_id','inner');
         $this->db->join('tbl_students stud', 'sec.id = stud.section_id','inner');
         }
@@ -40,6 +46,10 @@ class Announcements_model extends CI_Model{
             $this->db->where('a.date >= "'.$from.'" && a.date <= "'.$to.'"');
         }elseif($this->user->user_type == 'student'){
             $this->db->where('stud.id', $this->user->user_id);
+            $this->db->where('a.date >= "'.$from.'" && a.date <= "'.$to.'"');
+        }elseif($this->user->user_type == 'parent'){
+         
+            $this->db->where('stud.id', $dataCheck[0]->student_id);
             $this->db->where('a.date >= "'.$from.'" && a.date <= "'.$to.'"');
         }
         $this->db->order_by('a.date','DESC');

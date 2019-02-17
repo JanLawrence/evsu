@@ -45,10 +45,9 @@
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox" ></th>
-                                            <th>Grade</th>
+                                            <th>Grade Level</th>
                                             <th>Section</th>
                                             <th>Subject</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,12 +57,6 @@
                                             <td><?= $each->grade ?></td>
                                             <td><?= $each->section ?></td>
                                             <td><?= $each->subject_name ?></td>
-                                            <td>    
-                                                <span class="badge badge-pill badge-<?= ($each->status == 'saved') ? 'success' : 'danger'?>">
-                                                    <?= ($each->status == 'saved') ? 'Active ' : 'Inactive'?>
-                                                </span>
-                                            </td>
-                                            <td></td>
                                         </tr>
                                         <?php endforeach;?>
                                     </tbody>

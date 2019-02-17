@@ -52,6 +52,7 @@
                     <li><a href="<?= base_url(); ?>attendance"><i class="ti-comments"></i> Attendance</a></li>
                 <?php endif;?>
                 <?php if($user->user_type == 'parent'):?>
+                    <li><a href="<?= base_url(); ?>announcements/announcementList"><i class="ti-announcement"></i> Announcements</a></li>
                     <li><a href="<?= base_url(); ?>students/studentgrade"><i class="ti-clipboard"></i> Student Grade</a></li>
                     <li><a href="<?= base_url(); ?>attendance"><i class="ti-comments"></i> Attendance</a></li>
                     <li><a href="<?= base_url(); ?>inbox"><i class="ti-comments"></i> Inbox</a></li>

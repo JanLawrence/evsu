@@ -68,7 +68,7 @@
                                     <h5 class="modal-title text-center">Forgot Password</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <p class="text-center">Please enter your email below. We will be sending and email to change your password.</p>
+                                    <p class="text-center">Please enter your registered email. We will be sending and email to change your password.</p>
                                     <div class="form-group">
                                         <label>Email</label>
                                             <input type="text" class="form-control forgotemail" name="email">

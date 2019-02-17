@@ -61,7 +61,7 @@
                                             </select>
                                             <?= form_error('section', '<span class="error"><i class="ti-alert"></i> ','</span>')?></span>
                                         </div>
-                                        <label class="col-sm-1 col-form-label">Teacher:</label>
+                                        <!-- <label class="col-sm-1 col-form-label">Teacher:</label> -->
                                         <!-- <div class="col-sm-5">
                                             <select name="teacher" class="form-control">
                                                 <option value="" selected disabled> Select Adviser</option>
