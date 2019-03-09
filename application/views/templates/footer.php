@@ -1,3 +1,12 @@
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <footer class="text-right">
+                    <p>All Rights Reserved, Laboratory School Department, School Year 2018-2019</p>
+                </footer>
+            </div>
+        </div>
+    </div>
 </div>
         </div> <!-- content-wrap -->
        <!-- jquery vendor -->

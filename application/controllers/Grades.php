@@ -58,6 +58,7 @@ class Grades extends CI_Controller {
 		} else { //if validation failed, page will load again
 			// get data
 			$data['students'] = $this->grades_model->studentPerTeacher2();
+			$data['section'] = $this->grades_model->sectionList();
 			$data['sy'] = $this->grades_model->getSchoolYear();
 			// load page
 			$this->load->view('templates/header');
@@ -68,6 +69,9 @@ class Grades extends CI_Controller {
     }
     public function getSections(){
         $this->grades_model->getSections();
+	}	
+    public function returnStudentListPerSec(){
+        $this->grades_model->returnStudentListPerSec();
 	}	
     public function lockGrades(){
         $this->grades_model->lockGrades();

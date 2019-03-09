@@ -27,27 +27,36 @@
                     <div class="card-body">
                         <form action="add" method="post" id="addForm">
                             <div class="row mt-1">
-                                <div class="col-md-12">
-                                    <div class="form-group row">
-                                        <div class="col-md-3">
-                                            <label>School Year</label>
-                                            <select name="school_year" id="" class="form-control">
-                                                <?php foreach($sy as $each):?>
-                                                    <option value="<?= $each->id?>"> <?= $each->sy_from.' - '.$each->sy_to?></option>
-                                                <?php endforeach;?> 
-                                            </select>
-                                        </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>School Year</label>
+                                        <select name="school_year" id="" class="form-control">
+                                            <?php foreach($sy as $each):?>
+                                                <option value="<?= $each->id?>"> <?= $each->sy_from.' - '.$each->sy_to?></option>
+                                            <?php endforeach;?> 
+                                        </select>
                                     </div>
+                                </div>
+                                <div class="col-md-4">
                                     <div class="form-group row">
-                                        <div class="col-md-3">
-                                            <label>Student</label>
-                                            <select name="student" id="" class="form-control">
-                                                <option value="" selected disabled>Select Student</option>
-                                                <?php foreach ($students as $each) {?>
-                                                    <option value="<?= $each->id?>"><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
+                                        <label>Section</label>
+                                        <select name="section" id="" class="form-control">
+                                            <option value="" selected disabled>Select Section</option>
+                                            <?php foreach ($section as $each) {?>
+                                                <option value="<?= $each->id?>"><?= $each->grade.' - '.$each->section?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group row">
+                                        <label>Student</label>
+                                        <select name="student" id="" class="form-control">
+                                            <!-- <option value="" selected disabled>Select Student</option>
+                                            <?php foreach ($students as $each) {?>
+                                                <option value="<?= $each->id?>"><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name?></option>
+                                            <?php } ?> -->
+                                        </select>
                                     </div>
                                 </div>
                             </div>

@@ -34,6 +34,11 @@ class Grades_model extends CI_Model{
     //     $query = $this->db->get();
     //     return $query->result();
     // }
+    public function sectionList(){
+        $user = $this->session->userdata['user'];
+        $list = $this->db->get_where('tbl_section', array('teacher_id' => $user->user_id));
+        return $list->result();
+    }
     public function studentPerTeacher2(){
         $user = $this->session->userdata['user'];
         $sql = "SELECT 
@@ -48,6 +53,22 @@ class Grades_model extends CI_Model{
                 WHERE t.id = $user->user_id";
          $query = $this->db->query($sql);
          return $query->result();
+    }
+    public function returnStudentListPerSec(){
+        $user = $this->session->userdata['user'];
+        $sql = "SELECT 
+                    stud.*
+                FROM tbl_students stud
+                INNER JOIN 
+                    tbl_section sec
+                ON sec.id = stud.section_id
+                INNER JOIN
+                    tbl_teacher t
+                ON t.id = sec.teacher_id
+                WHERE t.id = $user->user_id
+                AND sec.id = ".$_POST['section'];
+         $query = $this->db->query($sql);
+         echo json_encode($query->result());
     }
     public function studentGradeList2(){
         $user = $this->session->userdata['user'];

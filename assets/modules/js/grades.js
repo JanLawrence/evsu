@@ -20,6 +20,18 @@ $(function(){
             $('.returnHere').html(returnData);
         })
     })
+    $('select[name="section"]').change(function(){
+        var section = $(this).val();
+        $.post(URL + 'grades/returnStudentListPerSec', {'section':section})
+        .done(function(returnData){
+            var data = $.parseJSON(returnData);
+            var append = '<option selected disabled value=""></option>';
+            $.each(data, function(key,a){
+                append += '<option value="'+a.id+'">'+a.last_name+', '+a.first_name+' '+a.middle_name+'</option>';
+            })
+            $('select[name="student"]').html(append);
+        })
+    })
     $('#addForm').submit(function(){
         var r = confirm('Are you sure you want to add this grades?');
         if(r ==  true){

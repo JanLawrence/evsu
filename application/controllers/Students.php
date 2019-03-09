@@ -60,6 +60,17 @@ class Students extends CI_Controller {
 		$this->load->view('students/student-log');
 		$this->load->view('templates/footer');
 	}
+	public function info(){
+		$session = $this->session->userdata['user'];
+
+		$student = $this->db->get_where('tbl_student_guardian', array('guardian_id' => $session->user_id));
+		$student = $student->result();
+
+		$data['students'] = $this->students_model->getAllDataStudents($student[0]->student_id);
+		$this->load->view('templates/header');
+		$this->load->view('students/student-info', $data);
+		$this->load->view('templates/footer');
+	}
 	public function studentgrade(){
 		$year = isset($_GET['school_year']) ? $_GET['school_year'] : 1;
 		$data['sy'] = $this->grades_model->getSchoolYear();
