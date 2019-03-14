@@ -20,8 +20,8 @@ class Subjects extends CI_Controller {
 		}
 
 		//set validation rules
-		$this->form_validation->set_rules('subject', 'Subject', 'required'. ($sub == 'add' ? '|is_unique[tbl_subject.subject_name]' : ''));
-		$this->form_validation->set_rules('section', 'Section', 'required');
+		$this->form_validation->set_rules('subject', 'Subject', 'required');
+		// $this->form_validation->set_rules('section', 'Section', 'required');
 		$this->form_validation->set_rules('grade', 'Grade', 'required');
 
 		//if validation is success

@@ -83,7 +83,7 @@ class Grades extends CI_Controller {
 		// $data = $this->grades_model->studentGradeList2();
 		$data = $this->grades_model->studentGradeList22();
 		// $this->load->view('grades/ajax/return', $data);
-		echo '<table class="table table-hovered table-striped datatables">';
+		echo '<table class="table table-hovered table-striped datatables" id="tableGrade">';
 		echo	'<thead>';
 			echo	'<tr>';
 				echo	'<th>Subject</th>';
@@ -91,20 +91,36 @@ class Grades extends CI_Controller {
 				echo	'<th>2nd</th>';
 				echo	'<th>3rd</th>';
 				echo	'<th>4th</th>';
+				echo	'<th>Average</th>';
 			echo	'</tr>';
 		echo	'</thead>';
 		echo	'<tbody>';
 		foreach($data as $each){
         echo '<tr>';
 			echo '<td style="width:40%">'.$each->subject_name.'<input name="subject[]" required type="hidden" value="'.$each->sub_id.'"></td>';
-			echo '<td style="width:10%"><input name="grade_1[]" required type="text" value="'.$each->period_1.'"></td>';
-			echo '<td style="width:10%"><input name="grade_2[]" required type="text" value="'.$each->period_2.'"></td>';
-			echo '<td style="width:10%"><input name="grade_3[]" required type="text" value="'.$each->period_3.'"></td>';
-			echo '<td style="width:10%"><input name="grade_4[]" required type="text" value="'.$each->period_4.'"></td>';
+			echo '<td style="width:10%"><input name="grade_1[]" required class="gradeBox" type="text" value="'.$each->period_1.'"></td>';
+			echo '<td style="width:10%"><input name="grade_2[]" required class="gradeBox"  type="text" value="'.$each->period_2.'"></td>';
+			echo '<td style="width:10%"><input name="grade_3[]" required class="gradeBox"  type="text" value="'.$each->period_3.'"></td>';
+			echo '<td style="width:10%"><input name="grade_4[]" required class="gradeBox" type="text" value="'.$each->period_4.'"></td>';
+			echo '<td style="width:10%"><span class="gradeAverage">'.(($each->period_1+$each->period_2+$each->period_3+$each->period_4) / 4).'</span></td>';
 		echo '</tr>';
         } 
 		echo	'</tbody>';
 		echo	'</table>';
+		echo	'<script>';
+		echo	'';
+		echo		'$("#tableGrade").on("blur", ".gradeBox", function(){
+							var grades = $(".gradeBox");
+							var total = 0;
+							grades.each(function(){
+								var value = parseInt($(this).val());
+								total += value;
+							})
+							var average = total / 4;
+							$(".gradeAverage").text(average);
+					})';
+		echo    '';
+		echo	'</script>';
 	}
 	public function returnStudentGrades2(){
 		// $data = $this->grades_model->studentGradeList2();

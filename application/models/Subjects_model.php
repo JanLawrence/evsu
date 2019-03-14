@@ -16,10 +16,11 @@ class Subjects_model extends CI_Model{
         return $query->result();
     }
     public function showSubj($id){
-        $this->db->select('s.id,s.section_id, s.subject_name,sec.section,sec.grade,s.status')
+        $this->db->select('GROUP_CONCAT(s.subject_name) subject_name ,s.id,s.section_id,sec.section,sec.grade,s.status')
         ->from('tbl_subject s')
         ->join('tbl_section sec','ON sec.id = s.section_id','left')
-        ->where('s.status','saved');
+        ->where('s.status','saved')
+        ->group_by('sec.section','sec.grade');
         if($id != 0){ // if id not equal to 0 the query will filter per teacher id 
             $this->db->where('s.id', $id);
         }
@@ -28,14 +29,19 @@ class Subjects_model extends CI_Model{
     }
 	public function addSubject(){
         // data that will be inserted to tbl_subject
-        $data = array(
-            'section_id' => $_POST['section'],
-            'subject_name' => $_POST['subject'],
-            'created_by' => $this->user->id,
-            'date_created' => date('Y-m-d H:i:s')
-        );
-        
-        $this->db->insert('tbl_subject', $data); // insert into tbl_subject
+        $query = $this->db->get_where('tbl_section', array('grade' => $_POST['grade']));
+        $getAll = $query->result();
+        foreach($getAll as $each){
+
+            $data = array(
+                'section_id' => $each->id,
+                'subject_name' => $_POST['subject'],
+                'created_by' => $this->user->id,
+                'date_created' => date('Y-m-d H:i:s')
+            );
+            
+            $this->db->insert('tbl_subject', $data); // insert into tbl_subject
+        }
     
         $userData = $this->session->userdata['user'];
         $dataLog = array(

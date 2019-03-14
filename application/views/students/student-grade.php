@@ -76,6 +76,7 @@
                                         <th style="width:15%">2nd Grading</th>
                                         <th style="width:15%">3rd Grading</th>
                                         <th style="width:15%">4th Grading</th>
+                                        <th style="width:15%">Average</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -86,6 +87,7 @@
                                             <td><?= $each->period_2?></td>
                                             <td><?= $each->period_3?></td>
                                             <td><?= $each->period_4?></td>
+                                            <td><?= (($each->period_1+$each->period_2+$each->period_3+$each->period_4) / 4)?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

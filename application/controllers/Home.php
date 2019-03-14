@@ -169,4 +169,54 @@ class Home extends CI_Controller {
         );
         $this->db->insert('tbl_bio', $data); // insert into tbl_bio
     }
+
+    public function teacherList(){
+        $sql = "SELECT t.first_name, t.middle_name, t.last_name, t.id teacher_id, IF(b.bio IS NOT NULL, b.bio, '') bio
+                FROM 
+                    tbl_teacher t
+                INNER JOIN 
+                    tbl_credentials c
+                ON c.user_id = t.id AND user_type ='teacher'
+                LEFT JOIN 
+                    tbl_bio_teacher b
+                ON b.teacher_id = t.id";
+        $query = $this->db->query($sql);
+        echo json_encode($query->result());
+    }
+    public function teacherBio(){
+        $teacher = $_REQUEST['teacher_id'];
+        $sql = "SELECT t.first_name, t.middle_name, t.last_name, t.id teacher_id, IF(b.bio IS NOT NULL, b.bio, '') bio
+                FROM 
+                    tbl_teacher t
+                INNER JOIN 
+                    tbl_credentials c
+                ON c.user_id = t.id AND user_type ='teacher'
+                LEFT JOIN 
+                    tbl_bio_teacher b
+                ON b.student_id = t.id
+                WHERE t.id = $teacher";
+        $query = $this->db->query($sql);
+        echo json_encode($query->result());
+    }
+    public function teacherAttendance(){
+        $data = array(
+            'teacher_id' => $_REQUEST['teacher_id'],
+            'attendance_date' => date('Y-m-d'),
+            'type' => $_REQUEST['type'],
+            'meridiem' => $_REQUEST['meridiem'],
+            'time' => date('Y-m-d H:i:s'),
+            'created_by' => 0,
+            'date_created' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_attendance_teacher', $data); // insert into tbl_attendance
+    }
+    public function teacherInsertBio(){
+        $data = array(
+            'teacher_id' => $_REQUEST['teacher_id'],
+            'bio' => $_REQUEST['bio'],
+            'created_by' => 0,
+            'date_created' => date('Y-m-d H:i:s')
+        );
+        $this->db->insert('tbl_bio_teacher', $data); // insert into tbl_bio
+    }
 }

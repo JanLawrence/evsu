@@ -31,6 +31,7 @@
                     <li><a href="<?= base_url(); ?>logs/userlogs"><i class="ti-agenda"></i> User Logs</a></li>
                     <li><a href="<?= base_url(); ?>help"><i class="ti-announcement"></i> Help</a></li>
                     <li><a href="<?= base_url(); ?>attendance"><i class="ti-comments"></i> Attendance</a></li>
+                    <li><a href="<?= base_url(); ?>attendance/teacher"><i class="ti-comments"></i>Teacher Attendance</a></li>
                 <?php endif;?>
 
 
