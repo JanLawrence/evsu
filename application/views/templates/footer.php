@@ -1,8 +1,13 @@
+<?php 
+    $this->db->order_by('sy_from', 'DESC');
+    $query = $this->db->get('tbl_school_year', 1);
+    $sy = $query->result();
+?>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <footer class="text-right">
-                    <p>All Rights Reserved, Laboratory School Department, School Year 2018-2019</p>
+                    <p>All Rights Reserved, Laboratory School Department, School Year <?= !empty($sy) ? $sy[0]->sy_from.' - '.$sy[0]->sy_to : ' - '?></p>
                 </footer>
             </div>
         </div>
