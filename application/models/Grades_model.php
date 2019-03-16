@@ -111,6 +111,7 @@ class Grades_model extends CI_Model{
         $user = $this->session->userdata['user'];
         $student = $_POST['student'];
         $year = $_POST['year'];
+        $section = $_POST['section'];
         $sql = "SELECT 
                     sub.id sub_id,
                     sub.subject_name,
@@ -131,6 +132,7 @@ class Grades_model extends CI_Model{
                     tbl_teacher t
                 ON t.id = sec.teacher_id
                 WHERE t.id = $user->user_id
+                AND sec.id = $section
                 ";
         $query = $this->db->query($sql);
         return $query->result();

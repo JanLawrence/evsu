@@ -13,9 +13,10 @@ $(function(){
     })
     $('select[name="student"]').change(function(){
         var year = $('select[name="school_year"]').val();
+        var section = $('select[name="section"]').val();
         var student = $(this).val();
 
-        $.post(URL + 'grades/returnStudentGrades', {'year':year,'student':student})
+        $.post(URL + 'grades/returnStudentGrades', {'year':year,'student':student,'section':section})
         .done(function(returnData){
             $('.returnHere').html(returnData);
         })

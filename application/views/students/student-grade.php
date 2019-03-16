@@ -80,6 +80,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php 
+                                        $period_1_total = 0;
+                                        $period_2_total = 0;
+                                        $period_3_total = 0;
+                                        $period_4_total = 0;
+                                    ?>
                                     <?php foreach($grades as $each){?>
                                         <tr>
                                             <td><?= $each->subject_name?></td>
@@ -89,7 +95,21 @@
                                             <td><?= $each->period_4?></td>
                                             <td><?= (($each->period_1+$each->period_2+$each->period_3+$each->period_4) / 4)?></td>
                                         </tr>
+                                        <?php 
+                                        $period_1_total += $each->period_1;
+                                        $period_2_total += $each->period_2;
+                                        $period_3_total += $each->period_3;
+                                        $period_4_total += $each->period_4;
+                                        ?>
                                     <?php } ?>
+                                    <tr>
+                                        <td style="width:40%"><strong>Period Average: </strong></td>
+                                        <td style="width:10%"><?= $period_1_total / count($grades)?></td>
+                                        <td style="width:10%"><?= $period_2_total / count($grades)?></td>
+                                        <td style="width:10%"><?= $period_3_total / count($grades)?></td>
+                                        <td style="width:10%"><?= $period_4_total / count($grades)?></td>
+                                        <td style="width:10%"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
