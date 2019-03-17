@@ -100,13 +100,14 @@ class Grades extends CI_Controller {
 		echo	'</thead>';
 		echo	'<tbody>';
 		foreach($data as $each){
+			$totalPerPeriod = $each->period_1+$each->period_2+$each->period_3+$each->period_4;
         echo '<tr>';
 			echo '<td style="width:40%">'.$each->subject_name.'<input name="subject[]" required type="hidden" value="'.$each->sub_id.'"></td>';
 			echo '<td style="width:10%"><input name="grade_1[]" class="gradeBox" type="text" value="'.$each->period_1.'"></td>';
 			echo '<td style="width:10%"><input name="grade_2[]" class="gradeBox"  type="text" value="'.$each->period_2.'"></td>';
 			echo '<td style="width:10%"><input name="grade_3[]" class="gradeBox"  type="text" value="'.$each->period_3.'"></td>';
 			echo '<td style="width:10%"><input name="grade_4[]" class="gradeBox" type="text" value="'.$each->period_4.'"></td>';
-			echo '<td style="width:10%"><span class="gradeAverage">'.(($each->period_1+$each->period_2+$each->period_3+$each->period_4) / 4).'</span></td>';
+			echo '<td style="width:10%"><span class="gradeAverage">'.( ($totalPerPeriod > 0) ? $totalPerPeriod / 4 : 0).'</span></td>';
 		echo '</tr>';
 		$period_1_total += $each->period_1;
 		$period_2_total += $each->period_2;
@@ -115,10 +116,10 @@ class Grades extends CI_Controller {
 	} 
 		echo '<tr>';
 			echo '<td style="width:40%"><strong>Period Average: </strong></td>';
-			echo '<td style="width:10%">'.$period_1_total / count($data).'</td>';
-			echo '<td style="width:10%">'.$period_2_total / count($data).'</td>';
-			echo '<td style="width:10%">'.$period_3_total / count($data).'</td>';
-			echo '<td style="width:10%">'.$period_4_total / count($data).'</td>';
+			echo '<td style="width:10%">'.(($period_1_total > 0) ? $period_1_total / count($data) : 0).'</td>';
+			echo '<td style="width:10%">'.(($period_2_total > 0) ? $period_2_total / count($data) : 0).'</td>';
+			echo '<td style="width:10%">'.(($period_3_total > 0) ? $period_3_total / count($data) : 0).'</td>';
+			echo '<td style="width:10%">'.(($period_4_total > 0) ? $period_4_total / count($data) : 0).'</td>';
 			echo '<td style="width:10%"></td>';
 		echo '</tr>';
 		echo	'</tbody>';

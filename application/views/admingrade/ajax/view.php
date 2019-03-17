@@ -4,7 +4,7 @@
         <select name="student" id="studentList" class="form-control">
             <option value="" selected disabled>Select Student</option>
             <?php foreach ($students as $each) {?>
-                <option value="<?= $each->id?>"><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name?></option>
+                <option value="<?= $each->id?>" sec-id="<?= $each->section_id?>"><?= $each->last_name.', '.$each->first_name.' '.$each->middle_name?></option>
             <?php } ?>
         </select>
     </div>
@@ -16,7 +16,8 @@
         var year = "<?= $_POST['year']?>";
         var teacher = "<?= $_POST['teacher']?>";
         var student = $(this).val();
-        $.post(URL + 'grades/returnStudentGrades2', {'year':year,'student':student,'teacher':teacher})
+        var section = $('option:selected', this).attr('sec-id');
+        $.post(URL + 'grades/returnStudentGrades2', {'year':year,'student':student,'teacher':teacher,'section':section})
         .done(function(returnData){
             $('.returnHere2').html(returnData);
         })

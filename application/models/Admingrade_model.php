@@ -31,7 +31,7 @@ class Admingrade_model extends CI_Model{
                 INNER JOIN
                     tbl_teacher t
                 ON t.id = sec.teacher_id
-                WHERE t.id = ".$_POST['teacher'];
+                WHERE t.id = ".$_POST['teacher']." AND sec.id = ".$_POST['section'];
          $query = $this->db->query($sql);
          return $query->result();
     }

@@ -65,7 +65,7 @@
                                             <!-- <td></td> -->
                                             <td>
                                                 <a href="#" 
-                                                    data-teacher="<?=$each->t_adviser_id?>"
+                                                    data-teacher="<?=$each->t_adviser_id?>" data-section="<?= $each->section_id?>"
                                                     class="btnViewGrade">
                                                     View
                                                 </a>
@@ -121,6 +121,7 @@
             var section = $(this).attr('data-section');
             var subject = $(this).attr('data-subject');
             var teacher= $(this).attr('data-teacher');
+            var section= $(this).attr('data-section');
             var grade = $(this).attr('data-grade');
             var year = $('select[name="school_year"]').val();
             var year_name = $('select[name="school_year"] option:selected').text();
@@ -132,7 +133,7 @@
             $('#viewModal').find('span.section').text(section_name);
             $('#viewModal').find('span.adviser').text(adviser_name);
             $('#viewModal').find('span.year').text(year_name);
-            $.post(URL + 'admingrade/viewGrade', {'teacher': teacher, 'year':year})
+            $.post(URL + 'admingrade/viewGrade', {'teacher': teacher, 'year':year,'section':section})
             .done(function(returnData){
                 $('.returnHere').html(returnData);
             })
