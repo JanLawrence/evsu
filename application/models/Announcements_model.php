@@ -52,7 +52,7 @@ class Announcements_model extends CI_Model{
             $this->db->where('stud.id', $dataCheck[0]->student_id);
             $this->db->where('a.date >= "'.$from.'" && a.date <= "'.$to.'"');
         }
-        $this->db->order_by('a.date','DESC');
+        $this->db->order_by('DATE(a.date_created)','DESC');
 
         $query = $this->db->get(); // get results of query
         return $query->result();

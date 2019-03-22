@@ -1,3 +1,8 @@
+<?php 
+    $this->db->order_by('sy_from', 'DESC');
+    $query = $this->db->get('tbl_school_year', 1);
+    $sy = $query->result();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,10 +95,45 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 text-center">
+                                        <button class="btn btn-info btn-lg" style="padding: 10px 30px;" data-toggle="modal" data-target="#myModal"> About</button>
+                                    </div>
+                                </div>
                             <!-- /# column -->
                     </section>
                 </div>
             </div>
+        </div>
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+        	<div class="modal-dialog modal-lg">
+        		<div class="modal-content" style="margin-top: 150px;">
+
+        			<!-- Modal Header -->
+        			<div class="modal-header">
+        				<h6 class="modal-title"><img src="<?= base_url(); ?>assets/img/logo.png" class="logo-img" alt="" style="width: 16%;" /> About Us</h6>
+        				<button type="button" class="close" data-dismiss="modal">&times;</button>
+        			</div>
+
+        			<!-- Modal body -->
+        			<div class="modal-body text-center">
+        				<p style="font-family: Montserrat;">The advancement of technology today has absorbed itself towards education. The presence of technology has reached its maximum of providing sustainable technology towards quality education through portals. Although starting with a portal that has a limited constitiuency may make sense, the goal of a school should be to move as quickly as possible to a web portal that serves everyone: students, parentss, faculty members and prospective students who would like to use the school web portal
+                        </p>
+        				<p style="font-family: Montserrat;">Students with parents who are involved in school tend to have fewer behavioural problems and better academic performance, and are more likely to complete secondary school than students with parents that are not involved in schools' (p. 1) Henderson and Berla (1994) found that parents who monitored the student's school work and daily activities, communicated frequently with the teachers, and help develop plans for education or work after high school had children who were more likely to graduate from high cshool and to pursue post-secondary education
+                        </p>
+        				<p style="font-family: Montserrat;">This system is intended to automate the traditional way of grading a student,recording its attendance, giving announcements and at the same parents are given the privilege to monitor their Childs' academic performance from time to time. This stydy will enhance the involvement of the parents in the child academic achievements. The proponents of this study believe that parental involvement in a childs's education inspire the child to achieve better and reach full potetial. That is the main reason why the proponents came up with the idea in developiong this system for the Laboratory School Department of Eastern Visayas State University
+                        </p>
+        			</div>
+
+        			<!-- Modal footer -->
+        			<div class="modal-footer text-center">
+                        <p style="font-family: Montserrat;width: 100%;display: block;">All Rights Reserved, Laboratory School Department, School Year <?= !empty($sy) ? $sy[0]->sy_from.' - '.$sy[0]->sy_to : ' - '?></p>
+        			</div>
+
+        		</div>
+        	</div>
         </div>
     <!-- nano scroller -->
     <script src="<?= base_url();?>assets/js/lib/menubar/sidebar.js"></script>

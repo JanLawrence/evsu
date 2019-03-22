@@ -101,25 +101,47 @@ class Grades extends CI_Controller {
 		echo	'<tbody>';
 		foreach($data as $each){
 			$totalPerPeriod = $each->period_1+$each->period_2+$each->period_3+$each->period_4;
+			$totalPerPeriod2 = $totalPerPeriod / 4;
+			$totPerP = $totalPerPeriod2 < 70 ? 70 : $totalPerPeriod2;
         echo '<tr>';
 			echo '<td style="width:40%">'.$each->subject_name.'<input name="subject[]" required type="hidden" value="'.$each->sub_id.'"></td>';
 			echo '<td style="width:10%"><input name="grade_1[]" class="gradeBox" type="text" value="'.$each->period_1.'"></td>';
 			echo '<td style="width:10%"><input name="grade_2[]" class="gradeBox"  type="text" value="'.$each->period_2.'"></td>';
 			echo '<td style="width:10%"><input name="grade_3[]" class="gradeBox"  type="text" value="'.$each->period_3.'"></td>';
 			echo '<td style="width:10%"><input name="grade_4[]" class="gradeBox" type="text" value="'.$each->period_4.'"></td>';
-			echo '<td style="width:10%"><span class="gradeAverage">'.( ($totalPerPeriod > 0) ? $totalPerPeriod / 4 : 0).'</span></td>';
+			echo '<td style="width:10%"><span class="gradeAverage">'.( ($totalPerPeriod > 0) ? $totPerP : 70).'</span></td>';
 		echo '</tr>';
 		$period_1_total += $each->period_1;
 		$period_2_total += $each->period_2;
 		$period_3_total += $each->period_3;
 		$period_4_total += $each->period_4;
 	} 
+		$period1Tot = $period_1_total / 4;
+		$totperiod1 = $period1Tot < 70 ? 70 : $period1Tot;
+
+		$period2Tot = $period_2_total / 4;
+		$totperiod2 = $period2Tot < 70 ? 70 : $period2Tot;
+
+		$period3Tot = $period_3_total / 4;
+		$totperiod3 = $period3Tot < 70 ? 70 : $period3Tot;
+
+		$period4Tot = $period_4_total / 4;
+		$totperiod4 = $period4Tot < 70 ? 70 : $period4Tot;
+
 		echo '<tr>';
 			echo '<td style="width:40%"><strong>Period Average: </strong></td>';
-			echo '<td style="width:10%">'.(($period_1_total > 0) ? $period_1_total / count($data) : 0).'</td>';
-			echo '<td style="width:10%">'.(($period_2_total > 0) ? $period_2_total / count($data) : 0).'</td>';
-			echo '<td style="width:10%">'.(($period_3_total > 0) ? $period_3_total / count($data) : 0).'</td>';
-			echo '<td style="width:10%">'.(($period_4_total > 0) ? $period_4_total / count($data) : 0).'</td>';
+			echo '<td style="width:10%">'.(($period_1_total > 0) ? $totperiod1 : 70).'</td>';
+			echo '<td style="width:10%">'.(($period_2_total > 0) ? $totperiod2 : 70).'</td>';
+			echo '<td style="width:10%">'.(($period_3_total > 0) ? $totperiod3 : 70).'</td>';
+			echo '<td style="width:10%">'.(($period_4_total > 0) ? $totperiod4 : 70).'</td>';
+			echo '<td style="width:10%"></td>';
+		echo '</tr>';
+		echo '<tr>';
+			echo '<td style="width:40%"><strong>General Average: </strong></td>';
+			echo '<td style="width:10%">'.(($totperiod1 + $totperiod2 + $totperiod3 + $totperiod4) / 4).'</td>';
+			echo '<td style="width:10%"></td>';
+			echo '<td style="width:10%"></td>';
+			echo '<td style="width:10%"></td>';
 			echo '<td style="width:10%"></td>';
 		echo '</tr>';
 		echo	'</tbody>';

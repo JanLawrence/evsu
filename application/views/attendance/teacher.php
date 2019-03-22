@@ -71,8 +71,8 @@
                                         <th>Teacher Name</th>
                                         <th>Date</th>
                                         <th>Time in AM</th>
-                                        <th>Time in PM</th>
                                         <th>Time out AM</th>
+                                        <th>Time in PM</th>
                                         <th>Time out PM</th>
                                     </tr>
                                 </thead>
@@ -83,8 +83,8 @@
                                             <td><?= $each->name?></td>
                                             <td><?= date('F d, Y', strtotime($each->date))?></td>
                                             <td><?= !empty($each->time_in_am) ? date('H:i A', strtotime($each->time_in_am)) : ''?></td>
-                                            <td><?= !empty($each->time_in_pm) ? date('H:i A', strtotime($each->time_in_pm)) : ''?></td>
                                             <td><?= !empty($each->time_out_am) ? date('H:i A', strtotime($each->time_out_am)) : ''?></td>
+                                            <td><?= !empty($each->time_in_pm) ? date('H:i A', strtotime($each->time_in_pm)) : ''?></td>
                                             <td><?= !empty($each->time_out_pm) ? date('H:i A', strtotime($each->time_out_pm)) : ''?></td>
                                         </tr>
                                     <?php endforeach; ?>

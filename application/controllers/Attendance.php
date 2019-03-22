@@ -85,8 +85,7 @@ class Attendance extends CI_Controller {
                         $student
                     AND
                         attendance_date >= '$from' && attendance_date <= '$to'
-                    GROUP BY
-                        attendance_date
+                    GROUP BY student_id, attendance_date
                 ) dateTrans
                 ON dateTrans.student_id = stud.id 
                 LEFT JOIN
