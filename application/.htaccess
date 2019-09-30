@@ -1,5 +1,6 @@
 <IfModule authz_core_module>
     Require all denied
+    # change to granted to allow. hahaha
 </IfModule>
 <IfModule !authz_core_module>
     Deny from all
