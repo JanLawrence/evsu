@@ -58,7 +58,8 @@ class Grades_model extends CI_Model{
     public function returnStudentListPerSec(){
         $user = $this->session->userdata['user'];
         $sql = "SELECT 
-                    stud.*
+                    stud.*,
+		    sec.*
                 FROM tbl_students stud
                 INNER JOIN 
                     tbl_section sec
